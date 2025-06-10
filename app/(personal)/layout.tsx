@@ -6,7 +6,7 @@ import { draftMode } from 'next/headers'
 import { toPlainText } from 'next-sanity'
 import { Suspense } from 'react'
 
-import { Footer } from '@/components/global/Footer'
+import Footer from '@/components/global/Footer'
 import { Navbar } from '@/components/global/Navbar'
 import { urlForImage, urlForOpenGraphImage } from '@/sanity/lib/utils'
 import { loadHomePage, loadSettings } from '@/sanity/loader/loadQuery'
@@ -72,14 +72,14 @@ export default async function IndexRoute({
         <Suspense>
           <Navbar />
         </Suspense>
-        <div className="mt-16 flex-grow px-4 md:px-5 lg:px-5">
+        <div className="mt-0 flex-grow px-4 md:px-5 lg:px-5" style={{ marginLeft: '14rem' }}>
           <Suspense>{children}</Suspense>
         </div>
         <Suspense>
           <Footer />
         </Suspense>
       </div>
-      {draftMode().isEnabled && <LiveVisualEditing />}
+      {(await draftMode()).isEnabled && <LiveVisualEditing />}
     </>
   )
 }
