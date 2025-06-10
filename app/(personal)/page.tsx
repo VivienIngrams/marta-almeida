@@ -19,11 +19,7 @@ export default async function IndexRoute() {
   if (!initial.data) {
     return (
       <div className="text-center text-2xl">
-        Congrats! You created your website, now you can go to your Studio and{' '}
-        <Link href={`${studioUrl}/structure/home`} className="underline">
-          start editing your homepage
-        </Link>
-        !
+     Marta Almeida
       </div>
     )
   }
