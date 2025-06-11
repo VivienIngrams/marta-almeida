@@ -41,6 +41,9 @@ export function HomePage({ data, encodeDataAttribute }: HomePageProps) {
               </Link>
             )
           })}
+          <a href="/CV_Marta_Almeida.pdf" download className="inline-block mt-4 bg-black text-white px-4 py-2 rounded">
+        Download CV
+      </a>
         </div>
       )}
     </div>

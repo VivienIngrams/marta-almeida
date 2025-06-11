@@ -15,7 +15,8 @@ export async function Navbar() {
   const title = await getHomePageTitle()
   const customLogo = await loadHomePage()
 
-  if (draftMode().isEnabled) {
+  const draft = await draftMode();
+  if (draft.isEnabled) {
     return (
       <NavbarPreview
         initial={initial}

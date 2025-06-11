@@ -18,7 +18,8 @@ export default defineType({
     }),
     defineField({
       name: 'slug',
-      description: 'This field is the project page name at yourwebsite.com/projects/<name>.',
+      description:
+        'This field is the project page name at yourwebsite.com/projects/<name>.',
       title: 'Slug',
       type: 'slug',
       options: {
@@ -70,15 +71,31 @@ export default defineType({
     }),
     defineField({
       name: 'year',
-      description: 
+      description:
         '(Optional) This freeform field is for year or type of your project. It will be displayed next to title in the projects list within the homepage and below title at project page.',
       title: 'Year',
       type: 'string',
     }),
     defineField({
+      name: 'category',
+      title: 'Section',
+      type: 'string',
+      options: {
+        list: [
+          { title: 'Interpretação', value: 'interpretacao' },
+          { title: 'Criação', value: 'criacao' },
+          { title: 'Colaboração', value: 'colaboracao' },
+        ],
+        layout: 'radio',
+      },
+      validation: (rule) => rule.required(),
+    }),
+
+    defineField({
       name: 'site',
       title: 'Website link',
-      description: '(Optional) External link related to your project, it is displayed below your project overview text.',
+      description:
+        '(Optional) External link related to your project, it is displayed below your project overview text.',
       type: 'object',
       options: {
         columns: 2,
@@ -99,7 +116,8 @@ export default defineType({
     // Content blocks
     defineField({
       title: 'Content builder',
-      description: 'This is a content builder for your project page, choose content type and add your content. You can rearrange your blocks later.',
+      description:
+        'This is a content builder for your project page, choose content type and add your content. You can rearrange your blocks later.',
       name: 'content',
       type: 'array',
       of: [
@@ -115,7 +133,7 @@ export default defineType({
               name: 'photo',
               type: 'image',
               options: {
-                hotspot: true
+                hotspot: true,
               },
             },
             {
@@ -127,12 +145,12 @@ export default defineType({
           ],
           preview: {
             select: {
-              photo: 'photo'
+              photo: 'photo',
             },
             prepare({ photo }) {
               return {
                 title: 'Single image',
-                media: photo
+                media: photo,
               }
             },
           },
@@ -149,7 +167,7 @@ export default defineType({
               name: 'photoOne',
               type: 'image',
               options: {
-                hotspot: true
+                hotspot: true,
               },
             },
             {
@@ -157,7 +175,7 @@ export default defineType({
               name: 'photoTwo',
               type: 'image',
               options: {
-                hotspot: true
+                hotspot: true,
               },
             },
             {
@@ -169,17 +187,17 @@ export default defineType({
           ],
           preview: {
             select: {
-              photo: 'photoOne'
+              photo: 'photoOne',
             },
             prepare({ photo }) {
               return {
                 title: 'Two images',
-                media: photo
+                media: photo,
               }
             },
           },
         }),
-        // Text block 
+        // Text block
         defineArrayMember({
           title: 'Text Block',
           name: 'textBlock',
@@ -227,7 +245,7 @@ export default defineType({
           ],
           preview: {
             select: {
-              content: 'description'
+              content: 'description',
             },
             prepare({ content }) {
               return {
@@ -258,12 +276,12 @@ export default defineType({
           ],
           preview: {
             select: {
-              link: 'videoLink'
+              link: 'videoLink',
             },
             prepare({ link }) {
               return {
                 title: 'Single video',
-                subtitle: link
+                subtitle: link,
               }
             },
           },
@@ -295,16 +313,16 @@ export default defineType({
           preview: {
             select: {
               linkOne: 'videoOneLink',
-              linkTwo: 'videoTwoLink'
+              linkTwo: 'videoTwoLink',
             },
             prepare({ linkOne, linkTwo }) {
               return {
                 title: 'Two videos',
-                subtitle: linkOne + ` + ` + linkTwo
+                subtitle: linkOne + ` + ` + linkTwo,
               }
             },
           },
-        }), 
+        }),
       ],
     }),
   ],
