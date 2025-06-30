@@ -40,12 +40,15 @@ export interface ShowcaseProject {
 // Page payloads
 
 export interface HomePagePayload {
-  footer?: PortableTextBlock[]
   overview?: any
-  showcaseProjects?: ShowcaseProject[]
+  homeImage?: Image
   title?: string
   customLogo?: Image
-  _updatedAt?: string
+  links?: {
+    _type: string
+    title?: string
+    url?: string
+  }
 }
 
 export interface ProjectPayload {
@@ -74,7 +77,6 @@ export interface Content {
 }
 
 export interface SettingsPayload {
-  
   ogImage?: Image
   favIcon?: Image
   title?: string
@@ -89,15 +91,4 @@ export interface SettingsPayload {
     b?: string
   }
   displayLastUpdated: boolean
-}
-
-export interface AboutPayload {
-  overview?: PortableTextBlock[]
-  title?: string
-  aboutImage?: {
-    asset: Image
-    width: number
-    height: number
-  }
-  aboutLinks?: LinkItem[]
 }

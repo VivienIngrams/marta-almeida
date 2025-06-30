@@ -1,24 +1,23 @@
 import type { EncodeDataAttributeCallback } from '@sanity/react-loader'
 import Link from 'next/link'
 
-import AboutImageBox from '@/components/shared/AboutImageBox'
+import HomeImageBox from '@/components/shared/HomeImageBox'
 import { CustomPortableText } from '@/components/shared/CustomPortableText'
-import type { AboutPayload } from '@/types'
+import type { HomePagePayload } from '@/types'
 
 export interface HomePageProps {
-  data: AboutPayload | null
+  data: HomePagePayload | null
   encodeDataAttribute?: EncodeDataAttributeCallback
 }
 
 export function HomePage({ data }: HomePageProps) {
   // Default to an empty object to allow previews on non-existent documents
-  const { title, overview, aboutImage, aboutLinks } = data ?? {}
-console.log('HomePage overview', overview)
+  const { title, overview, homeImage, links,  } = data ?? {}
+console.log('HomePage ', data)
   return (
     <div className="h-full mt-4 grid gap-5 grid-cols-1 xl:grid-cols-2">
       <div className="w-full">
-        
-Overview
+
         {overview && (
           <div className="mt-2 text-2xl md:text-3xl">
             <CustomPortableText value={overview} />
@@ -28,29 +27,29 @@ Overview
 
         <div className="mt-10 flex flex-col">
           {/* Links */}
-          {aboutLinks &&
-            aboutLinks.map((aboutLink, key) => {
+          {/* {links &&
+            links.map((link, key) => {
               return (
                 <div key={key} className="flex flex-wrap">
                   <Link
                     target="_blank"
                     className={`flex flex-wrap text-xl text-secondary underline md:text-2xl`}
-                    href={aboutLink.url!}
+                    href={link.url!}
                   >
-                    {aboutLink.title}
+                    {link.title}
                   </Link>
                 </div>
               )
-            })}
+            })} */}
         </div>
       </div>
 
       <div className="w-full">
-        {/* About image */}
-        {aboutImage && (
-          <AboutImageBox
-            image={aboutImage}
-            alt={`About image`}
+        {/* Home image */}
+        {homeImage && (
+          <HomeImageBox
+            image={homeImage}
+            alt={`Home image`}
             classesWrapper="relative"
           />
         )}

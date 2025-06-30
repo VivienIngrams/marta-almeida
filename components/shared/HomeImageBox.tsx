@@ -14,7 +14,7 @@ interface ImageBoxProps {
 
 export default function ImageBox({
   image,
-  alt = 'About image',
+  alt = 'Home image',
   width = 3500,
   height = 2000,
   size = '(min-width: 940px) 60vw, 100vw',

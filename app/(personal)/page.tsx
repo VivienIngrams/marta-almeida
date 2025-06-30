@@ -15,13 +15,7 @@ export default async function IndexRoute() {
     return <HomePagePreview initial={initial} />
   }
 
-  if (!initial.data) {
-    return (
-      <div className="text-center text-2xl">
-     Marta 
-      </div>
-    )
-  }
+ 
 
   return <HomePage data={initial.data} />
 }
