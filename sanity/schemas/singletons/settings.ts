@@ -9,63 +9,7 @@ export default defineType({
   // Uncomment below to have edits publish automatically as you type
   // liveEdit: true,
   fields: [
-    defineField({
-      name: 'menuItems',
-      title: 'Menu Item list',
-      description: 'Links displayed on the header of your site.',
-      type: 'array',
-      of: [
-        {
-          title: 'About page',
-          type: 'reference',
-          to: [
-            {
-              type: 'about',
-            },
-          ],
-          options: {
-            disableNew: true,
-          },
-        },
-        {
-          title: 'Link',
-          name: 'navLink',
-          type: 'object',
-          icon: LinkIcon,
-          fields: [
-            {
-              title: 'Title',
-              name: 'title',
-              type: 'string',
-              description: 'Display Text'
-            },
-            {
-              title: 'URL',
-              name: 'url',
-              type: 'url',
-              description: 'enter an external URL',
-              validation: Rule =>
-              Rule.uri({
-                scheme: ['http', 'https', 'mailto', 'tel']
-              }),
-            },
-          ],
-          preview: {
-            select: {
-              title: 'title',
-              url: 'url'
-            },
-            prepare({ title, url }) {
-              return {
-                title: title,
-                subtitle: url,
-                media: LinkIcon,
-              }
-            },
-          },
-        },
-      ],
-    }),
+    
     defineField({
       name: 'ogImage',
       title: 'Open Graph Image',

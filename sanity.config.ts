@@ -8,15 +8,17 @@ import { visionTool } from '@sanity/vision'
 import { defineConfig, NavbarProps, useWorkspace } from 'sanity'
 import { presentationTool } from 'sanity/presentation'
 import { structureTool } from 'sanity/structure'
-import { media } from 'sanity-plugin-media'
+
 
 import { apiVersion, dataset, projectId, studioUrl } from '@/sanity/lib/api'
 import { Logo } from '@/sanity/plugins/Logo'
 import * as resolve from '@/sanity/plugins/resolve'
 import { pageStructure, singletonPlugin } from '@/sanity/plugins/settings'
 import project from '@/sanity/schemas/documents/project'
-import about from '@/sanity/schemas/singletons/about'
-import home from '@/sanity/schemas/singletons/home'
+import about from '@/sanity/schemas/singletons/home'
+import criacao from '@/sanity/schemas/singletons/criacao'
+import colaboracao from './sanity/schemas/singletons/colaboracao'
+import interpretacao from './sanity/schemas/singletons/interpretacao'
 import settings from '@/sanity/schemas/singletons/settings'
 
 const title =
@@ -33,7 +35,9 @@ export default defineConfig({
     // If you want more content types, you can add them to this array
     types: [
       // Singletons
-      home,
+      criacao,
+      interpretacao,
+      colaboracao,
       about,
       settings,
       // Documents
@@ -42,7 +46,7 @@ export default defineConfig({
   },
   plugins: [
     structureTool({
-      structure: pageStructure([home, settings, about]),
+      structure: pageStructure([criacao, colaboracao, interpretacao, settings, about]),
     }),
     presentationTool({
       resolve,
@@ -53,11 +57,11 @@ export default defineConfig({
       },
     }),
     // Configures the global "new document" button, and document actions, to suit the Settings document singleton
-    singletonPlugin([home.name, settings.name, about.name]),
+    singletonPlugin([interpretacao.name, colaboracao.name, criacao.name, settings.name, about.name]),
     // Vision lets you query your content with GROQ in the studio
     // https://www.sanity.io/docs/the-vision-plugin
     visionTool({ defaultApiVersion: apiVersion }),
     colorInput(),
-    media(),
+  
   ],
 })

@@ -74,10 +74,7 @@ export interface Content {
 }
 
 export interface SettingsPayload {
-  menuItems?: {
-    page?: PageItem[]
-    link?: LinkItem[]
-  }
+  
   ogImage?: Image
   favIcon?: Image
   title?: string

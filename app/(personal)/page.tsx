@@ -2,11 +2,11 @@ import dynamic from 'next/dynamic'
 import { draftMode } from 'next/headers'
 import Link from 'next/link'
 
-import { HomePage } from '@/components/pages/home/HomePage'
+import { AboutPage } from '@/components/pages/home/AboutPage'
 import { studioUrl } from '@/sanity/lib/api'
 import { loadHomePage } from '@/sanity/loader/loadQuery'
 const HomePagePreview = dynamic(
-  () => import('@/components/pages/home/HomePagePreview'),
+  () => import('@/components/pages/home/AboutPagePreview'),
 )
 
 export default async function IndexRoute() {
@@ -20,10 +20,10 @@ export default async function IndexRoute() {
   if (!initial.data) {
     return (
       <div className="text-center text-2xl">
-     Marta Almeida
+     Marta 
       </div>
     )
   }
 
-  return <HomePage data={initial.data} />
+  return <AboutPage data={initial.data} />
 }
