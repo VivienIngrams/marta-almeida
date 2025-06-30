@@ -1,12 +1,10 @@
 import dynamic from 'next/dynamic'
 import { draftMode } from 'next/headers'
-import Link from 'next/link'
 
-import { AboutPage } from '@/components/pages/home/AboutPage'
-import { studioUrl } from '@/sanity/lib/api'
+import HomePage from '@/components/pages/home/HomePage' 
 import { loadHomePage } from '@/sanity/loader/loadQuery'
 const HomePagePreview = dynamic(
-  () => import('@/components/pages/home/AboutPagePreview'),
+  () => import('@/components/pages/home/HomePagePreview'),
 )
 
 export default async function IndexRoute() {
@@ -25,5 +23,5 @@ export default async function IndexRoute() {
     )
   }
 
-  return <AboutPage data={initial.data} />
+  return <HomePage data={initial.data} />
 }

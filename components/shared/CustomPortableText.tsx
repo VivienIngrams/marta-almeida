@@ -34,6 +34,7 @@ export function CustomPortableText({
       },
     },
     types: {
+      
       image: ({
         value,
       }: {

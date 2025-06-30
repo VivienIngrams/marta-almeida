@@ -5,26 +5,26 @@ import AboutImageBox from '@/components/shared/AboutImageBox'
 import { CustomPortableText } from '@/components/shared/CustomPortableText'
 import type { AboutPayload } from '@/types'
 
-export interface AboutPageProps {
+export interface HomePageProps {
   data: AboutPayload | null
   encodeDataAttribute?: EncodeDataAttributeCallback
 }
 
-export function AboutPage({ data }: AboutPageProps) {
+export function HomePage({ data }: HomePageProps) {
   // Default to an empty object to allow previews on non-existent documents
   const { title, overview, aboutImage, aboutLinks } = data ?? {}
-
+console.log('HomePage overview', overview)
   return (
     <div className="h-full mt-4 grid gap-5 grid-cols-1 xl:grid-cols-2">
       <div className="w-full">
-        {/* Title */}
-        <div>{title && title}</div>
-
+        
+Overview
         {overview && (
           <div className="mt-2 text-2xl md:text-3xl">
             <CustomPortableText value={overview} />
           </div>
         )}
+        
 
         <div className="mt-10 flex flex-col">
           {/* Links */}
@@ -59,4 +59,4 @@ export function AboutPage({ data }: AboutPageProps) {
   )
 }
 
-export default AboutPage
+export default HomePage

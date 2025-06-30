@@ -5,8 +5,8 @@ import { draftMode } from 'next/headers'
 
 import { client } from '@/sanity/lib/client'
 import {
-  aboutPageQuery,
   homePageQuery,
+  
   homePageTitleQuery,
   moreProjectsQuery,
   projectBySlugQuery,
@@ -96,9 +96,15 @@ export function getHomePageTitle() {
   )
 }
 
-export function getAboutPage() {
+/**
+ * Fetches the homepage data using the specified query, returning an `AboutPayload` or `null`.
+ * Utilizes the `homePageQuery` to load the data, with a tag indicating it is related to 'about'.
+ * This function is intended to be used where homepage data is required.
+ */
+
+export function getHomePage() {
   return loadQuery<AboutPayload | null>(
-    aboutPageQuery,
+    homePageQuery,
     {},
     { next: { tags: ['about'] } },
   )

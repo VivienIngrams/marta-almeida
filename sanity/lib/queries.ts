@@ -1,29 +1,6 @@
 import { groq } from 'next-sanity'
 
-export const homePageQuery = groq`
-  *[_type == "home"][0]{
-    _id,
-    _updatedAt,
-    overview{
-      text,
-      displayText,
-    },
-    customLogo,
-    showcaseProjects[]->{
-      _type,
-      coverImage{
-        _type,
-        asset,
-        "lqip": asset->metadata.lqip,
-      },
-      overview,
-      "slug": slug.current,
-      title,
-      year,
-    },
-    title,
-  }
-`
+
 
 export const moreProjectsQuery = groq`
   *[_type == "home"][0]{
@@ -43,18 +20,18 @@ export const moreProjectsQuery = groq`
   }
 `
 
-export const aboutPageQuery = groq`
+export const homePageQuery = groq`
   *[_type == "about"][0]{
     _id,
     title,
     customLogo,
     overview,
-    aboutImage{
+    homeImage{
       _type,
       asset,
       "lqip": asset->metadata.lqip,
     },
-    aboutLinks[]{
+    links[]{
       _type,
       title,
       url,

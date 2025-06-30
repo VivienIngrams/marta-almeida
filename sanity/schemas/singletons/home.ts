@@ -69,26 +69,21 @@ export default defineType({
           ],
           validation: (rule) => rule.max(155).required(),
           },
-          {
-            title: 'Display this introduction on Home page?',
-            description: 'If you turn in off it still be used for SEO description',
-            name: 'displayText',
-            type: 'boolean',
-          },
+        
         ],
       }),
     defineField({
-      name: 'aboutImage',
-      title: 'About Image',
+      name: 'homeImage',
+      title: 'Home Image',
       description:
-        '(Optional) This image will be displayed next to your About description.',
+        '(Optional) This image will be displayed next to your  description.',
       type: 'image',
       options: {
         hotspot: true,
       },
     }),
     defineField({
-      name: 'aboutLinks',
+      name: 'links',
       title: 'External links',
       description: '(Optional) Here you can add a list of external links, it will be displayed below your About description text.',
       type: 'array',
@@ -136,7 +131,7 @@ export default defineType({
   preview: {
     prepare() {
       return {
-        title: 'About page',
+        title: 'Home page',
       }
     },
   },
