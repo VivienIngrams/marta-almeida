@@ -31,11 +31,7 @@ export const homePageQuery = groq`
       asset,
       "lqip": asset->metadata.lqip,
     },
-    links[]{
-      _type,
-      title,
-      url,
-    },
+   bio,
   }
 `
 

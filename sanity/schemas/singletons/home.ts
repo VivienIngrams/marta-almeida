@@ -83,50 +83,54 @@ export default defineType({
       },
     }),
     defineField({
-      name: 'links',
-      title: 'External links',
-      description: '(Optional) Here you can add a list of external links, it will be displayed below your HomePage description text.',
-      type: 'array',
-      of: [
-        {
-        title: 'Link',
-        name: 'navLink',
+        name: 'bio',
+        description:
+          'This text is your biography.',
+        title: 'Biography text',
         type: 'object',
-        icon: LinkIcon,
-        fields: [
+        fields:[
           {
-            title: 'Title',
-            name: 'title',
-            type: 'string',
-            description: 'Display Text'
-          },
-          {
-            title: 'URL',
-            name: 'url',
-            type: 'url',
-            description: 'enter an external URL',
-            validation: Rule =>
-            Rule.uri({
-              scheme: ['http', 'https', 'mailto', 'tel']
+          name: 'text',
+          type: 'array',
+          of: [
+            // Paragraphs
+            defineArrayMember({
+              lists: [],
+              marks: {
+                annotations: [
+                  {
+                    name: 'link',
+                    type: 'object',
+                    title: 'Link',
+                    fields: [
+                      {
+                        name: 'href',
+                        type: 'url',
+                        title: 'Url',
+                      },
+                    ],
+                  },
+                ],
+                decorators: [
+                  {
+                    title: 'Italic',
+                    value: 'em',
+                  },
+                  {
+                    title: 'Strong',
+                    value: 'strong',
+                  },
+                ],
+              },
+              styles: [],
+              type: 'block',
             }),
+          ],
+          validation: (rule) => rule.max(155).required(),
           },
+        
         ],
-        preview: {
-          select: {
-            title: 'title',
-            url: 'url'
-          },
-          prepare({ title, url }) {
-            return {
-              title: title,
-              subtitle: url,
-              media: LinkIcon,
-            }
-          },
-        },
-      },
-    ],
-  }),
+      }),
   ],
   preview: {
     prepare() {

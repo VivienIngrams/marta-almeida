@@ -3,11 +3,12 @@ import ProjectPreview from '@/components/pages/project/ProjectPreview'
 import { projectBySlugQuery } from '@/sanity/lib/queries'
 import { QueryResponseInitial } from '@sanity/react-loader'
 
-export default async function InterpretacaoPage() {
+export default async function CriacaoPage() {
   const projects = await client.fetch(
-    `*[_type == "project" && category == "interpretacao"] | order(year desc)`
+    `*[_type == "project" ] | order(year desc)`
   )
 
+console.log('Projects:', projects)  
   // Fetch initial data for each project
   const projectsWithInitial = await Promise.all(
     projects.map(async (project: any) => {

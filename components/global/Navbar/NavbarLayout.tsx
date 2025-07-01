@@ -67,6 +67,8 @@ export default function Navbar(props: NavbarProps) {
             <Link href="/criacao" onClick={() => setMobileOpen(false)}>Criação</Link>
             <Link href="/colaboracao" onClick={() => setMobileOpen(false)}>Colaboração</Link>
           </div>
+             <div className=''>
+      <Footer/></div>
         </div>
 
       )}

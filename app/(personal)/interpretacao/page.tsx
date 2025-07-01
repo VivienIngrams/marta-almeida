@@ -7,7 +7,6 @@ export default async function InterpretacaoPage() {
   const projects = await client.fetch(
     `*[_type == "project" && category == "interpretacao"] | order(year desc)`
   )
-
   // Fetch initial data for each project
   const projectsWithInitial = await Promise.all(
     projects.map(async (project: any) => {

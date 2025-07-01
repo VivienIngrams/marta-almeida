@@ -44,11 +44,7 @@ export interface HomePagePayload {
   homeImage?: Image
   title?: string
   customLogo?: Image
-  links?: {
-    _type: string
-    title?: string
-    url?: string
-  }
+ bio?: any
 }
 
 export interface ProjectPayload {
