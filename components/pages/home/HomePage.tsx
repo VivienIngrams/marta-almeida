@@ -16,21 +16,21 @@ export function HomePage({ data }: HomePageProps) {
   return (
     <div
       className="
-        mt-12 md:mt-0
+        mt-16 md:mt-0
         flex flex-col items-center justify-center
-        w-full
-        h-auto
+        md:w-auto
+        min-h-[70vh]
         md:h-[calc(100vh-80px)]
         ]
       "
     >
-      <div className="w-full h-full flex flex-col flex-1 justify-center">
+      <div className="w-full h-full flex flex-col md:flex-1 justify-center">
         {/* Home image */}
         {homeImage && (
           <HomeImageBox
             image={homeImage}
             alt={`Home image`}
-            classesWrapper="w-full h-full min-h-[300px] flex-1"
+            classesWrapper="w-full h-full min-h-[300px] md:flex-1"
           />
         )}
         {/* Overview text below the image */}
