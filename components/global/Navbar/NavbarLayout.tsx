@@ -25,8 +25,8 @@ export default function Navbar(props: NavbarProps) {
   return (
     <>
       {/* Desktop Sidebar */}
-      <div className="hidden md:fixed md:top-0 md:left-0 md:h-screen md:w-80 md:flex md:flex-col md:justify-between md:items-start px-4 p-6 md:p-12 z-50 ">
-        <div className="w-full flex flex-col mt-24">
+      <div className="hidden md:fixed md:top-0 md:left-0 md:h-screen md:w-80 md:flex md:flex-col md:justify-between md:items-start p-4 md:px-12 z-50 ">
+        <div className="w-full flex flex-col mt-24 2xl:mt-40">
           <Link
             href={`/`}
             className="mb-12 text-2xl md:text-4xl uppercase tracking-tighter font-extrabold hover:text-secondary"
@@ -70,7 +70,7 @@ export default function Navbar(props: NavbarProps) {
         </div>
 
       )}
-      <div className='hidden md:block fixed bottom-2 left-0  z-50'>
+      <div className='hidden md:block fixed bottom-0 left-0  z-50'>
       <Footer/></div>
     </>
   )

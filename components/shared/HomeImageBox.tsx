@@ -26,7 +26,7 @@ export default function ImageBox({
 
   return (
     <div
-      className={`relative w-full h-screen min-h-screen overflow-hidden rounded-none ${classesWrapper || ''}`}
+      className={`relative w-full h-full overflow-hidden rounded-none ${classesWrapper || ''}`}
       style={{ maxWidth: '100%' }}
     >
       {imageUrl && (

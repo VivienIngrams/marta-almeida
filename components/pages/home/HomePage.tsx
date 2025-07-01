@@ -11,23 +11,31 @@ export interface HomePageProps {
 }
 
 export function HomePage({ data }: HomePageProps) {
-  // Default to an empty object to allow previews on non-existent documents
   const { title, overview, homeImage, links } = data ?? {}
 
   return (
-    <div className="h-full mt-12 md:mt-0 grid gap-5 max-h-screen">
-      <div className="w-full p-0">
+    <div
+      className="
+        mt-12 md:mt-0
+        flex flex-col items-center justify-center
+        w-full
+        h-auto
+        md:h-[calc(100vh-80px)]
+        ]
+      "
+    >
+      <div className="w-full h-full flex flex-col flex-1 justify-center">
         {/* Home image */}
         {homeImage && (
           <HomeImageBox
             image={homeImage}
             alt={`Home image`}
-            classesWrapper="w-full h-[60vw] max-h-[90vh] min-h-[300px]"
+            classesWrapper="w-full h-full min-h-[300px] flex-1"
           />
         )}
         {/* Overview text below the image */}
         {overview?.text && (
-          <div className="mt-2 text-xl   text-black text-right max-w-[80%] ml-auto">
+          <div className="mt-2 text-xl 2xl:text-2xl text-black text-right max-w-[80%] ml-auto">
             <CustomPortableText value={overview.text} />
           </div>
         )}
