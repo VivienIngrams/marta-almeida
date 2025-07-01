@@ -24,7 +24,7 @@ export const locations = {
     tone: 'positive',
   }),
   about: defineLocations({
-    message: '(Optional page) This fields are used for the About page. After you published your changes add a link in your Menu links section at Settings tab',
+    message: '(Optional page) This fields are used for the HomePage page. After you published your changes add a link in your Menu links section at Settings tab',
     tone: 'positive',
   }),
   project: defineLocations({

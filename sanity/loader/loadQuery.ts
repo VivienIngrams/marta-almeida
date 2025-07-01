@@ -14,7 +14,7 @@ import {
 } from '@/sanity/lib/queries'
 import { token } from '@/sanity/lib/token'
 import {
-  AboutPayload,
+ 
   HomePagePayload,
   ProjectPayload,
   SettingsPayload,
@@ -96,19 +96,14 @@ export function getHomePageTitle() {
   )
 }
 
-/**
- * Fetches the homepage data using the specified query, returning an `AboutPayload` or `null`.
- * Utilizes the `homePageQuery` to load the data, with a tag indicating it is related to 'about'.
- * This function is intended to be used where homepage data is required.
- */
 
-export function getHomePage() {
-  return loadQuery<AboutPayload | null>(
-    homePageQuery,
-    {},
-    { next: { tags: ['about'] } },
-  )
-}
+// export function getHomePage() {
+//   return loadQuery<HomePagePayload | null>(
+//     homePageQuery,
+//     {},
+//     { next: { tags: ['home'] } },
+//   )
+// }
 
 export function loadProject(slug: string) {
   return loadQuery<ProjectPayload | null>(

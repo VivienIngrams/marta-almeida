@@ -85,7 +85,7 @@ export default defineType({
     defineField({
       name: 'links',
       title: 'External links',
-      description: '(Optional) Here you can add a list of external links, it will be displayed below your About description text.',
+      description: '(Optional) Here you can add a list of external links, it will be displayed below your HomePage description text.',
       type: 'array',
       of: [
         {

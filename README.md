@@ -32,7 +32,7 @@ Deploy this template with [Vercel](https://vercel.com) and start building your p
 
 # Features
 
-- A performant, static portfolio website with editable `Home page`, `Projects` and optional `About page`
+- A performant, static portfolio website with editable `Home page`, `Projects` and optional `HomePage page`
 - A clean and user-friendly content management environment by [Sanity][sanity-homepage], accessible on `yourwebsite.com/studio`
 - Webhook-triggered Incremental Static Revalidation; no need to wait for a rebuild to publish new content
 - Side-by-side instant content preview that works across your whole site

@@ -4,17 +4,17 @@ import { type QueryResponseInitial } from '@sanity/react-loader'
 
 import { homePageQuery } from '@/sanity/lib/queries'
 import { useQuery } from '@/sanity/loader/useQuery'
-import { AboutPayload } from '@/types'
+import { HomePagePayload } from '@/types'
 
 import HomePage from './HomePage'
 
 type Props = {
-  initial: QueryResponseInitial<AboutPayload | null>
+  initial: QueryResponseInitial<HomePagePayload | null>
 }
 
 export default function HomePagePreview(props: Props) {
   const { initial } = props
-  const { data, encodeDataAttribute } = useQuery<AboutPayload | null>(
+  const { data, encodeDataAttribute } = useQuery<HomePagePayload | null>(
     homePageQuery,
     {},
     { initial },
@@ -23,7 +23,7 @@ export default function HomePagePreview(props: Props) {
   if (!data) {
     return (
       <div className="text-center">
-        Please start editing your About document to see the preview!
+        Please start editing your HomePage document to see the preview!
       </div>
     )
   }

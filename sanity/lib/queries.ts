@@ -21,7 +21,7 @@ export const moreProjectsQuery = groq`
 `
 
 export const homePageQuery = groq`
-  *[_type == "about"][0]{
+  *[_type == "home"][0]{
     _id,
     title,
     customLogo,

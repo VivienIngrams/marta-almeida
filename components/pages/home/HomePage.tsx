@@ -1,8 +1,8 @@
 import type { EncodeDataAttributeCallback } from '@sanity/react-loader'
 import Link from 'next/link'
 
-import HomeImageBox from '@/components/shared/HomeImageBox'
 import { CustomPortableText } from '@/components/shared/CustomPortableText'
+import HomeImageBox from '@/components/shared/HomeImageBox'
 import type { HomePagePayload } from '@/types'
 
 export interface HomePageProps {
@@ -13,14 +13,14 @@ export interface HomePageProps {
 export function HomePage({ data }: HomePageProps) {
   // Default to an empty object to allow previews on non-existent documents
   const { title, overview, homeImage, links,  } = data ?? {}
-console.log('HomePage ', data)
+console.log('HomePage props ', data)
   return (
     <div className="h-full mt-4 grid gap-5 grid-cols-1 xl:grid-cols-2">
       <div className="w-full">
 
-        {overview && (
+        {overview?.text && (
           <div className="mt-2 text-2xl md:text-3xl">
-            <CustomPortableText value={overview} />
+            <CustomPortableText value={overview.text} />
           </div>
         )}
         
