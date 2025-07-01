@@ -76,7 +76,8 @@ export default async function IndexRoute({
           <Suspense>{children}</Suspense>
         </div>
         <Suspense>
-          <Footer />
+          <div className='md:hidden'>
+          <Footer /></div>
         </Suspense>
       </div>
       {(await draftMode()).isEnabled && <LiveVisualEditing />}
