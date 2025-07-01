@@ -18,16 +18,16 @@ export default function Navbar(props: NavbarProps) {
   const logoImageUrl = customLogo && urlForLogo(customLogo)?.url()
 
   return (
-    <div className="fixed top-0 left-0 h-screen w-56 flex flex-col justify-between items-startpx-4 p-6 z-50">
-      <div className="w-full flex flex-col  mb-8">
+    <div className="fixed top-0 left-0 h-screen w-80 flex flex-col justify-between items-startpx-4 p-6 md:p-12 z-50">
+      <div className="w-full flex flex-col  mt-24">
         <Link
           href={`/`}
-          className="mb-6 text-2xl font-bold hover:text-secondary"
+          className="mb-12 text-2xl md:text-4xl uppercase tracking-tighter font-extrabold hover:text-secondary"
         >
           {title}
         </Link>
       </div>
-      <div className="flex flex-col gap-3 h-full w-full">
+      <div className="flex flex-col gap-3 uppercase text-xl tracking-wider text-gray-600 font-light h-full w-full">
         <Link href="/interpretacao">Interpretação</Link>
         <Link href="/criacao">Criação</Link>
         <Link href="/colaboracao">Colaboração</Link>

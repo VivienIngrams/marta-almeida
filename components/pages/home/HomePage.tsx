@@ -45,12 +45,14 @@ console.log('HomePage props ', data)
       </div>
 
       <div className="w-full">
+        Image
         {/* Home image */}
         {homeImage && (
           <HomeImageBox
             image={homeImage}
             alt={`Home image`}
             classesWrapper="relative"
+         
           />
         )}
       </div>

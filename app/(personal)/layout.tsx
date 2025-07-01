@@ -72,7 +72,7 @@ export default async function IndexRoute({
         <Suspense>
           <Navbar />
         </Suspense>
-        <div className="mt-0 flex-grow px-4 md:px-5 lg:px-5" style={{ marginLeft: '14rem' }}>
+        <div className="mt-0 flex-grow px-4 md:px-5 lg:px-5" style={{ marginLeft: '20rem' }}>
           <Suspense>{children}</Suspense>
         </div>
         <Suspense>

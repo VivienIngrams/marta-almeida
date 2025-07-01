@@ -21,7 +21,7 @@ module.exports = {
     // Overriding fontFamily to use @next/font loaded families
     fontFamily: {
       sans: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"',
-      // sans: 'var(--font-sans)',
+      oswald: ['var(--font-family-oswald)'],
     },
     extend: {
       colors: {

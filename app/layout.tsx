@@ -1,14 +1,15 @@
 import './globals.css'
 
-// import { Inter } from 'next/font/google'
+import { Oswald } from 'next/font/google'
+
 import { loadSettings } from '@/sanity/loader/loadQuery'
 
-// const sans = Inter({
-//   variable: '--font-sans',
-//   subsets: ['latin'],
-//   // weight: ['500', '700', '800'],
-// })
-
+const
+  oswald = Oswald({
+    subsets: ['latin'],
+    weight: [ '200', '400', '700'],
+  })  
+  
 export default async function RootLayout({
   children,
 }: {
@@ -26,7 +27,8 @@ export default async function RootLayout({
       lang="en"
       // Assign custom color css variables for Tailwind to use as Tailwind variables
       style={{ ['--color-primary' as any]: rgbaBgColor, ['--color-secondary' as any]: rgbaTextColor }}
-      className={`bg-primary`}
+      className={`bg-primary ${oswald.className}`}
+
     >
       <body>{children}</body>
     </html>
