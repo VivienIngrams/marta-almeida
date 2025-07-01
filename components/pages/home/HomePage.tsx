@@ -13,7 +13,7 @@ export interface HomePageProps {
 export function HomePage({ data }: HomePageProps) {
   // Default to an empty object to allow previews on non-existent documents
   const { title, overview, homeImage, links,  } = data ?? {}
-console.log('HomePage props ', data)
+
   return (
     <div className="h-full mt-4 grid gap-5 grid-cols-1 xl:grid-cols-2">
       <div className="w-full">
@@ -45,7 +45,7 @@ console.log('HomePage props ', data)
       </div>
 
       <div className="w-full">
-        Image
+       
         {/* Home image */}
         {homeImage && (
           <HomeImageBox
