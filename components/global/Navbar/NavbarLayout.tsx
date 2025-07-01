@@ -24,7 +24,7 @@ export default function Navbar(props: NavbarProps) {
   return (
     <>
       {/* Desktop Sidebar */}
-      <div className="hidden md:fixed md:top-0 md:left-0 md:h-screen md:w-80 md:flex md:flex-col md:justify-between md:items-start px-4 p-6 md:p-12 z-50 ">
+      <div className="hidden md:fixed md:top-0 md:left-0 md:h-[80vh] md:w-80 md:flex md:flex-col md:justify-between md:items-start px-4 p-6 md:p-12 z-50 ">
         <div className="w-full flex flex-col mt-24">
           <Link
             href={`/`}
@@ -67,6 +67,7 @@ export default function Navbar(props: NavbarProps) {
             <Link href="/colaboracao" onClick={() => setMobileOpen(false)}>Colaboração</Link>
           </div>
         </div>
+        
       )}
     </>
   )

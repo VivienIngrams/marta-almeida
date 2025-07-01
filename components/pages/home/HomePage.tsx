@@ -12,48 +12,24 @@ export interface HomePageProps {
 
 export function HomePage({ data }: HomePageProps) {
   // Default to an empty object to allow previews on non-existent documents
-  const { title, overview, homeImage, links,  } = data ?? {}
+  const { title, overview, homeImage, links } = data ?? {}
 
   return (
-    <div className="h-full mt-4 grid gap-5 grid-cols-1 xl:grid-cols-2">
-      <div className="w-full">
-
-        {overview?.text && (
-          <div className="mt-2 text-2xl md:text-3xl">
-            <CustomPortableText value={overview.text} />
-          </div>
-        )}
-        
-
-        <div className="mt-10 flex flex-col">
-          {/* Links */}
-          {/* {links &&
-            links.map((link, key) => {
-              return (
-                <div key={key} className="flex flex-wrap">
-                  <Link
-                    target="_blank"
-                    className={`flex flex-wrap text-xl text-secondary underline md:text-2xl`}
-                    href={link.url!}
-                  >
-                    {link.title}
-                  </Link>
-                </div>
-              )
-            })} */}
-        </div>
-      </div>
-
-      <div className="w-full">
-       
+    <div className="h-full mt-12 md:mt-0 grid gap-5 max-h-screen">
+      <div className="w-full p-0">
         {/* Home image */}
         {homeImage && (
           <HomeImageBox
             image={homeImage}
             alt={`Home image`}
-            classesWrapper="relative"
-         
+            classesWrapper="w-full h-[60vw] max-h-[90vh] min-h-[300px]"
           />
+        )}
+        {/* Overview text below the image */}
+        {overview?.text && (
+          <div className="mt-2 text-xl   text-black text-right max-w-[80%] ml-auto">
+            <CustomPortableText value={overview.text} />
+          </div>
         )}
       </div>
     </div>

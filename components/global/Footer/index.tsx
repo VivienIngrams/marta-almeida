@@ -1,9 +1,9 @@
-import Image from 'next/image';
+
 import { FaInstagram } from 'react-icons/fa';
 
 export default function Footer() {
   return (
-    <footer className="mt-16 pt-10 text-sm md:text-base text-neutral-700">
+    <footer className=" mt-16 pt-10 text-sm md:text-base text-neutral-700">
       <div className="p-12 text-left">
         <div className="flex items-center space-x-8 pt-2">
           <a

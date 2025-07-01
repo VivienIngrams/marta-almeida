@@ -10,29 +10,31 @@ interface ImageBoxProps {
   size?: string
   classesWrapper?: string
   previewImageUrl?: any
+  children?: React.ReactNode // Add this
 }
-
 export default function ImageBox({
   image,
   alt = 'Home image',
   width = 3500,
   height = 2000,
-  size = '(min-width: 940px) 60vw, 100vw',
+  size = '(min-width: 940px) 100vw, 100vw', // Use full viewport width
   classesWrapper,
   previewImageUrl = image?.lqip,
+  children,
 }: ImageBoxProps) {
-  const imageUrl = image && urlForImage(image)?.url()
+  const imageUrl = image && urlForImage(image)?.url();
 
   return (
-    <div className={`w-full overflow-hidden rounded-[3px] bg-black/20 ${classesWrapper}`}>
+    <div
+      className={`relative w-full h-screen min-h-screen overflow-hidden rounded-none ${classesWrapper || ''}`}
+      style={{ maxWidth: '100%' }}
+    >
       {imageUrl && (
         <Image
           alt={alt}
-          width={width}
-          height={height}
+          fill
           style={{
-            width: '100%',
-            height: 'auto',
+            objectFit: 'cover',
           }}
           sizes={size}
           src={imageUrl}
@@ -40,6 +42,7 @@ export default function ImageBox({
           blurDataURL={previewImageUrl}
         />
       )}
+      {children}
     </div>
-  )
+  );
 }
