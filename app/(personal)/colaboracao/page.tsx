@@ -4,9 +4,8 @@ import { projectBySlugQuery } from '@/sanity/lib/queries'
 import { QueryResponseInitial } from '@sanity/react-loader'
 
 export default async function InterpretacaoPage() {
-  const projects = await client.fetch(
-    `*[_type == "project" && category == "interpretacao"] | order(year desc)`
-  )
+  // Fetch all projects from the Sanity dataset
+  const projects = []
 
   // Fetch initial data for each project
   const projectsWithInitial = await Promise.all(

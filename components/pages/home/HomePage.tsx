@@ -68,7 +68,7 @@ console.log('HomePage data:', homeMobileImage)
       </div>
       <div className="flex items-center justify-end ">
         <ChevronDownIcon
-          className="w-5 h-5 md:w-10 md:h-10 hover:text-gray-700 transition-colors duration-200 cursor-pointer"
+          className="-mt-2 w-5 h-5 md:w-10 md:h-10 hover:text-gray-700 transition-colors duration-200 cursor-pointer"
           onClick={handleScrollToBio}
         />
       </div>

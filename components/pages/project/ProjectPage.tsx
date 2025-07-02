@@ -5,11 +5,11 @@ import { Module } from '@/components/modules'
 import { MoreProjects } from '@/components/pages/project/MoreProjects'
 import { CustomPortableText } from '@/components/shared/CustomPortableText'
 import type { ProjectPayload } from '@/types'
-import type { HomePagePayload } from '@/types'
+import type { MoreProjectsPayload } from '@/types'
 
 export interface ProjectPageProps {
   data: ProjectPayload | null
-  moreProjects: HomePagePayload | null
+  moreProjects: MoreProjectsPayload | null
   encodeDataAttribute?: EncodeDataAttributeCallback
 }
 

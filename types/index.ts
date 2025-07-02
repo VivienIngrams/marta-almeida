@@ -89,3 +89,10 @@ export interface SettingsPayload {
   }
   displayLastUpdated: boolean
 }
+
+
+export interface CriacaoPayload {
+  title?: string
+  overview?: { text?: PortableTextBlock[] } // overview is an object with a text array
+  showcaseProjects?: ShowcaseProject[]
+}

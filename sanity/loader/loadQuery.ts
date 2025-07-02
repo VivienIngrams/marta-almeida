@@ -6,17 +6,19 @@ import { draftMode } from 'next/headers'
 import { client } from '@/sanity/lib/client'
 import {
   homePageQuery,
-  
-  homePageTitleQuery,
   moreProjectsQuery,
+  homePageTitleQuery,
+  allProjectsQuery,
+  criacaoPageQuery,
   projectBySlugQuery,
   settingsQuery,
 } from '@/sanity/lib/queries'
 import { token } from '@/sanity/lib/token'
 import {
- 
+ CriacaoPayload,
   HomePagePayload,
   ProjectPayload,
+  MoreProjectsPayload,
   SettingsPayload,
 } from '@/types'
 
@@ -81,7 +83,7 @@ export function loadHomePage() {
 }
 
 export function loadMoreProjects() {
-  return loadQuery<HomePagePayload | null>(
+  return loadQuery<MoreProjectsPayload | null>(
     moreProjectsQuery,
     { },
     { next: { tags: ['home', 'project'] } },
@@ -96,14 +98,13 @@ export function getHomePageTitle() {
   )
 }
 
-
-// export function getHomePage() {
-//   return loadQuery<HomePagePayload | null>(
-//     homePageQuery,
-//     {},
-//     { next: { tags: ['home'] } },
-//   )
-// }
+export function loadCriacaoPage() {
+  return loadQuery<CriacaoPayload | null>(
+    criacaoPageQuery,
+    {},
+    { next: { tags: ['criacao'] } },
+  )
+}
 
 export function loadProject(slug: string) {
   return loadQuery<ProjectPayload | null>(
@@ -113,10 +114,4 @@ export function loadProject(slug: string) {
   )
 }
 
-// export function loadMoreProjects() {
-//   return loadQuery<ProjectPayload | null>(
-//     moreProjectsQuery,
-//     {},
-//     { next: { tags: [`project`] } },
-//   )
-// }
+

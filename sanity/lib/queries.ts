@@ -2,24 +2,6 @@ import { groq } from 'next-sanity'
 
 
 
-export const moreProjectsQuery = groq`
-  *[_type == "home"][0]{
-    showcaseProjects[]->{
-      _type,
-      coverImage{
-        _type,
-        asset,
-        "lqip": asset->metadata.lqip,
-      },
-      overview,
-      "slug": slug.current,
-      title,
-      year,
-      _updatedAt,
-    },
-  }
-`
-
 export const homePageQuery = groq`
   *[_type == "home"][0]{
     _id,
@@ -135,4 +117,47 @@ export const settingsQuery = groq`
     },
     displayLastUpdated,
   }
+`
+export const allProjectsQuery = groq`
+  *[_type == "project"] | order(year desc) {
+    _id,
+    year,
+    coverImage,
+    description,
+    overview,
+    site,
+    "slug": slug.current,
+    title,
+  }
+`
+export const criacaoPageQuery = groq`
+  *[_type == "criacao"][0]{
+    _id,
+    title,
+    overview,
+    showcaseProjects[]->{
+      _id,  
+      year,
+      coverImage,
+      description,
+      overview,
+      site,
+      "slug": slug.current,
+      title,
+    },
+
+  }`
+
+  export const moreProjectsQuery = groq`
+  *[_type == "project" && !(_id in path("drafts.**
+"))] | order(year desc) {
+    _id,
+    year,
+    coverImage,
+    description,
+    overview,
+    site,
+    "slug": slug.current,
+    title,
+  }[0...6]
 `
