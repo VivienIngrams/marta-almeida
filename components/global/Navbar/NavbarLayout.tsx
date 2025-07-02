@@ -41,7 +41,7 @@ export default function Navbar(props: NavbarProps) {
       </div>
 
       {/* Mobile Navbar */}
-      <div className="flex md:hidden items-center backdrop-blur justify-between px-4 py-4 z-50 fixed top-0 left-0 right-0">
+      <div className="bg-[#BEDBEA] flex md:hidden items-center backdrop-blur justify-between px-4 py-4 z-50 fixed top-0 left-0 right-0">
         <Link
           href="/"
           className="text-xl uppercase font-extrabold tracking-tighter hover:text-secondary"
@@ -72,7 +72,7 @@ export default function Navbar(props: NavbarProps) {
       </div>
       {/* Mobile Menu Drawer */}
       {mobileOpen && (
-        <div className="md:hidden fixed top-12 left-0 w-full backdrop-blur shadow-lg z-40">
+        <div className="bg-[#BEDBEA] md:hidden fixed top-12 left-0 w-full backdrop-blur shadow-lg z-40">
           <div className="flex flex-col gap-4 p-4 uppercase text-base tracking-wider text-gray-700 font-light">
             <Link href="/interpretacao" onClick={() => setMobileOpen(false)}>
               Interpretação

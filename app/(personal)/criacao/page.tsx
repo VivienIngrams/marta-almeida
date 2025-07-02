@@ -19,7 +19,7 @@ export default async function CriacaoPage() {
   )
 
   return (
-    <section className="space-y-12 px-6 py-10">
+    <section className="space-y-12 md:px-6 py-10">
       <h1 className="text-4xl font-bold">Criação</h1>
       <div className=" gap-8">
         {projectsWithInitial.map((project) => (
