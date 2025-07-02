@@ -35,7 +35,7 @@ console.log('HomePage data:', homeMobileImage)
         <div className="w-full h-full flex flex-col md:flex-1 justify-center">
           {/* Home image for desktop/tablet */}
           {homeImage && (
-            <div className="hidden sm:block w-full h-full">
+            <div className="hidden lg:block w-full h-full">
               <HomeImageBox
                 image={homeImage}
                 alt="Home image"
@@ -46,7 +46,7 @@ console.log('HomePage data:', homeMobileImage)
           )}
           {/* Home image for mobile */}
           {homeMobileImage && (
-            <div className="block sm:hidden w-full h-full">
+            <div className="block lg:hidden w-full h-full">
               <HomeImageBox
                 image={homeMobileImage}
                 alt="Home mobile image"

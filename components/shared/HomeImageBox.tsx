@@ -11,7 +11,7 @@ interface ImageBoxProps {
   classesWrapper?: string
   previewImageUrl?: any
   children?: React.ReactNode
-  onClick?: () => void // <-- Add this line
+  onClick?: () => void
 }
 
 export default function ImageBox({
@@ -23,15 +23,15 @@ export default function ImageBox({
   classesWrapper,
   previewImageUrl = image?.lqip,
   children,
-  onClick, // <-- Add this line
+  onClick,
 }: ImageBoxProps) {
   const imageUrl = image && urlForImage(image)?.url();
 
   return (
     <div
-      className={`relative w-full h-full overflow-hidden rounded-none ${classesWrapper || ''}`}
+      className={`relative w-full h-auto aspect-[9/11] md:aspect-auto md:h-full overflow-hidden rounded-none ${classesWrapper || ''}`}
       style={{ maxWidth: '100%' }}
-      onClick={onClick} // <-- Add this line
+      onClick={onClick}
     >
       {imageUrl && (
         <Image

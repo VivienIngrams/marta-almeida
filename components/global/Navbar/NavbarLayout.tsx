@@ -73,7 +73,7 @@ export default function Navbar(props: NavbarProps) {
       {/* Mobile Menu Drawer */}
       {mobileOpen && (
         <div className="bg-[#BEDBEA] md:hidden fixed top-12 left-0 w-full backdrop-blur shadow-lg z-40">
-          <div className="flex flex-col gap-4 p-4 uppercase text-base tracking-wider text-gray-700 font-light">
+          <div className="flex flex-col gap-4 p-4 uppercase text-base tracking-wider  font-light">
             <Link href="/interpretacao" onClick={() => setMobileOpen(false)}>
               Interpretação
             </Link>
