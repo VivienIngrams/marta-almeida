@@ -74,9 +74,19 @@ export default defineType({
       }),
     defineField({
       name: 'homeImage',
-      title: 'Home Image',
+      title: 'Home Image Desktops',
       description:
-        '(Optional) This image will be displayed next to your  description.',
+        '(Optional) This image will be displayed on larger screens (landscape) next to your  description.',
+      type: 'image',
+      options: {
+        hotspot: true,
+      },
+    }),
+    defineField({
+      name: 'homeMobileImage',
+      title: 'Home Image Mobile',
+      description:
+        '(Optional) This image will be displayed on mobile devices next to your  description.',
       type: 'image',
       options: {
         hotspot: true,

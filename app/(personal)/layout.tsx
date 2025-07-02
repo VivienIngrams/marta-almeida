@@ -75,10 +75,10 @@ export default async function IndexRoute({
         <div className="mt-16 md:my-12 md:mr-8 flex-grow px-4  md:ml-80 2xl:ml-96" >
           <Suspense>{children}</Suspense>
         </div>
-        <Suspense>
+        {/* <Suspense>
           <div className='md:hidden'>
           <Footer /></div>
-        </Suspense>
+        </Suspense> */}
       </div>
       {(await draftMode()).isEnabled && <LiveVisualEditing />}
     </>

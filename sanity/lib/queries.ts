@@ -31,6 +31,11 @@ export const homePageQuery = groq`
       asset,
       "lqip": asset->metadata.lqip,
     },
+    homeMobileImage{
+      _type,
+      asset,
+      "lqip": asset->metadata.lqip,
+    },
    bio,
   }
 `

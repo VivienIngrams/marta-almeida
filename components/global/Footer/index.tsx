@@ -5,7 +5,7 @@ import { FaInstagram } from 'react-icons/fa';
 export default function Footer() {
   return (
     <footer className="text-sm md:text-base 2xl:text-lg ">
-      <div className="p-4 md:p-12 text-left">
+      <div className="p-4 md:px-12 text-left">
         <div className="flex items-center space-x-8 pt-2">
           <a
             href="https://www.instagram.com/m.f.almeida?igsh=b3pwM3FtajI5b2Q="

@@ -1,9 +1,12 @@
+'use client'
+
+import { ChevronDownIcon } from '@sanity/icons'
 import type { EncodeDataAttributeCallback } from '@sanity/react-loader'
+import { useRef } from 'react'
 
 import { CustomPortableText } from '@/components/shared/CustomPortableText'
 import HomeImageBox from '@/components/shared/HomeImageBox'
 import type { HomePagePayload } from '@/types'
-import { ChevronDownIcon } from '@sanity/icons'
 
 export interface HomePageProps {
   data: HomePagePayload | null
@@ -11,13 +14,17 @@ export interface HomePageProps {
 }
 
 export function HomePage({ data }: HomePageProps) {
-  const { overview, homeImage, bio } = data ?? {}
-  console.log('HomePage data:', bio)
+  const { overview, homeImage, homeMobileImage, bio } = data ?? {}
+  const bioRef = useRef<HTMLDivElement>(null)
+console.log('HomePage data:', homeMobileImage)
+  const handleScrollToBio = () => {
+    bioRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+  }
+
   return (
     <div>
       <div
         className="
-       
         flex flex-col items-center justify-center
         md:w-auto
         min-h-[80vh]
@@ -26,29 +33,49 @@ export function HomePage({ data }: HomePageProps) {
       "
       >
         <div className="w-full h-full flex flex-col md:flex-1 justify-center">
-          {/* Home image */}
+          {/* Home image for desktop/tablet */}
           {homeImage && (
-            <HomeImageBox
-              image={homeImage}
-              alt={`Home image`}
-              classesWrapper="w-full h-full min-h-[300px] md:flex-1"
-            />
+            <div className="hidden sm:block w-full h-full">
+              <HomeImageBox
+                image={homeImage}
+                alt="Home image"
+                classesWrapper="w-full h-full min-h-[300px] md:flex-1 cursor-pointer"
+                onClick={handleScrollToBio}
+              />
+            </div>
+          )}
+          {/* Home image for mobile */}
+          {homeMobileImage && (
+            <div className="block sm:hidden w-full h-full">
+              <HomeImageBox
+                image={homeMobileImage}
+                alt="Home mobile image"
+                classesWrapper="w-full h-[60vh] cursor-pointer"
+                onClick={handleScrollToBio}
+              />
+            </div>
           )}
           {/* Overview text below the image */}
           {overview?.text && (
-            <div className="mt-2 text-xl 2xl:text-2xl text-black text-right max-w-[80%] ml-auto">
+            <div
+              className="mt-2 text-lg md:text-xl 2xl:text-2xl text-black text-right max-w-[80%] ml-auto cursor-pointer"
+              onClick={handleScrollToBio}
+            >
               <CustomPortableText value={overview.text} />
             </div>
           )}
         </div>
       </div>
-      <div className="flex items-center justify-end mt-8">
-        <ChevronDownIcon className="w-5 h-5 text-gray-500 hover:text-gray-700 transition-colors  duration-200" />
+      <div className="flex items-center justify-end ">
+        <ChevronDownIcon
+          className="w-5 h-5 md:w-10 md:h-10 hover:text-gray-700 transition-colors duration-200 cursor-pointer"
+          onClick={handleScrollToBio}
+        />
       </div>
       {/* Biography */}
-      <div>
+      <div ref={bioRef}>
         {bio?.text && (
-          <div className="mt-12 text-base  2xl:text-xl font-sans font-light text-gray-800 max-w-[80%] ">
+          <div className="mt-12 text-base 2xl:text-xl font-sans font-light text-gray-800 md:max-w-[80%] ">
             <CustomPortableText value={bio.text} />
           </div>
         )}

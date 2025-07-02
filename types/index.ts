@@ -42,6 +42,7 @@ export interface ShowcaseProject {
 export interface HomePagePayload {
   overview?: any
   homeImage?: Image
+  homeMobileImage?: Image
   title?: string
   customLogo?: Image
  bio?: any
