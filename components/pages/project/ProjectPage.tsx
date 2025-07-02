@@ -36,7 +36,7 @@ export function ProjectPage({
     <div>
       <div className="mb-10 md:mb-20 space-y-6">
         <div className="flex flex-wrap justify-between flex-col md:flex-row">
-          <div className="w-full lg:w-2/4">
+          <div className="w-full lg:w-3/4 mx-auto">
             {/* Title */}
             {title && <div className="text-2xl md:text-4xl">{title}</div>}
             {/* Year */}

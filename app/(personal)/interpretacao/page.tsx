@@ -1,19 +1,16 @@
-import { client } from '@/sanity/lib/client'
+import { loadCriacaoPage, loadProject } from '@/sanity/loader/loadQuery'
+
 import ProjectPreview from '@/components/pages/project/ProjectPreview'
-import { projectBySlugQuery } from '@/sanity/lib/queries'
-import { QueryResponseInitial } from '@sanity/react-loader'
 
 export default async function InterpretacaoPage() {
-  const projects = await client.fetch(
-    `*[_type == "project" && category == "interpretacao"] | order(year desc)`
-  )
+  // Fetch the Criação page data (with showcaseProjects)
+  const criacao = await loadCriacaoPage()
+  const showcaseProjects = criacao?.data?.showcaseProjects || []
+
   // Fetch initial data for each project
   const projectsWithInitial = await Promise.all(
-    projects.map(async (project: any) => {
-      const initial: QueryResponseInitial<any> = await client.fetch(
-        projectBySlugQuery,
-        { slug: project.slug }
-      )
+    showcaseProjects.map(async (project: any) => {
+      const initial = await loadProject(project.slug)
       return {
         slug: project.slug,
         initial,

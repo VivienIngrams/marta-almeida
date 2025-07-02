@@ -96,3 +96,9 @@ export interface CriacaoPayload {
   overview?: { text?: PortableTextBlock[] } // overview is an object with a text array
   showcaseProjects?: ShowcaseProject[]
 }
+
+export interface MoreProjectsPayload {
+  title?: string
+  overview?: PortableTextBlock[]
+  showcaseProjects?: ShowcaseProject[]
+}
