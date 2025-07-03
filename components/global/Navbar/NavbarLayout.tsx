@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import { useState } from 'react'
 
 import Footer from '@/components/global/Footer'
@@ -20,6 +21,7 @@ export default function Navbar(props: NavbarProps) {
   const customLogo = props?.logo
   const logoImageUrl = customLogo && urlForLogo(customLogo)?.url()
   const [mobileOpen, setMobileOpen] = useState(false)
+  const pathname = usePathname()
 
   return (
     <>
@@ -33,10 +35,37 @@ export default function Navbar(props: NavbarProps) {
             {title}
           </Link>
         </div>
-        <div className="flex flex-col gap-3 uppercase text-xl tracking-wider  font-light h-full w-full">
-          <Link href="/interpretacao">Interpretação</Link>
-          <Link href="/criacao">Criação</Link>
-          <Link href="/colaboracao">Colaboração</Link>
+        <div className="flex flex-col gap-3 uppercase text-xl tracking-wider font-light h-full w-full">
+          <Link
+            href="/interpretacao"
+            className={`transition-all duration-200 ${
+              pathname === '/interpretacao'
+                ? 'underline underline-offset-4 md:text-2xl 2xl:text-3xl '
+                : ''
+            }`}
+          >
+            Interpretação
+          </Link>
+          <Link
+            href="/criacao"
+            className={`transition-all duration-200 ${
+              pathname === '/criacao'
+                ? 'underline underline-offset-4 md:text-2xl 2xl:text-3xl '
+                : ''
+            }`}
+          >
+            Criação
+          </Link>
+          <Link
+            href="/colaboracao"
+            className={`transition-all duration-200 ${
+              pathname === '/colaboracao'
+                ? 'underline underline-offset-4 md:text-2xl 2xl:text-3xl '
+                : ''
+            }`}
+          >
+            Colaboração
+          </Link>
         </div>
       </div>
 
@@ -84,17 +113,14 @@ export default function Navbar(props: NavbarProps) {
               Colaboração
             </Link>
           </div>
-          <div className="">
-            <Footer />
-          </div>
         </div>
       )}
       <div className="block md:hidden backdrop-blur fixed bottom-0 left-0 right-0   z-50">
         <Footer />
       </div>
       <div className="hidden md:block fixed bottom-0 left-0 z-50">
-            <Footer />
-          </div>
+        <Footer />
+      </div>
     </>
   )
 }

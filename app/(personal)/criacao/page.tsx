@@ -8,7 +8,6 @@ export default async function CriacaoPage() {
   const showcaseProjects = criacao?.data?.showcaseProjects || []
   const title = criacao?.data?.title
   const overview = criacao?.data?.overview
-console.log('CriacaoPage data:', title, overview)
   // Fetch initial data for each project
   const projectsWithInitial = await Promise.all(
     showcaseProjects.map(async (project: any) => {
@@ -22,9 +21,9 @@ console.log('CriacaoPage data:', title, overview)
 
   return (
     <section className="space-y-12 md:px-6 py-10">
-      <h1 className="text-4xl font-bold">{title}</h1>
+      <h1 className="text-right uppercase text-4xl md:text-5xl 2xl:text-6xl font-light">{title}</h1>
       {overview?.text && (
-        <div className="mt-2 text-lg md:text-xl 2xl:text-2xl text-right max-w-[80%] ml-auto cursor-pointer">
+        <div className="my-6 text-right text-lg md:text-xl 2xl:text-2xl  ml-auto max-w-[80%] cursor-pointer">
           <CustomPortableText value={overview.text} />
         </div>
       )}

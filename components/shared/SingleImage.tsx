@@ -27,7 +27,7 @@ export default function ImageBox({
 
   return (
     <div className="mt-5 md:mt-10">
-      <div className={`w-full overflow-hidden rounded-[3px] ${classesWrapper}`}>
+      <div className={`h-full w-full overflow-hidden rounded-[3px] bg-black/50 ${classesWrapper}`}>
         {imageUrl && (
           <Image
             alt={alt}
@@ -39,8 +39,8 @@ export default function ImageBox({
             width={width}
             height={height}
             src={imageUrl}
-            placeholder="blur"
-            blurDataURL={previewImageUrl}
+            // placeholder="blur"
+            // blurDataURL={previewImageUrl}
           />
         )}
       </div>

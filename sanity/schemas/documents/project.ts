@@ -34,11 +34,36 @@ export default defineType({
       title: 'Cover Image',
       description:
         'This image will be used as the cover image for the project. If you choose to add it to Home page, this is the image displayed in the list within the homepage.',
-      type: 'image',
-      options: {
-        hotspot: true,
-      },
-      validation: (rule) => rule.required(),
+     type: 'object',
+          icon: ImageIcon,
+          fields: [
+            {
+              title: 'Photo',
+              name: 'photo',
+              type: 'image',
+              options: {
+                hotspot: true,
+              },
+            },
+            {
+              title: 'Caption',
+              name: 'caption',
+              type: 'string',
+              description: '(Optional) Caption below the image',
+            },
+          ],
+          preview: {
+            select: {
+              photo: 'photo',
+            },
+            prepare({ photo }) {
+              return {
+                title: 'Single image',
+                media: photo,
+              }
+            },
+          },
+    
     }),
     defineField({
       name: 'overview',

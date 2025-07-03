@@ -4,6 +4,8 @@ import Link from 'next/link'
 import { Module } from '@/components/modules'
 import { MoreProjects } from '@/components/pages/project/MoreProjects'
 import { CustomPortableText } from '@/components/shared/CustomPortableText'
+import ImageBox  from '@/components/shared/ImageBox'
+import SingleImage from '@/components/shared/SingleImage'
 import type { ProjectPayload } from '@/types'
 import type { MoreProjectsPayload } from '@/types'
 
@@ -19,7 +21,7 @@ export function ProjectPage({
   encodeDataAttribute,
 }: ProjectPageProps) {
   // Default to an empty object to allow previews on non-existent documents
-  const { year, overview, site, title, content, slug } = data ?? {}
+  const { year, overview, site, title, content, slug, coverImage } = data ?? {}
 
   // Get a list of showcased projects
   const { showcaseProjects = [] } = moreProjects ?? {}
@@ -38,17 +40,29 @@ export function ProjectPage({
         <div className="flex flex-wrap justify-between flex-col md:flex-row">
           <div className="w-full lg:w-3/4 mx-auto">
             {/* Title */}
-            {title && <div className="text-2xl md:text-4xl">{title}</div>}
+            {title && <div className="my-6 text-2xl md:text-4xl 2xl:text-5xl">{title}</div>}
             {/* Year */}
-            {year && <div className="md:mt-2 text-lg md:text-2xl">{year}</div>}
+            {year && <div className="md:mt-2 text-lg md:text-2xl 2xl:text-3xl">{year}</div>}
           </div>
-          <div className="w-full lg:w-2/4">
+          <div className="w-full font-sans font-light text-gray-800">
             {/* Overview */}
             {overview && (
-              <div className="mt-4 text-xl md:text-2xl">
+              <div className="mt-4 text-xl md:text-2xl 2xl:text-3xl">
                 <CustomPortableText value={overview} />
               </div>
             )}
+            {coverImage && (
+              <div className="mt-4 w-full">
+                <div className="relative w-full aspect-[16/9] max-w-5xl mx-auto">
+                  <SingleImage
+                    image={coverImage}
+                    classesWrapper="w-full h-full"
+                    
+                  />
+                </div>
+              </div>             
+            )}
+           
             {/* Site */}
             {site && (
               <div className="mt-3">
