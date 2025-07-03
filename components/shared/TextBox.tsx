@@ -2,9 +2,10 @@ import { CustomPortableText } from '@/components/shared/CustomPortableText'
 
 interface TextBoxProps {
   description?: any[]
+  paragraphClasses?: string
 }
 export default function Header(props: TextBoxProps) {
-  const { description } = props
+  const { description, paragraphClasses } = props
   if (!description) {
     return null
   }
@@ -12,8 +13,8 @@ export default function Header(props: TextBoxProps) {
     <div className="my-10 md:my-28 px-8 md:px-28">
       {/* Description */}
       {description && (
-        <div className="text-center text-xl md:text-4xl">
-          <CustomPortableText value={description} />
+        <div className="text-center">
+          <CustomPortableText value={description} paragraphClasses={paragraphClasses} />
         </div>
       )}
     </div>

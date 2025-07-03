@@ -7,7 +7,8 @@ const SingleVideo = dynamic(() => import('./single-video'))
 const TwoVideos = dynamic(() => import('./two-videos'))
 
 export const Module = ({
-  content,
+  content, 
+  paragraphClasses
 }) => {
   const type = content._type
 
@@ -17,7 +18,7 @@ export const Module = ({
     case 'twoImages':
       return <TwoImages data={content} />
     case 'textBlock':
-        return <TextBlock data={content} />
+        return <TextBlock data={content} paragraphClasses={paragraphClasses}  />
     case 'singleVideo':
       return <SingleVideo data={content} />
     case 'twoVideos':

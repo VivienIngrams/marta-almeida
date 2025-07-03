@@ -47,8 +47,8 @@ export function ProjectPage({
           <div className="w-full font-sans font-light text-gray-800">
             {/* Overview */}
             {overview && (
-              <div className="mt-4 text-xl md:text-2xl 2xl:text-3xl">
-                <CustomPortableText value={overview} />
+              <div className="mt-4 text-lg md:text-xl 2xl:text-2xl">
+                <CustomPortableText value={overview} paragraphClasses=''/>
               </div>
             )}
             {coverImage && (
@@ -80,10 +80,10 @@ export function ProjectPage({
           </div>
         </div>
 
-        <div>
+        <div className=" font-sans">
           {/* Display project content by type */}
           {content?.map((content, key) => (
-            <Module key={key} content={content} />
+            <Module key={key} content={content} paragraphClasses=" font-light text-gray-800 text-xl md:text-2xl" />
           ))}
         </div>
 

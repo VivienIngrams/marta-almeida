@@ -1,8 +1,8 @@
 import TextBox from '@/components/shared/TextBox'
 
-const Image = ({ data = {} }) => {
+const Image = ({ data = {}, paragraphClasses }) => {
   const { description } = data
-
+console.log('Image data:', paragraphClasses)
   if (!description) return null
   return (
     
@@ -10,6 +10,7 @@ const Image = ({ data = {} }) => {
           <TextBox
             description={description}
             classesWrapper="relative"
+            paragraphClasses={paragraphClasses}
           />
     </div>
   )
