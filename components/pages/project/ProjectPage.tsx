@@ -83,7 +83,7 @@ export function ProjectPage({
         <div className=" font-sans">
           {/* Display project content by type */}
           {content?.map((content, key) => (
-            <Module key={key} content={content} paragraphClasses=" font-light text-gray-800 text-xl md:text-2xl" />
+            <Module key={key} content={content} paragraphClasses=" font-light text-gray-800 text-lg md:text-2xl" />
           ))}
         </div>
 
