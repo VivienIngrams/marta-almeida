@@ -113,6 +113,11 @@ export default defineType({
         },
       ],
     }),
+    defineField({
+      name: 'bgColor',
+      title: 'Backgroung color',
+      type: 'color',
+    }),
     // Content blocks
     defineField({
       title: 'Content builder',

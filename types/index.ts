@@ -52,6 +52,11 @@ export interface ProjectPayload {
   year?: string
   coverImage?: Image
   description?: PortableTextBlock[]
+  bgColor?: {
+    r?: string
+    g?: string
+    b?: string
+  }
   overview?: PortableTextBlock[]
   site?: {
     urltitle?: string

@@ -32,6 +32,11 @@ export const projectBySlugQuery = groq`
     year,
     coverImage,
     description,
+    bgColor {
+      'r': rgb.r,
+      'g': rgb.g,
+      'b': rgb.b,
+    },
     overview,
     site,
     "slug": slug.current,

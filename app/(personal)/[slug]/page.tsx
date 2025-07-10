@@ -30,7 +30,7 @@ export default async function DynamicPersonalPage({ params }: { params: { slug: 
   )
 
   return (
-    <section className="space-y-12 md:px-6 py-10">
+    <section className="space-y-12 md:px-6 py-10 mt-16 md:my-12 px-4 md:ml-80 2xl:ml-96">
       <h1 className="text-right uppercase text-3xl md:text-4xl 2xl:text-5xl font-extrabold tracking-tighter">{title}</h1>
       {overview?.text && (
         <div className="my-6 text-right text-lg md:text-xl 2xl:text-2xl  ml-auto max-w-[80%] cursor-pointer">

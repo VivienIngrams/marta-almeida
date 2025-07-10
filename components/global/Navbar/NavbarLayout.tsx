@@ -70,7 +70,7 @@ export default function Navbar(props: NavbarProps) {
       </div>
 
       {/* Mobile Navbar */}
-      <div className="bg-[#BEDBEA] flex md:hidden items-center backdrop-blur justify-between px-4 py-4 z-50 fixed top-0 left-0 right-0">
+      <div className="backdrop-blur flex md:hidden items-center justify-between px-4 py-4 z-50 fixed top-0 left-0 right-0">
         <Link
           href="/"
            onClick={() => setMobileOpen(!mobileOpen)}
@@ -84,7 +84,7 @@ export default function Navbar(props: NavbarProps) {
           aria-label="Open menu"
         >
           <svg
-            className="w-5 h-5 text-gray-700"
+            className="w-5 h-5 text-black"
             fill="none"
             stroke="currentColor"
             strokeWidth={2}

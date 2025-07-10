@@ -22,7 +22,7 @@ export function ProjectPage({
   encodeDataAttribute,
 }: ProjectPageProps) {
   // Default to an empty object to allow previews on non-existent documents
-  const { year, overview, site, title, content, slug, coverImage } = data ?? {}
+  const { year, overview, site, title, content, slug, coverImage, bgColor } = data ?? {}
 
   // Get a list of showcased projects
   const { showcaseProjects = [] } = moreProjects ?? {}
@@ -37,8 +37,13 @@ export function ProjectPage({
 
   const [showContent, setShowContent] = useState(false)
 
+  // Compute background color style
+  const bgStyle = bgColor && bgColor.r !== undefined && bgColor.g !== undefined && bgColor.b !== undefined
+    ? { backgroundColor: `rgb(${bgColor.r}, ${bgColor.g}, ${bgColor.b})` }
+    : {}
+
   return (
-    <div>
+    <div style={bgStyle}>
       <div className="mb-10 md:mb-20 space-y-6">
         <div className="flex flex-wrap justify-between flex-col md:flex-row">
           <div className="w-full lg:w-3/4 mx-auto">
