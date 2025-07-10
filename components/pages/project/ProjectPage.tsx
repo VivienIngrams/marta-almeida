@@ -45,7 +45,7 @@ export function ProjectPage({
 
   return (
     <div style={bgStyle}>
-      <div className="pb-10 md:pb-24  space-y-6 md:pr-8 2xl:pr-24 px-4 md:pl-96 xl:pl-[400px] 2xl:pl-[450px]">
+      <div className="py-10 md:py-24  space-y-6 md:pr-8 2xl:pr-24 px-4 md:pl-96 xl:pl-[400px] 2xl:pl-[450px]">
         <div className="flex flex-wrap justify-between flex-col md:flex-row">
           <div className="w-full lg:w-3/4 mx-auto">
             {/* Title */}
