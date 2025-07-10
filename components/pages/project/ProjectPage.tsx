@@ -7,7 +7,6 @@ import { useState } from 'react'
 import { Module } from '@/components/modules'
 import { MoreProjects } from '@/components/pages/project/MoreProjects'
 import { CustomPortableText } from '@/components/shared/CustomPortableText'
-import ImageBox from '@/components/shared/ImageBox'
 import SingleImage from '@/components/shared/SingleImage'
 import type { ProjectPayload } from '@/types'
 import type { MoreProjectsPayload } from '@/types'
@@ -46,7 +45,7 @@ export function ProjectPage({
 
   return (
     <div style={bgStyle}>
-      <div className="pb-10 md:pb-20 space-y-6 md:px-6  md:pr-8 py-10 mt-16 md:my-12 px-4 md:pl-80 2xl:pl-96">
+      <div className="pb-10 md:pb-24  space-y-6 md:pr-8 2xl:pr-24 px-4 md:pl-96 xl:pl-[400px] 2xl:pl-[450px]">
         <div className="flex flex-wrap justify-between flex-col md:flex-row">
           <div className="w-full lg:w-3/4 mx-auto">
             {/* Title */}
@@ -99,7 +98,7 @@ export function ProjectPage({
                 <Module
                   key={key}
                   content={content}
-                  paragraphClasses=" font-light text-gray-800 text-lg md:text-2xl"
+                  paragraphClasses=" font-light text-gray-800 text-lg md:text-xl 2xl:text-2xl"
                 />
               ))}
             </div>

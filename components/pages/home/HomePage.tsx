@@ -16,13 +16,13 @@ export interface HomePageProps {
 export function HomePage({ data }: HomePageProps) {
   const { overview, homeImage, homeMobileImage, bio } = data ?? {}
   const bioRef = useRef<HTMLDivElement>(null)
-console.log('HomePage data:', homeMobileImage)
+  console.log('HomePage data:', homeMobileImage)
   const handleScrollToBio = () => {
     bioRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })
   }
 
   return (
-    <div>
+    <div className="pb-10 md:pb-20 md:px-6  md:pr-8 py-10  px-4 md:pl-80 2xl:pl-96">
       <div
         className="
         flex flex-col items-center justify-center

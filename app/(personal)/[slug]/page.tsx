@@ -34,30 +34,40 @@ export default async function DynamicPersonalPage({
       return {
         slug: project.slug,
         initial,
+        bgColor: initial?.data?.bgColor,
       }
     }),
   )
 
+  // Get the bgColor of the first project, if available
+  const firstBgColor = projectsWithInitial[0]?.initial?.data?.bgColor
+  const topBgStyle =
+    firstBgColor && firstBgColor.r !== undefined && firstBgColor.g !== undefined && firstBgColor.b !== undefined
+      ? { backgroundColor: `rgb(${firstBgColor.r}, ${firstBgColor.g}, ${firstBgColor.b})` }
+      : {}
+
   return (
-    <section className=" space-y-12 ">
-      <div className="md:px-6  md:pr-8 py-10 mt-16 md:my-12">
-        <h1 className=" text-right uppercase text-3xl md:text-4xl 2xl:text-5xl font-extrabold tracking-tighter">
-          {title}
-        </h1>
-        {overview?.text && (
-          <div className="my-6 text-right text-lg md:text-xl 2xl:text-2xl  ml-auto max-w-[80%] cursor-pointer">
-            <CustomPortableText value={overview.text} />
-          </div>
-        )}
-      </div>
-      <div className="gap-8">
-        {projectsWithInitial.map((project) => (
-          <ProjectPreview
-            key={project.slug}
-            params={{ slug: project.slug }}
-            initial={project.initial}
-          />
-        ))}
+    <section>
+      <div style={topBgStyle}>
+        <div className="px-4 md:pr-8 2xl:pr-24 pt-16 md:pt-24">
+          <h1 className="text-right uppercase text-4xl md:text-5xl 2xl:text-7xl font-normal tracking-tighter">
+            {title}
+          </h1>
+          {overview?.text && (
+            <div className="my-6 text-right text-lg md:text-xl 2xl:text-2xl ml-auto md:max-w-[80%] cursor-pointer">
+              <CustomPortableText value={overview.text} />
+            </div>
+          )}
+        </div>
+        <div>
+          {projectsWithInitial.map((project) => (
+            <ProjectPreview
+              key={project.slug}
+              params={{ slug: project.slug }}
+              initial={project.initial}
+            />
+          ))}
+        </div>
       </div>
     </section>
   )

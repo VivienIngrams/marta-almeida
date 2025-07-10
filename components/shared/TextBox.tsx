@@ -10,7 +10,7 @@ export default function Header(props: TextBoxProps) {
     return null
   }
   return (
-    <div className="my-10 md:my-28 md:px-28">
+    <div className="my-10 md:my-28 md:px-16 2xl:px-24">
       {/* Description */}
       {description && (
         <div className="md:text-center">

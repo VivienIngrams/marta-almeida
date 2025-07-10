@@ -76,22 +76,7 @@ export default defineType({
       title: 'Year',
       type: 'string',
     }),
-    defineField({
-      name: 'category',
-      title: 'Section',
-      type: 'string',
-      options: {
-        list: [
-          { title: 'Interpretação', value: 'interpretacao' },
-          { title: 'Criação', value: 'criacao' },
-          { title: 'Colaboração', value: 'colaboracao' },
-        ],
-        layout: 'radio',
-      },
-      validation: (rule) => rule.required(),
-    }),
-
-    defineField({
+       defineField({
       name: 'site',
       title: 'Website link',
       description:
