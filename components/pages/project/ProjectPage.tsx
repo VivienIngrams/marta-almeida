@@ -1,3 +1,5 @@
+'use client'
+
 import type { EncodeDataAttributeCallback } from '@sanity/react-loader'
 import Link from 'next/link'
 import { useState } from 'react'
