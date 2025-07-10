@@ -21,7 +21,7 @@ export default async function CriacaoPage() {
 
   return (
     <section className="space-y-12 md:px-6 py-10">
-      <h1 className="text-right uppercase text-4xl md:text-5xl 2xl:text-6xl font-light">{title}</h1>
+      <h1 className="text-right uppercase text-3xl md:text-4xl 2xl:text-5xl font-extrabold tracking-tighter">{title}</h1>
       {overview?.text && (
         <div className="my-6 text-right text-lg md:text-xl 2xl:text-2xl  ml-auto max-w-[80%] cursor-pointer">
           <CustomPortableText value={overview.text} />

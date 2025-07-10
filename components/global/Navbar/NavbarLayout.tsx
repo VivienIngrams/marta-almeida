@@ -35,12 +35,12 @@ export default function Navbar(props: NavbarProps) {
             {title}
           </Link>
         </div>
-        <div className="flex flex-col gap-3 uppercase text-xl tracking-wider font-light h-full w-full">
+        <div className="flex flex-col gap-3 uppercase text-lg md:text-xl 2xl:text-2xl tracking-wider font-light h-full w-full">
           <Link
             href="/interpretacao"
             className={`transition-all duration-200 ${
               pathname === '/interpretacao'
-                ? 'underline underline-offset-4 md:text-2xl 2xl:text-3xl '
+                ? 'underline underline-offset-4'
                 : ''
             }`}
           >
@@ -50,7 +50,7 @@ export default function Navbar(props: NavbarProps) {
             href="/criacao"
             className={`transition-all duration-200 ${
               pathname === '/criacao'
-                ? 'underline underline-offset-4 md:text-2xl 2xl:text-3xl '
+                ? 'underline underline-offset-4'
                 : ''
             }`}
           >
@@ -60,7 +60,7 @@ export default function Navbar(props: NavbarProps) {
             href="/colaboracao"
             className={`transition-all duration-200 ${
               pathname === '/colaboracao'
-                ? 'underline underline-offset-4 md:text-2xl 2xl:text-3xl '
+                ? 'underline underline-offset-4'
                 : ''
             }`}
           >

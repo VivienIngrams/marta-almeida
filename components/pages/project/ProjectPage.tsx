@@ -1,10 +1,11 @@
 import type { EncodeDataAttributeCallback } from '@sanity/react-loader'
 import Link from 'next/link'
+import { useState } from 'react'
 
 import { Module } from '@/components/modules'
 import { MoreProjects } from '@/components/pages/project/MoreProjects'
 import { CustomPortableText } from '@/components/shared/CustomPortableText'
-import ImageBox  from '@/components/shared/ImageBox'
+import ImageBox from '@/components/shared/ImageBox'
 import SingleImage from '@/components/shared/SingleImage'
 import type { ProjectPayload } from '@/types'
 import type { MoreProjectsPayload } from '@/types'
@@ -34,21 +35,31 @@ export function ProjectPage({
   const prevProject = projects[currentProjectIndex - 1] || null
   const nextProject = projects[currentProjectIndex + 1] || null
 
+  const [showContent, setShowContent] = useState(false)
+
   return (
     <div>
       <div className="mb-10 md:mb-20 space-y-6">
         <div className="flex flex-wrap justify-between flex-col md:flex-row">
           <div className="w-full lg:w-3/4 mx-auto">
             {/* Title */}
-            {title && <div className="my-6 text-2xl md:text-4xl 2xl:text-5xl">{title}</div>}
+            {title && (
+              <div className="my-6 font-bold text-3xl md:text-5xl 2xl:text-5xl">
+                {title}
+              </div>
+            )}
             {/* Year */}
-            {year && <div className="md:mt-2 text-lg md:text-2xl 2xl:text-3xl">{year}</div>}
+            {year && (
+              <div className="md:mt-2 text-lg md:text-2xl 2xl:text-3xl">
+                {year}
+              </div>
+            )}
           </div>
           <div className="w-full font-sans font-light text-gray-800">
             {/* Overview */}
             {overview && (
               <div className="mt-4 text-lg md:text-xl 2xl:text-2xl">
-                <CustomPortableText value={overview} paragraphClasses=''/>
+                <CustomPortableText value={overview} paragraphClasses="" />
               </div>
             )}
             {coverImage && (
@@ -57,34 +68,35 @@ export function ProjectPage({
                   <SingleImage
                     image={coverImage}
                     classesWrapper="w-full h-full"
-                    
                   />
                 </div>
-              </div>             
-            )}
-           
-            {/* Site */}
-            {site && (
-              <div className="mt-3">
-                {site && (
-                  <Link
-                    target="_blank"
-                    className="text-xl break-words md:text-2xl underline"
-                    href={site.url}
-                  >
-                    {site.urltitle}
-                  </Link>
-                )}
               </div>
             )}
           </div>
         </div>
 
-        <div className=" font-sans">
-          {/* Display project content by type */}
-          {content?.map((content, key) => (
-            <Module key={key} content={content} paragraphClasses=" font-light text-gray-800 text-lg md:text-2xl" />
-          ))}
+        {/* Read more button and content */}
+        <div className="font-sans">
+          {!showContent && content && content.length > 0 && (
+            <button
+              className="mt-6 px-6 py-2 bg-gray-200 hover:bg-gray-300 rounded text-base font-semibold transition"
+              onClick={() => setShowContent(true)}
+            >
+              Read more
+            </button>
+          )}
+          {showContent && (
+            <div>
+              {/* Display project content by type */}
+              {content?.map((content, key) => (
+                <Module
+                  key={key}
+                  content={content}
+                  paragraphClasses=" font-light text-gray-800 text-lg md:text-2xl"
+                />
+              ))}
+            </div>
+          )}
         </div>
 
         {/* Previous and next project links */}
