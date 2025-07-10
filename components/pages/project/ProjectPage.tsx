@@ -44,7 +44,7 @@ export function ProjectPage({
 
   return (
     <div style={bgStyle}>
-      <div className="mb-10 md:mb-20 space-y-6">
+      <div className="pb-10 md:pb-20 space-y-6 md:px-6  md:pr-8 py-10 mt-16 md:my-12 px-4 md:pl-80 2xl:pl-96">
         <div className="flex flex-wrap justify-between flex-col md:flex-row">
           <div className="w-full lg:w-3/4 mx-auto">
             {/* Title */}

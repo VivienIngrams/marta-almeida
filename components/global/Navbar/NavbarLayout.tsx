@@ -26,7 +26,7 @@ export default function Navbar(props: NavbarProps) {
   return (
     <>
       {/* Desktop Sidebar */}
-      <div className="hidden md:fixed bg-[#BEDBEA] md:top-0 md:left-0 md:h-screen md:w-80 xl:w-96 md:flex md:flex-col md:justify-between md:items-start p-4 md:px-12 z-50 ">
+      <div className="hidden md:fixed  md:top-0 md:left-0 md:h-screen md:w-80 xl:w-96 md:flex md:flex-col md:justify-between md:items-start p-4 md:px-12 z-50 ">
         <div className="w-full flex flex-col mt-24 2xl:mt-40">
           <Link
             href={`/`}
