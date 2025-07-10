@@ -75,7 +75,7 @@ console.log('HomePage data:', homeMobileImage)
       {/* Biography */}
       <div ref={bioRef}>
         {bio?.text && (
-          <div className="mt-32 md:mt-20 text-base 2xl:text-lg font-sans font-light text-gray-800 md:max-w-[80%] ">
+          <div className="py-20 text-base 2xl:text-lg font-sans font-light text-gray-800 md:max-w-[80%] ">
             <CustomPortableText value={bio.text} />
           </div>
         )}

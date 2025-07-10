@@ -73,6 +73,7 @@ export default function Navbar(props: NavbarProps) {
       <div className="bg-[#BEDBEA] flex md:hidden items-center backdrop-blur justify-between px-4 py-4 z-50 fixed top-0 left-0 right-0">
         <Link
           href="/"
+           onClick={() => setMobileOpen(!mobileOpen)}
           className="text-xl uppercase font-extrabold tracking-tighter hover:text-secondary"
         >
           {title}
