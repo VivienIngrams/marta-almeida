@@ -79,10 +79,10 @@ export function ProjectPage({
         <div className="font-sans">
           {!showContent && content && content.length > 0 && (
             <button
-              className="mt-6 px-6 py-2 bg-gray-200 hover:bg-gray-300 rounded text-base font-semibold transition"
+              className="mt-6 px-6 py-2 bg-black hover:bg-gray-700 rounded-[2px] text-base font-semibold text-[#BEDBEA] transition"
               onClick={() => setShowContent(true)}
             >
-              Read more
+              Read more...
             </button>
           )}
           {showContent && (

@@ -10,6 +10,8 @@ import {
   homePageTitleQuery,
   allProjectsQuery,
   criacaoPageQuery,
+  interpretacaoPageQuery,
+  colaboracaoPageQuery,
   projectBySlugQuery,
   settingsQuery,
 } from '@/sanity/lib/queries'
@@ -21,6 +23,7 @@ import {
   MoreProjectsPayload,
   SettingsPayload,
 } from '@/types'
+import colaboracao from '../schemas/singletons/colaboracao'
 
 const serverClient = client.withConfig({
   token,
@@ -103,6 +106,22 @@ export function loadCriacaoPage() {
     criacaoPageQuery,
     {},
     { next: { tags: ['criacao'] } },
+  )
+}
+
+export function loadInterpretacaoPage() {
+  return loadQuery<CriacaoPayload | null>(
+    interpretacaoPageQuery,
+    {},
+    { next: { tags: ['interpretacao'] } },
+  )
+}
+
+export function loadColaboracaoPage() {
+  return loadQuery<CriacaoPayload | null>(
+    colaboracaoPageQuery,
+    {},
+    { next: { tags: ['colaboracao'] } },
   )
 }
 

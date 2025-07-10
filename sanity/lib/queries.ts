@@ -147,6 +147,41 @@ export const criacaoPageQuery = groq`
     },
 
   }`
+  export const colaboracaoPageQuery = groq`
+  *[_type == "colaboracao"][0]{
+    _id,
+    title,
+    overview,
+    showcaseProjects[]->{
+      _id,  
+      year,
+      coverImage,
+      description,
+      overview,
+      site,
+      "slug": slug.current,
+      title,
+    },
+
+  }`
+
+  export const interpretacaoPageQuery = groq`
+  *[_type == "interpretacao"][0]{
+    _id,
+    title,
+    overview,
+    showcaseProjects[]->{
+      _id,  
+      year,
+      coverImage,
+      description,
+      overview,
+      site,
+      "slug": slug.current,
+      title,
+    },
+
+  }`
 
   export const moreProjectsQuery = groq`
   *[_type == "project" && !(_id in path("drafts.**
