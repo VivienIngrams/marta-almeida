@@ -47,14 +47,14 @@ export default async function DynamicPersonalPage({
       : {}
 
   return (
-    <section>
-      <div style={topBgStyle}>
-        <div className="px-4 md:pr-8 2xl:pr-24 pt-16 md:pt-24">
-          <h1 className="text-right uppercase text-4xl md:text-5xl 2xl:text-7xl font-normal tracking-tighter">
+    <section >
+      <div style={topBgStyle} className='py-16  md:pt-24'>
+        <div className="px-4 md:pr-8 2xl:pr-24 ">
+          <h1 className="text-right  text-4xl md:text-6xl 2xl:text-8xl font-light tracking-tight">
             {title}
           </h1>
           {overview?.text && (
-            <div className="my-6 text-right text-lg md:text-xl 2xl:text-2xl ml-auto md:max-w-[80%] cursor-pointer">
+            <div className="my-4 text-right text-lg md:text-xl 2xl:text-2xl ml-auto md:max-w-[80%] cursor-pointer">
               <CustomPortableText value={overview.text} />
             </div>
           )}

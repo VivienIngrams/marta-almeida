@@ -45,12 +45,12 @@ export function ProjectPage({
 
   return (
     <div style={bgStyle}>
-      <div className="py-10 md:py-24  space-y-6 md:pr-8 2xl:pr-24 px-4 md:pl-96 xl:pl-[400px] 2xl:pl-[450px]">
+      <div className="py-10 space-y-6 md:pr-8 2xl:pr-24 px-4 md:pl-96 xl:pl-[400px] 2xl:pl-[450px]">
         <div className="flex flex-wrap justify-between flex-col md:flex-row">
           <div className="w-full lg:w-3/4 mx-auto">
             {/* Title */}
             {title && (
-              <div className="my-6 font-bold text-3xl md:text-5xl 2xl:text-5xl">
+              <div className="my-6 font-bold text-3xl md:text-4xl 2xl:text-5xl">
                 {title}
               </div>
             )}
@@ -64,7 +64,7 @@ export function ProjectPage({
           <div className="w-full font-sans font-light text-gray-800">
             {/* Overview */}
             {overview && (
-              <div className="mt-4 text-lg md:text-xl 2xl:text-2xl">
+              <div className="mt-4 text-lg md:text-xl 2xl:text-2xl md:max-w-[85%] mx-auto">
                 <CustomPortableText value={overview} paragraphClasses="" />
               </div>
             )}
@@ -85,7 +85,8 @@ export function ProjectPage({
         <div className="font-sans">
           {!showContent && content && content.length > 0 && (
             <button
-              className="mt-6 px-6 py-2 bg-black hover:bg-gray-700 rounded-[2px] text-base font-semibold text-[#BEDBEA] transition"
+              className="mt-6 px-3 md:px-6 py-1 md:py-2 bg-black hover:bg-gray-700 rounded-[2px] text-base md:font-semibold transition"
+              style={bgColor && bgColor.r !== undefined && bgColor.g !== undefined && bgColor.b !== undefined ? { color: `rgb(${bgColor.r}, ${bgColor.g}, ${bgColor.b})` } : {}}
               onClick={() => setShowContent(true)}
             >
               Read more...
@@ -106,7 +107,7 @@ export function ProjectPage({
         </div>
 
         {/* Previous and next project links */}
-        {projects && <MoreProjects previous={prevProject} next={nextProject} />}
+        {/* {projects && <MoreProjects previous={prevProject} next={nextProject} />} */}
       </div>
     </div>
   )

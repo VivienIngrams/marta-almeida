@@ -7,7 +7,7 @@ import { loadSettings } from '@/sanity/loader/loadQuery'
 const
   oswald = Oswald({
     subsets: ['latin'],
-    weight: [ '200', '400', '700'],
+    weight: [ '200', '300', '400', '500', '700'],
   })  
   
 export default async function RootLayout({

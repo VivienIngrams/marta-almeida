@@ -27,7 +27,7 @@ export default function Navbar(props: NavbarProps) {
     <>
       {/* Desktop Sidebar */}
       <div className="hidden md:fixed  md:top-0 md:left-0 md:h-screen md:w-80 xl:w-96 md:flex md:flex-col md:justify-between md:items-start p-4 md:px-12 z-50 ">
-        <div className="w-full flex flex-col mt-24 2xl:mt-40">
+        <div className="w-full flex flex-col mt-24">
           <Link
             href={`/`}
             className="mb-12 text-2xl md:text-4xl 2xl:text-5xl uppercase tracking-tighter font-extrabold hover:text-secondary"
@@ -35,7 +35,7 @@ export default function Navbar(props: NavbarProps) {
             {title}
           </Link>
         </div>
-        <div className="flex flex-col gap-3 uppercase text-lg md:text-xl 2xl:text-2xl tracking-wider font-light h-full w-full">
+        <div className="flex flex-col gap-4 uppercase text-lg 2xl:text-xl tracking-wider font-light h-full w-full">
           <Link
             href="/interpretacao"
             className={`transition-all duration-200 ${
@@ -102,7 +102,7 @@ export default function Navbar(props: NavbarProps) {
       </div>
       {/* Mobile Menu Drawer */}
       {mobileOpen && (
-        <div className="bg-[#BEDBEA] md:hidden fixed top-12 left-0 w-full backdrop-blur shadow-lg z-40">
+        <div className=" md:hidden fixed top-12 left-0 w-full backdrop-blur shadow-lg z-40">
           <div className="flex flex-col gap-4 p-4 uppercase text-base tracking-wider  font-light">
             <Link href="/interpretacao" onClick={() => setMobileOpen(false)}>
               Interpretação
