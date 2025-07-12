@@ -1,28 +1,10 @@
 import ProjectPreview from '@/components/pages/project/ProjectPreview'
 import { CustomPortableText } from '@/components/shared/CustomPortableText'
-import {
-  loadCriacaoPage,
-  loadColaboracaoPage,
-  loadInterpretacaoPage,
-  loadProject,
-} from '@/sanity/loader/loadQuery'
+import { loadCriacaoPage, loadProject } from '@/sanity/loader/loadQuery'
 import { notFound } from 'next/navigation'
 
-const PAGE_LOADERS = {
-  criacao: loadCriacaoPage,
-  colaboracao: loadColaboracaoPage,
-  interpretacao: loadInterpretacaoPage,
-}
-
-export default async function DynamicPersonalPage({
-  params,
-}: {
-  params: { slug: string }
-}) {
-  const { slug } = params
-  const loader = PAGE_LOADERS[slug]
-  if (!loader) return notFound()
-  const pageData = await loader()
+export default async function CriacaoPage() {
+  const pageData = await loadCriacaoPage()
   if (!pageData?.data) return notFound()
   const showcaseProjects = pageData.data.showcaseProjects || []
   const title = pageData.data.title
@@ -47,8 +29,8 @@ export default async function DynamicPersonalPage({
       : {}
 
   return (
-    <section >
-      <div style={topBgStyle} className='py-16  md:pt-24'>
+    <section>
+      <div style={topBgStyle} className="py-16  md:pt-24">
         <div className="px-4 md:pr-8 2xl:pr-24 ">
           <h1 className="text-right  text-4xl md:text-6xl 2xl:text-8xl font-light tracking-tight">
             {title}
