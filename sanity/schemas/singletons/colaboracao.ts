@@ -77,9 +77,40 @@ export default defineType({
         },
       ],
     }),
+     defineField({
+      name: 'bgColor',
+      title: 'Backgroung color',
+      type: 'color',
+    }),
     defineField({
-      name: 'showcaseProjects',
-      title: 'Showcase projects',
+      name: 'showcaseProjectsOutros',
+      title: 'Showcase projects (Outros)',
+      description:
+        'These are the projects that will appear on your Colaboracao page. First create your set of projects and then add to the list below. You can rearrange the display order by dragging each project.',
+      type: 'array',
+      of: [
+        defineArrayMember({
+          type: 'reference',
+          to: [{ type: 'project' }],
+        }),
+      ],
+    }),
+    defineField({
+      name: 'showcaseProjectsEnsino',
+      title: 'Showcase projects (Ensino)',
+      description:
+        'These are the projects that will appear on your Colaboracao page. First create your set of projects and then add to the list below. You can rearrange the display order by dragging each project.',
+      type: 'array',
+      of: [
+        defineArrayMember({
+          type: 'reference',
+          to: [{ type: 'project' }],
+        }),
+      ],
+    }),
+    defineField({
+      name: 'showcaseProjectsProducao',
+      title: 'Showcase projects (Produção)',
       description:
         'These are the projects that will appear on your Colaboracao page. First create your set of projects and then add to the list below. You can rearrange the display order by dragging each project.',
       type: 'array',

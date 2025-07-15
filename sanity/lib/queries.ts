@@ -157,7 +157,32 @@ export const criacaoPageQuery = groq`
     _id,
     title,
     overview,
-    showcaseProjects[]->{
+     bgColor {
+      'r': rgb.r,
+      'g': rgb.g,
+      'b': rgb.b,
+    },
+    showcaseProjectsOutros[]->{
+      _id,  
+      year,
+      coverImage,
+      description,
+      overview,
+      site,
+      "slug": slug.current,
+      title,
+    },
+    showcaseProjectsEnsino[]->{
+      _id,  
+      year,
+      coverImage,
+      description,
+      overview,
+      site,
+      "slug": slug.current,
+      title,
+    },
+    showcaseProjectsProducao[]->{
       _id,  
       year,
       coverImage,

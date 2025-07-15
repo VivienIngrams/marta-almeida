@@ -1,17 +1,41 @@
-import ProjectPreview from '@/components/pages/project/ProjectPreview'
-import { CustomPortableText } from '@/components/shared/CustomPortableText'
 import { loadColaboracaoPage, loadProject } from '@/sanity/loader/loadQuery'
 import { notFound } from 'next/navigation'
+import ColaboracaoTabs from './tabs'
 
 export default async function ColaboracaoPage() {
   const pageData = await loadColaboracaoPage()
   if (!pageData?.data) return notFound()
-  const showcaseProjects = pageData.data.showcaseProjects || []
+  console.log('pageData', pageData.data)
+  const showcaseProjectsEnsino = pageData.data.showcaseProjectsEnsino || []
+  const showcaseProjectsProducao = pageData.data.showcaseProjectsProducao || []
+  const showcaseProjectsOutros = pageData.data.showcaseProjectsOutros || []
   const title = pageData.data.title
   const overview = pageData.data.overview
+  const bgColor = pageData.data.bgColor || { r: 255, g: 255, b: 255 }
 
-  const projectsWithInitial = await Promise.all(
-    showcaseProjects.map(async (project: any) => {
+  // Fetch initial data for each project in each category
+  const ensinoWithInitial = await Promise.all(
+    showcaseProjectsEnsino.map(async (project: any) => {
+      const initial = await loadProject(project.slug)
+      return {
+        slug: project.slug,
+        initial,
+        bgColor: initial?.data?.bgColor,
+      }
+    }),
+  )
+  const producaoWithInitial = await Promise.all(
+    showcaseProjectsProducao.map(async (project: any) => {
+      const initial = await loadProject(project.slug)
+      return {
+        slug: project.slug,
+        initial,
+        bgColor: initial?.data?.bgColor,
+      }
+    }),
+  )
+  const outrosWithInitial = await Promise.all(
+    showcaseProjectsOutros.map(async (project: any) => {
       const initial = await loadProject(project.slug)
       return {
         slug: project.slug,
@@ -21,36 +45,20 @@ export default async function ColaboracaoPage() {
     }),
   )
 
-  // Get the bgColor of the first project, if available
-  const firstBgColor = projectsWithInitial[0]?.initial?.data?.bgColor
-  const topBgStyle =
-    firstBgColor && firstBgColor.r !== undefined && firstBgColor.g !== undefined && firstBgColor.b !== undefined
-      ? { backgroundColor: `rgb(${firstBgColor.r}, ${firstBgColor.g}, ${firstBgColor.b})` }
-      : {}
-
   return (
-    <section>
-      <div style={topBgStyle} className="py-16  md:pt-24">
-        <div className="px-4 md:pr-8 2xl:pr-24 ">
-          <h1 className="text-right  text-4xl md:text-6xl 2xl:text-8xl font-light tracking-tight">
-            {title}
-          </h1>
-          {overview?.text && (
-            <div className="my-4 text-right text-lg md:text-xl 2xl:text-2xl ml-auto md:max-w-[80%] cursor-pointer">
-              <CustomPortableText value={overview.text} />
-            </div>
-          )}
-        </div>
-        <div>
-          {projectsWithInitial.map((project) => (
-            <ProjectPreview
-              key={project.slug}
-              params={{ slug: project.slug }}
-              initial={project.initial}
-            />
-          ))}
-        </div>
-      </div>
+    <section className='min-h-screen'
+      style={{
+        backgroundColor: `rgb(${bgColor.r}, ${bgColor.g}, ${bgColor.b})`,
+      }}
+    >
+      <ColaboracaoTabs
+        title={title}
+        overview={overview}
+        ensino={ensinoWithInitial}
+        producao={producaoWithInitial}
+        outros={outrosWithInitial}
+        bgColor={bgColor}
+      />
     </section>
   )
 }

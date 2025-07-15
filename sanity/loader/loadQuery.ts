@@ -5,24 +5,26 @@ import { draftMode } from 'next/headers'
 
 import { client } from '@/sanity/lib/client'
 import {
-  homePageQuery,
-  moreProjectsQuery,
-  homePageTitleQuery,
   allProjectsQuery,
-  criacaoPageQuery,
-  interpretacaoPageQuery,
   colaboracaoPageQuery,
+  criacaoPageQuery,
+  homePageQuery,
+  homePageTitleQuery,
+  interpretacaoPageQuery,
+  moreProjectsQuery,
   projectBySlugQuery,
   settingsQuery,
 } from '@/sanity/lib/queries'
 import { token } from '@/sanity/lib/token'
 import {
- CriacaoPayload,
+  ColaboracaoPayload,
+  CriacaoPayload,
   HomePagePayload,
-  ProjectPayload,
   MoreProjectsPayload,
+  ProjectPayload,
   SettingsPayload,
 } from '@/types'
+
 import colaboracao from '../schemas/singletons/colaboracao'
 
 const serverClient = client.withConfig({
@@ -88,7 +90,7 @@ export function loadHomePage() {
 export function loadMoreProjects() {
   return loadQuery<MoreProjectsPayload | null>(
     moreProjectsQuery,
-    { },
+    {},
     { next: { tags: ['home', 'project'] } },
   )
 }
@@ -118,7 +120,7 @@ export function loadInterpretacaoPage() {
 }
 
 export function loadColaboracaoPage() {
-  return loadQuery<CriacaoPayload | null>(
+  return loadQuery<ColaboracaoPayload | null>(
     colaboracaoPageQuery,
     {},
     { next: { tags: ['colaboracao'] } },
@@ -132,5 +134,3 @@ export function loadProject(slug: string) {
     { next: { tags: [`project:${slug}`] } },
   )
 }
-
-
