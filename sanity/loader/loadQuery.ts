@@ -19,6 +19,7 @@ import { token } from '@/sanity/lib/token'
 import {
   ColaboracaoPayload,
   CriacaoPayload,
+  InterpretacaoPayload,
   HomePagePayload,
   MoreProjectsPayload,
   ProjectPayload,
@@ -112,7 +113,7 @@ export function loadCriacaoPage() {
 }
 
 export function loadInterpretacaoPage() {
-  return loadQuery<CriacaoPayload | null>(
+  return loadQuery<InterpretacaoPayload | null>(
     interpretacaoPageQuery,
     {},
     { next: { tags: ['interpretacao'] } },

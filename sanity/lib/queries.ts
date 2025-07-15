@@ -200,6 +200,12 @@ export const criacaoPageQuery = groq`
     _id,
     title,
     overview,
+      bgColor {
+        'r': rgb.r,
+        'g': rgb.g,
+        'b': rgb.b,
+      },
+      images,
     showcaseProjects[]->{
       _id,  
       year,

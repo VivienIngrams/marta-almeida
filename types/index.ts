@@ -101,6 +101,17 @@ export interface CriacaoPayload {
   overview?: { text?: PortableTextBlock[] } // overview is an object with a text array
   showcaseProjects?: ShowcaseProject[]
 }
+export interface InterpretacaoPayload {
+  title?: string
+  overview?: { text?: PortableTextBlock[] } // overview is an object with a text array
+  images?: Image[]
+  bgColor?: {
+    r?: string
+    g?: string
+    b?: string
+  }
+  showcaseProjects?: ShowcaseProject[]
+}
 export interface ColaboracaoPayload {
   title?: string
   bgColor?: {

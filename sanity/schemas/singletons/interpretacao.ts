@@ -90,7 +90,34 @@ export default defineType({
         }),
       ],
     }),
+    defineField({
+      name: 'bgColor',
+      title: 'Background color',
+      description:
+        'This is the background color of your Interpretacao page. It will be used for the entire page.',
+      type: 'color',
+      options: {
+        disableAlpha: true,
+        color: '#000000',
+      },
+    }),
+    defineField({
+      name: 'images',
+      title: 'Carousel Images',
+      description:
+        'These images will be used in the carousel on the Interpretação page. You can rearrange the display order by dragging each image.',
+      type: 'array',
+      of: [
+        defineArrayMember({
+          type: 'image',
+          options: {
+            hotspot: true,
+          },
+        }),
+      ],
+    }),
   ],
+  
   preview: {
     select: {
       title: 'title',
