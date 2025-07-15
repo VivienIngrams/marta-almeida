@@ -37,7 +37,7 @@ export default function ColaboracaoTabs({
           )}
         </div>
         {/* Tab Menu */}
-        <div className="flex flex-wrap justify-center gap-4 md:gap-8 my-12">
+        <div className="md:px-96 xl:px-[400px] 2xl:px-[600px] flex flex-wrap  gap-4 md:gap-8 my-12">
           {CATEGORIES.map((cat) => {
             return (
               <button
