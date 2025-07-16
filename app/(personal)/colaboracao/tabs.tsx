@@ -27,7 +27,7 @@ export default function ColaboracaoTabs({
     <section>
       <div className="py-16 md:pt-24">
         <div className="px-4 md:pr-8 2xl:pr-24 ">
-          <h1 className="text-right text-5xl md:text-6xl 2xl:text-8xl font-light tracking-tight">
+          <h1 className="text-right text-3xl md:text-5xl 2xl:text-7xl  font-light tracking-tight">
             {title}
           </h1>
           {overview?.text && (
@@ -37,7 +37,9 @@ export default function ColaboracaoTabs({
           )}
         </div>
         {/* Tab Menu */}
-        <div className="md:px-96 xl:px-[400px] 2xl:px-[500px] flex flex-wrap  gap-4 md:gap-8 my-12">
+        <div className="md:pl-96 xl:pl-[400px] 2xl:pl-[450px]  my-12">
+        <div className="mx-auto max-w-[85%] ">
+        <div className="flex flex-wrap justify-self-start gap-4 md:gap-8">
           {CATEGORIES.map((cat) => {
             return (
               <button
@@ -56,6 +58,8 @@ export default function ColaboracaoTabs({
               </button>
             )
           })}
+          </div>
+        </div>
         </div>
         {/* Projects by Category */}
         <div>

@@ -36,16 +36,16 @@ export default async function InterpretacaoPage() {
         }}
         className="py-16 md:pt-24"
       >
-        <div className="px-4 md:pr-8 2xl:pr-24">
-          <h1 className="text-right text-4xl md:text-6xl 2xl:text-8xl font-light tracking-tight">
-            {title}
-          </h1>
-          {overview?.text && (
-            <div className="my-4 text-right text-lg md:text-xl 2xl:text-2xl ml-auto md:max-w-[80%] cursor-pointer">
-              <CustomPortableText value={overview.text} />
-            </div>
-          )}
-        </div>
+         <div className="px-4 md:pr-8 2xl:pr-24 ">
+                  <h1 className="text-right text-3xl md:text-5xl 2xl:text-7xl  font-light tracking-tight">
+                    {title}
+                  </h1>
+                  {overview?.text && (
+                    <div className="my-4 text-right text-lg md:text-xl 2xl:text-2xl ml-auto md:max-w-[80%] cursor-pointer">
+                      <CustomPortableText value={overview.text} />
+                    </div>
+                  )}
+                </div>
 
         <div>
           {projectsWithInitial.map((project) => (
