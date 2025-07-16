@@ -42,7 +42,7 @@ export default function ColaboracaoTabs({
             return (
               <button
                 key={cat.key}
-                className={`p-2 md:p-4 inline-block w-fit m-auto text-xs md:text-xl 2xl:text-2xl tracking-wider rounded-sm font-light uppercase transition border border-black
+                className={`p-2 md:p-4 inline-block w-fit m-auto text-xs md:text-lg 2xl:text-xl tracking-wider rounded-sm font-light uppercase transition border border-black
                   ${
                     activeCategory === cat.key
                       ? 'underline underline-offset-1 md:underline-offset-2 decoration-1 md:decoration-2 font-normal scale-110'

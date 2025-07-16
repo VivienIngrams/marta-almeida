@@ -27,15 +27,15 @@ export default function Navbar(props: NavbarProps) {
     <>
       {/* Desktop Sidebar */}
       <div className="hidden md:fixed  md:top-0 md:left-0 md:h-screen md:w-80 xl:w-96 md:flex md:flex-col md:justify-between md:items-start p-4 md:px-12 z-50 ">
-        <div className="w-full flex flex-col mt-24">
+        <div className="w-full flex flex-col mt-32 ">
           <Link
             href={`/`}
-            className="mb-12 text-2xl md:text-4xl 2xl:text-5xl uppercase tracking-tighter font-extrabold hover:text-secondary"
+            className="mb-12 text-xl md:text-3xl 2xl:text-4xl uppercase tracking-tighter font-extrabold hover:text-secondary"
           >
             {title}
           </Link>
         </div>
-        <div className="flex flex-col gap-4 uppercase text-lg 2xl:text-xl tracking-wider font-light h-full w-full">
+        <div className="flex flex-col gap-4 uppercase text-lg tracking-wider font-light h-full w-full">
           <Link
             href="/interpretacao"
             className={`transition-all duration-200 ${
