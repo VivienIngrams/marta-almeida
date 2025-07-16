@@ -65,24 +65,30 @@ export default async function InterpretacaoPage() {
                 {' '}
                 <div className="flex gap-4 md:gap-6 pb-4 snap-x snap-mandatory">
                   {images.map((image, index) => {
-                    const imageUrl = urlForImage(image)?.url()
-
+                    const imageUrl = image.asset?.url
                     if (!imageUrl) return null
+
+                    const aspectRatio =
+                      image.asset?.metadata?.dimensions?.aspectRatio || 1.5
 
                     return (
                       <div key={index} className="flex-none snap-start">
-                        <div className="w-64 sm:w-72 md:w-80 lg:w-96 h-80 sm:h-96 md:h-[28rem] lg:h-[32rem] relative overflow-hidden rounded shadow-lg hover:shadow-xl transition-shadow duration-300">
+                        <div
+                          className="relative overflow-hidden rounded shadow-lg hover:shadow-xl transition-shadow duration-300"
+                          style={{
+                            width: `${400 * aspectRatio}px`,
+                            height: '400px',
+                          }}
+                        >
                           <Image
-                            src={imageUrl || '/placeholder.svg'}
+                            src={imageUrl}
                             alt={`Gallery image ${index + 1}`}
                             fill
                             className="object-cover hover:scale-105 transition-transform duration-500"
-                            sizes="(max-width: 640px) 256px, (max-width: 768px) 288px, (max-width: 1024px) 320px, 384px"
                           />
                         </div>
 
-
-                        {typeof image?.caption === 'string' && (
+                        {image.caption && (
                           <p className="mt-2 text-sm text-center text-gray-800 max-w-[24rem]">
                             {image.caption}
                           </p>

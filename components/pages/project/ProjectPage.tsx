@@ -45,26 +45,27 @@ export function ProjectPage({
 
   return (
     <div style={bgStyle}>
-      <div className="py-10 space-y-6 md:pr-8 2xl:pr-24 px-4 md:pl-96 xl:pl-[400px] 2xl:pl-[450px]">
-        <div className="flex flex-wrap justify-between flex-col md:flex-row">
+      <div className="py-6  md:pr-8 2xl:pr-24 px-4 md:pl-96 xl:pl-[400px] 2xl:pl-[450px]">
+        <div className="flex flex-wrap justify-between flex-col md:flex-row s">
           <div className="w-full lg:w-3/4 mx-auto">
-            {/* Title */}
-            {title && (
-              <div className="my-6 font-bold text-3xl md:text-4xl 2xl:text-5xl">
-                {title}
-              </div>
-            )}
-            {/* Year */}
+          {/* Year */}
             {year && (
-              <div className="md:mt-2 text-lg md:text-2xl 2xl:text-3xl">
+              <div className=" text-base md:text-xl 2xl:text-2xl">
                 {year}
               </div>
             )}
+            {/* Title */}
+            {title && (
+              <div className=" font-bold text-2xl md:text-3xl 2xl:text-4xl">
+                {title}
+              </div>
+            )}
+            
           </div>
           <div className="w-full font-sans font-light text-gray-800">
             {/* Overview */}
             {overview && (
-              <div className="mt-4 text-lg md:text-xl 2xl:text-2xl md:max-w-[85%] mx-auto">
+              <div className="text-base md:text-lg 2xl:text-xl md:max-w-[85%] mx-auto">
                 <CustomPortableText value={overview} paragraphClasses="" />
               </div>
             )}

@@ -205,10 +205,18 @@ export const criacaoPageQuery = groq`
       'g': rgb.g,
       'b': rgb.b,
     },
-    images[]{
-      ...,
-      caption
-    },
+    images[] {
+  ...,
+  caption,
+  asset->{
+    url,
+    metadata {
+      dimensions {
+        aspectRatio
+      }
+    }
+  }
+},
     showcaseProjects[]->{
       _id,  
       year,

@@ -103,15 +103,32 @@ export interface CriacaoPayload {
 }
 export interface InterpretacaoPayload {
   title?: string
-  overview?: { text?: PortableTextBlock[] } // overview is an object with a text array
-  images?: Image[]
+  overview?: {
+    text?: PortableTextBlock[]
+    displayText?: boolean
+  }
+  images?: CarouselImage[]
   bgColor?: {
-    r?: string
-    g?: string
-    b?: string
+    r?: number
+    g?: number
+    b?: number
   }
   showcaseProjects?: ShowcaseProject[]
 }
+
+export interface CarouselImage {
+  _key?: string
+  caption?: string
+  asset?: {
+    url: string
+    metadata?: {
+      dimensions?: {
+        aspectRatio?: number
+      }
+    }
+  }
+}
+
 export interface ColaboracaoPayload {
   title?: string
   bgColor?: {
