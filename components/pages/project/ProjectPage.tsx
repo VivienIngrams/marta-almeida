@@ -108,7 +108,7 @@ export function ProjectPage({
                 <Module
                   key={key}
                   content={content}
-                  paragraphClasses=" font-light text-gray-800 text-lg md:text-xl 2xl:text-2xl"
+                  paragraphClasses=" font-light text-base md:text-lg 2xl:text-xl"
                 />
               ))}
             </div>
