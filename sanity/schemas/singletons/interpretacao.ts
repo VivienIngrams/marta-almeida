@@ -47,6 +47,7 @@ export default defineType({
                     {
                       name: 'href',
                       type: 'url',
+          
                       title: 'Url',
                     },
                   ],
@@ -107,12 +108,21 @@ export default defineType({
       description:
         'These images will be used in the carousel on the Interpretação page. You can rearrange the display order by dragging each image.',
       type: 'array',
+      
       of: [
         defineArrayMember({
           type: 'image',
           options: {
             hotspot: true,
           },
+          fields: [
+            {
+              name: 'caption',
+              type: 'string',
+              title: 'Legend/Caption',
+              description: 'A legend for this image (name of piece, artist, year, etc.)',
+            }
+          ]
         }),
       ],
     }),

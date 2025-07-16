@@ -3,15 +3,20 @@ import { CustomPortableText } from '@/components/shared/CustomPortableText'
 import { loadInterpretacaoPage, loadProject } from '@/sanity/loader/loadQuery'
 import { notFound } from 'next/navigation'
 import Image from 'next/image'
+import { urlForImage } from '@/sanity/lib/utils'
 
 export default async function InterpretacaoPage() {
   const pageData = await loadInterpretacaoPage()
   if (!pageData?.data) return notFound()
+
   const showcaseProjects = pageData.data.showcaseProjects || []
   const title = pageData.data.title
   const overview = pageData.data.overview
   const bgColor = pageData.data.bgColor || { r: 255, g: 255, b: 255 }
   const images = pageData.data.images || []
+
+  console.log('images', images)
+
   const projectsWithInitial = await Promise.all(
     showcaseProjects.map(async (project: any) => {
       const initial = await loadProject(project.slug)
@@ -29,10 +34,10 @@ export default async function InterpretacaoPage() {
         style={{
           backgroundColor: `rgb(${bgColor.r}, ${bgColor.g}, ${bgColor.b})`,
         }}
-        className="py-16  md:pt-24"
+        className="py-16 md:pt-24"
       >
-        <div className="px-4 md:pr-8 2xl:pr-24 ">
-          <h1 className="text-right  text-4xl md:text-6xl 2xl:text-8xl font-light tracking-tight">
+        <div className="px-4 md:pr-8 2xl:pr-24">
+          <h1 className="text-right text-4xl md:text-6xl 2xl:text-8xl font-light tracking-tight">
             {title}
           </h1>
           {overview?.text && (
@@ -41,6 +46,7 @@ export default async function InterpretacaoPage() {
             </div>
           )}
         </div>
+
         <div>
           {projectsWithInitial.map((project) => (
             <ProjectPreview
@@ -50,21 +56,45 @@ export default async function InterpretacaoPage() {
             />
           ))}
         </div>
-        {/* Carousel Images */}
-        <div>
-          {images &&
-            images.map((image, index) => (
-              <div key={index} className="my-4">
-                {/* <Image
-                  src={image.url}
-                  alt={image.alt || `Image ${index + 1}`}
-                  width={image.width}
-                  height={image.height}
-                  className="w-full h-auto"
-                /> */}
+
+        {/* Responsive Horizontal Scroll Carousel */}
+        {images && images.length > 0 && (
+          <div className="w-full py-8 md:pl-52 xl:pl-[250px] 2xl:pl-[300px]">
+            <div className="px-4 md:px-8 2xl:px-24">
+              <div className="overflow-x-auto thin-scrollbar">
+                {' '}
+                <div className="flex gap-4 md:gap-6 pb-4 snap-x snap-mandatory">
+                  {images.map((image, index) => {
+                    const imageUrl = urlForImage(image)?.url()
+
+                    if (!imageUrl) return null
+
+                    return (
+                      <div key={index} className="flex-none snap-start">
+                        <div className="w-64 sm:w-72 md:w-80 lg:w-96 h-80 sm:h-96 md:h-[28rem] lg:h-[32rem] relative overflow-hidden rounded shadow-lg hover:shadow-xl transition-shadow duration-300">
+                          <Image
+                            src={imageUrl || '/placeholder.svg'}
+                            alt={`Gallery image ${index + 1}`}
+                            fill
+                            className="object-cover hover:scale-105 transition-transform duration-500"
+                            sizes="(max-width: 640px) 256px, (max-width: 768px) 288px, (max-width: 1024px) 320px, 384px"
+                          />
+                        </div>
+
+
+                        {typeof image?.caption === 'string' && (
+                          <p className="mt-2 text-sm text-center text-gray-800 max-w-[24rem]">
+                            {image.caption}
+                          </p>
+                        )}
+                      </div>
+                    )
+                  })}
+                </div>
               </div>
-            ))}
-        </div>
+            </div>
+          </div>
+        )}
       </div>
     </section>
   )

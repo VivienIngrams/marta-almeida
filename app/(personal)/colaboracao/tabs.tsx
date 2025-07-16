@@ -46,7 +46,7 @@ export default function ColaboracaoTabs({
                   ${
                     activeCategory === cat.key
                       ? 'underline underline-offset-1 md:underline-offset-2 decoration-1 md:decoration-2 font-normal scale-110'
-                      : 'hover:bg-gray-800'
+                      : 'hover:bg-gray-800/20'
                   }
                 `}
                 
