@@ -5,8 +5,8 @@ import ColaboracaoTabs from './tabs'
 export default async function ColaboracaoPage() {
   const pageData = await loadColaboracaoPage()
   if (!pageData?.data) return notFound()
-  console.log('pageData', pageData.data)
-  const showcaseProjectsEnsino = pageData.data.showcaseProjectsEnsino || []
+
+    const showcaseProjectsEnsino = pageData.data.showcaseProjectsEnsino || []
   const showcaseProjectsProducao = pageData.data.showcaseProjectsProducao || []
   const showcaseProjectsOutros = pageData.data.showcaseProjectsOutros || []
   const title = pageData.data.title

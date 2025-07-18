@@ -9,9 +9,9 @@ export function Header(props: HeaderProps) {
     return null
   }
   return (
-    <div className="w-full md:w-4/6">
+    <div className="w-full lg:w-4/6">
       {description && (
-        <div className="mt-4 text-3xl md:text-4.5xl">
+        <div className="mt-4 text-3xl lg:text-4.5xl">
           {description.displayText == true && (
             <CustomPortableText value={description.text} />
           )}

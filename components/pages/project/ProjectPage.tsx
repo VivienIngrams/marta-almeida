@@ -50,16 +50,16 @@ export function ProjectPage({
 
   return (
     <div style={bgStyle}>
-      <div className="py-6  md:pr-8 2xl:pr-24 px-4 md:pl-96 xl:pl-[400px] 2xl:pl-[450px]">
-        <div className="flex flex-wrap justify-between flex-col md:flex-row ">
+      <div className="py-6  lg:pr-8 2xl:pr-24 px-4 lg:pl-96 xl:pl-[400px] 2xl:pl-[450px]">
+        <div className="flex flex-wrap justify-between flex-col lg:flex-row ">
           <div className="w-full lg:w-3/4 mx-auto">
             {/* Year */}
             {year && (
-              <div className="text-base md:text-xl 2xl:text-2xl">{year}</div>
+              <div className="text-base lg:text-xl 2xl:text-2xl">{year}</div>
             )}
             {/* Title */}
             {title && (
-              <div className="md:my-2  font-bold text-2xl md:text-3xl 2xl:text-4xl">
+              <div className="lg:my-2  font-bold text-2xl lg:text-3xl 2xl:text-4xl">
                 {title}
               </div>
             )}
@@ -67,7 +67,7 @@ export function ProjectPage({
 
           {/* Overview */}
           {overview && (
-            <div className="w-full font-sans font-light text-gray-800 text-base md:text-lg 2xl:text-xl md:max-w-[85%] mx-auto">
+            <div className="w-full font-sans font-light text-gray-800 text-base lg:text-lg 2xl:text-xl lg:max-w-[85%] mx-auto">
               <CustomPortableText value={overview} paragraphClasses="" />
             </div>
           )}
@@ -87,7 +87,7 @@ export function ProjectPage({
         <div className="font-sans">
           {!showContent && content && content.length > 0 && (
             <button
-              className="mt-6 px-3 md:px-6 py-1 md:py-2 bg-black hover:bg-gray-700 rounded-[2px] text-base md:font-semibold transition"
+              className="mt-6 px-3 lg:px-6 py-1 lg:py-2 bg-black hover:bg-gray-700 rounded-[2px] text-base lg:font-semibold transition"
               style={
                 bgColor &&
                 bgColor.r !== undefined &&
@@ -108,7 +108,7 @@ export function ProjectPage({
                 <Module
                   key={key}
                   content={content}
-                  paragraphClasses=" font-light text-base md:text-lg 2xl:text-xl"
+                  paragraphClasses=" font-light text-base lg:text-lg 2xl:text-xl"
                 />
               ))}
             </div>

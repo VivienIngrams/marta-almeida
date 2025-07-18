@@ -10,10 +10,10 @@ export default function Header(props: TextBoxProps) {
     return null
   }
   return (
-    <div className="my-6 md:my-20 md:px-16 2xl:px-24">
+    <div className="my-6 lg:my-20 lg:px-16 2xl:px-24">
       {/* Description */}
       {description && (
-        <div className="md:text-center">
+        <div className="lg:text-center">
           <CustomPortableText value={description} paragraphClasses={paragraphClasses} />
         </div>
       )}

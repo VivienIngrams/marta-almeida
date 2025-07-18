@@ -14,7 +14,7 @@ export function HeaderLinks(props: HeaderLinks) {
 
   return (
     <Link
-      className={`text-lg px-3 py-1 border rounded-full md:text-2xl ${
+      className={`text-lg px-3 py-1 border rounded-full lg:text-2xl ${
         pathname === '/home'
           ? 'text-primary bg-secondary border-secondary'
           : 'border-secondary hover:text-primary hover:bg-secondary'

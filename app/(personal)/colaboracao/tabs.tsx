@@ -25,29 +25,29 @@ export default function ColaboracaoTabs({
 
   return (
     <section>
-      <div className="py-16 md:pt-24">
-        <div className="px-4 md:pr-8 2xl:pr-24 ">
-          <h1 className="text-right text-3xl md:text-5xl 2xl:text-7xl  font-light tracking-tight">
+      <div className="py-16 lg:pt-24">
+        <div className="px-4 lg:pr-8 2xl:pr-24 ">
+          <h1 className="text-right text-3xl lg:text-5xl 2xl:text-7xl  font-light tracking-tight">
             {title}
           </h1>
           {overview?.text && (
-            <div className="my-4 text-right text-lg md:text-xl 2xl:text-2xl ml-auto md:max-w-[80%] cursor-pointer">
+            <div className="my-4 text-right text-lg lg:text-xl 2xl:text-2xl ml-auto lg:max-w-[80%] cursor-pointer">
               <CustomPortableText value={overview.text} />
             </div>
           )}
         </div>
         {/* Tab Menu */}
-        <div className="md:pl-96 xl:pl-[400px] 2xl:pl-[450px]  my-12">
+        <div className="lg:pl-96 xl:pl-[400px] 2xl:pl-[450px]  my-12">
         <div className="mx-auto max-w-[85%] ">
-        <div className="flex flex-wrap justify-self-start gap-4 md:gap-8">
+        <div className="flex flex-wrap justify-self-start gap-4 lg:gap-8">
           {CATEGORIES.map((cat) => {
             return (
               <button
                 key={cat.key}
-                className={`p-2 md:p-4 inline-block w-fit m-auto text-xs md:text-lg 2xl:text-xl tracking-wider rounded-sm font-light uppercase transition border border-black
+                className={`p-2 lg:p-4 inline-block w-fit m-auto text-xs lg:text-lg 2xl:text-xl tracking-wider rounded-sm font-light uppercase transition border border-black
                   ${
                     activeCategory === cat.key
-                      ? 'underline underline-offset-1 md:underline-offset-2 decoration-1 md:decoration-2 font-normal scale-110'
+                      ? 'underline underline-offset-1 lg:underline-offset-2 decoration-1 lg:decoration-2 font-normal scale-110'
                       : 'hover:bg-gray-800/20'
                   }
                 `}

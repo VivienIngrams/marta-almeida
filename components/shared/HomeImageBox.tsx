@@ -29,7 +29,7 @@ export default function ImageBox({
 
   return (
     <div
-      className={`relative w-full h-auto aspect-[9/11] md:aspect-auto md:h-full overflow-hidden rounded-none ${classesWrapper || ''}`}
+      className={`relative w-full h-auto aspect-[9/11] lg:aspect-auto lg:h-full overflow-hidden rounded-none ${classesWrapper || ''}`}
       style={{ maxWidth: '100%' }}
       onClick={onClick}
     >

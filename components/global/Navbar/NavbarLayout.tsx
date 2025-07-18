@@ -26,11 +26,11 @@ export default function Navbar(props: NavbarProps) {
   return (
     <>
       {/* Desktop Sidebar */}
-      <div className="hidden md:fixed  md:top-0 md:left-0 md:h-screen md:w-80 xl:w-96 md:flex md:flex-col md:justify-between md:items-start p-4 md:px-12 z-50 ">
+      <div className="hidden lg:fixed  lg:top-0 lg:left-0 lg:h-screen lg:w-80 xl:w-96 lg:flex lg:flex-col lg:justify-between lg:items-start p-4 lg:px-12 z-50 ">
         <div className="w-full flex flex-col mt-32 ">
           <Link
             href={`/`}
-            className="mb-12 text-xl md:text-3xl 2xl:text-4xl uppercase tracking-tighter font-extrabold hover:text-secondary"
+            className="mb-12 text-xl lg:text-3xl 2xl:text-4xl uppercase tracking-tighter font-extrabold hover:text-secondary"
           >
             {title}
           </Link>
@@ -70,7 +70,7 @@ export default function Navbar(props: NavbarProps) {
       </div>
 
       {/* Mobile Navbar */}
-      <div className="backdrop-blur flex md:hidden items-center justify-between px-4 py-4 z-50 fixed top-0 left-0 right-0">
+      <div className="backdrop-blur flex lg:hidden items-center justify-between px-4 py-4 z-50 fixed top-0 left-0 right-0">
         <Link
           href="/"
            onClick={() => setMobileOpen(!mobileOpen)}
@@ -102,7 +102,7 @@ export default function Navbar(props: NavbarProps) {
       </div>
       {/* Mobile Menu Drawer */}
       {mobileOpen && (
-        <div className=" md:hidden fixed top-12 left-0 w-full backdrop-blur shadow-lg z-40">
+        <div className=" lg:hidden fixed top-12 left-0 w-full backdrop-blur shadow-lg z-40">
           <div className="flex flex-col gap-4 p-4 uppercase text-base tracking-wider  font-light">
             <Link href="/interpretacao" onClick={() => setMobileOpen(false)}>
               Interpretação
@@ -116,10 +116,10 @@ export default function Navbar(props: NavbarProps) {
           </div>
         </div>
       )}
-      <div className="block md:hidden backdrop-blur fixed bottom-0 left-0 right-0   z-50">
+      <div className="block lg:hidden backdrop-blur fixed bottom-0 left-0 right-0   z-50">
         <Footer />
       </div>
-      <div className="hidden md:block fixed bottom-0 left-0 z-50">
+      <div className="hidden lg:block fixed bottom-0 left-0 z-50">
         <Footer />
       </div>
     </>

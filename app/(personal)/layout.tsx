@@ -75,7 +75,7 @@ export default async function IndexRoute({
           <Suspense>{children}</Suspense>
         </div>
         {/* <Suspense>
-          <div className='md:hidden'>
+          <div className='lg:hidden'>
           <Footer /></div>
         </Suspense> */}
       </div>
