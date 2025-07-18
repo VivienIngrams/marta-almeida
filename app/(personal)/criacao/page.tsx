@@ -24,23 +24,28 @@ export default async function CriacaoPage() {
   // Get the bgColor of the first project, if available
   const firstBgColor = projectsWithInitial[0]?.initial?.data?.bgColor
   const topBgStyle =
-    firstBgColor && firstBgColor.r !== undefined && firstBgColor.g !== undefined && firstBgColor.b !== undefined
-      ? { backgroundColor: `rgb(${firstBgColor.r}, ${firstBgColor.g}, ${firstBgColor.b})` }
+    firstBgColor &&
+    firstBgColor.r !== undefined &&
+    firstBgColor.g !== undefined &&
+    firstBgColor.b !== undefined
+      ? {
+          backgroundColor: `rgb(${firstBgColor.r}, ${firstBgColor.g}, ${firstBgColor.b})`,
+        }
       : {}
 
   return (
     <section>
-      <div style={topBgStyle} className="pb-16 pt-28">
-        <div className="px-4 lg:pr-8 2xl:pr-24 ">
-                 <h1 className="text-right text-3xl lg:text-5xl 2xl:text-7xl  font-light tracking-tight">
-                   {title}
-                 </h1>
-                 {overview?.text && (
-                   <div className="my-4 text-right text-lg lg:text-xl 2xl:text-2xl ml-auto lg:max-w-[80%] cursor-pointer">
-                     <CustomPortableText value={overview.text} />
-                   </div>
-                 )}
-               </div>
+    <div style={topBgStyle} className="pb-16 pt-28 lg:pt-16">
+            <div className="lg:pl-[20%] px-4 lg:pr-8 2xl:pr-24 ">
+              <h1 className="hidden lg:block text-center uppercase text-3xl lg:text-5xl 2xl:text-7xl  font-light tracking-tight">
+                {title}
+              </h1>
+              {overview?.text && (
+                <div className="my-4 text-center text-lg lg:text-xl 2xl:text-2xl  cursor-pointer">
+                  <CustomPortableText value={overview.text} />
+                </div>
+              )}
+            </div>
         <div>
           {projectsWithInitial.map((project) => (
             <ProjectPreview

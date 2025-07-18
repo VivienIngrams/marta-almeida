@@ -15,7 +15,6 @@ export default async function InterpretacaoPage() {
   const bgColor = pageData.data.bgColor || { r: 255, g: 255, b: 255 }
   const images = pageData.data.images || []
 
-
   const projectsWithInitial = await Promise.all(
     showcaseProjects.map(async (project: any) => {
       const initial = await loadProject(project.slug)
@@ -33,18 +32,18 @@ export default async function InterpretacaoPage() {
         style={{
           backgroundColor: `rgb(${bgColor.r}, ${bgColor.g}, ${bgColor.b})`,
         }}
-        className="pb-16 pt-28"
+        className="pb-16 pt-28 lg:pt-16"
       >
-         <div className="px-4 lg:pr-8 2xl:pr-24 ">
-                  <h1 className="text-center text-3xl lg:text-5xl 2xl:text-7xl font-light tracking-tight">
-                    {title}
-                  </h1>
-                  {overview?.text && (
-                    <div className="my-4 text-center text-lg lg:text-xl 2xl:text-2xl mx-auto lg:max-w-[80%] cursor-pointer">
-                      <CustomPortableText value={overview.text} />
-                    </div>
-                  )}
-                </div>
+        <div className="lg:pl-[20%] px-4 lg:pr-8 2xl:pr-24 ">
+          <h1 className="hidden lg:block text-center uppercase text-3xl lg:text-5xl 2xl:text-7xl  font-light tracking-tight">
+            {title}
+          </h1>
+          {overview?.text && (
+            <div className="my-4 text-center text-lg lg:text-xl 2xl:text-2xl  cursor-pointer">
+              <CustomPortableText value={overview.text} />
+            </div>
+          )}
+        </div>
 
         <div>
           {projectsWithInitial.map((project) => (
@@ -58,11 +57,11 @@ export default async function InterpretacaoPage() {
 
         {/* Responsive Horizontal Scroll Carousel */}
         {images && images.length > 0 && (
-          <div className="w-full py-8 lg:pl-52 xl:pl-[250px] 2xl:pl-[300px]">
-            <div className="px-4 lg:px-8 2xl:px-24">
+          <div className="w-full py-8 lg:pl-[25%]">
+            <div className="px-4 lg:pr-8 lg:pl-0">
               <div className="overflow-x-auto thin-scrollbar">
                 {' '}
-                <div className="flex gap-4 lg:gap-6 pb-4 snap-x snap-mandatory">
+                <div className="flex gap-4  lg:gap-6 pb-4 snap-x snap-mandatory">
                   {images.map((image, index) => {
                     const imageUrl = image.asset?.url
                     if (!imageUrl) return null

@@ -50,9 +50,9 @@ export function ProjectPage({
 
   return (
     <div style={bgStyle}>
-      <div className="py-6  lg:pr-8 2xl:pr-24 px-4 lg:pl-96 xl:pl-[400px] 2xl:pl-[450px]">
+      <div className="py-6  lg:pr-8 2xl:pr-24 px-4 lg:pl-[25%]">
         <div className="flex flex-wrap justify-between flex-col lg:flex-row ">
-          <div className="w-full lg:w-3/4 mx-auto">
+          <div className="w-full lg:mx-16">
             {/* Year */}
             {year && (
               <div className="text-base lg:text-xl 2xl:text-2xl">{year}</div>
@@ -67,7 +67,7 @@ export function ProjectPage({
 
           {/* Overview */}
           {overview && (
-            <div className="w-full font-sans font-light text-gray-800 text-base lg:text-lg 2xl:text-xl lg:max-w-[85%] mx-auto">
+            <div className="w-full font-sans font-light text-gray-800 text-base lg:text-lg 2xl:text-xl lg:max-w-6xl ">
               <CustomPortableText value={overview} paragraphClasses="" />
             </div>
           )}
