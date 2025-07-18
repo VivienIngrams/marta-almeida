@@ -46,7 +46,7 @@ console.log('color' ,bgColor )
               <button
                 key={cat.key}
                 style={{ color: `rgb(${bgColor.r}, ${bgColor.g}, ${bgColor.b})` }}
-                className={`p-2 lg:p-4 inline-block bg-black w-fit m-auto text-xs lg:text-lg 2xl:text-xl tracking-wider rounded-sm font-light uppercase transition border border-black
+                className={`p-2 lg:p-3 inline-block bg-black w-fit m-auto text-xs lg:text-lg 2xl:text-xl tracking-wider rounded-sm font-light uppercase transition border border-black
                   ${
                     activeCategory === cat.key
                       ? 'underline underline-offset-1 lg:underline-offset-[3px] decoration-1 pb-3 lg:decoration-[3px] lg:text-xl 2xl:text-2xl font-normal scale-110'

@@ -49,17 +49,17 @@ export function ProjectPage({
       : {}
 
   return (
-    <div style={bgStyle}>
-      <div className="py-6  lg:pr-8 2xl:pr-24 px-4 lg:pl-[25%]">
+    <div style={bgStyle} className=''>
+      <div className="py-6  px-4 lg:max-w-[50%] mx-auto ">
         <div className="flex flex-wrap justify-between flex-col lg:flex-row ">
           <div className="w-full lg:mx-16">
             {/* Year */}
             {year && (
-              <div className="text-base lg:text-xl 2xl:text-2xl">{year}</div>
+              <div className="text-base lg:text-lg 2xl:text-xl">{year}</div>
             )}
             {/* Title */}
             {title && (
-              <div className="lg:my-2  font-bold text-2xl lg:text-3xl 2xl:text-4xl">
+              <div className="lg:my-2  font-bold text-xl lg:text-2xl 2xl:text-3xl">
                 {title}
               </div>
             )}
@@ -67,13 +67,13 @@ export function ProjectPage({
 
           {/* Overview */}
           {overview && (
-            <div className="w-full font-sans font-light text-gray-800 text-base lg:text-lg 2xl:text-xl lg:max-w-6xl ">
+            <div className="w-full font-sans font-light text-gray-800 text-sm lg:text-base 2xl:text-lg lg:max-w-5xl ">
               <CustomPortableText value={overview} paragraphClasses="" />
             </div>
           )}
           {coverImage && (
             <div className="mt-4 w-full">
-              <div className="relative w-full aspect-[16/9] max-w-5xl mx-auto">
+              <div className="relative w-full aspect-[16/9] lg:max-w-5xl mx-auto">
                 <SingleImage
                   image={coverImage}
                   classesWrapper="w-full h-full"
@@ -108,7 +108,7 @@ export function ProjectPage({
                 <Module
                   key={key}
                   content={content}
-                  paragraphClasses=" font-light text-base lg:text-lg 2xl:text-xl"
+                  paragraphClasses=" font-light text-sm lg:text-base 2xl:text-lg"
                 />
               ))}
             </div>

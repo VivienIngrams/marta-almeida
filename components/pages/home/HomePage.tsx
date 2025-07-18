@@ -35,7 +35,7 @@ export function HomePage({ data }: HomePageProps) {
         {/* Bio Column - Remaining width */}
         <div className="flex-1 flex flex-col justify-center lg:pl-8">
           {bio?.text && (
-            <div className="text-sm lg:text-base 2xl:text-lg font-light text-gray-800 leading-relaxed">
+            <div className="text-sm lg:text-[15px] xl:text-base font-light text-gray-800 leading-relaxed">
               <CustomPortableText value={bio.text} />
             </div>
           )}
