@@ -69,53 +69,40 @@ export default function Navbar(props: NavbarProps) {
         </div>
       </div>
 
-      {/* Mobile Navbar */}
-      <div className="backdrop-blur flex lg:hidden items-center justify-between px-4 py-4 z-50 fixed top-0 left-0 right-0">
-        <Link
-          href="/"
-           onClick={() => setMobileOpen(!mobileOpen)}
-          className="text-xl uppercase font-extrabold tracking-tighter hover:text-secondary"
-        >
-          {title}
-        </Link>
-        <button
-          className="focus:outline-none"
-          onClick={() => setMobileOpen(!mobileOpen)}
-          aria-label="Open menu"
-        >
-          <svg
-            className="w-5 h-5 text-black"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth={2}
-            viewBox="0 0 24 24"
+      {/* Mobile Navbar - Title and horizontal menu */}
+      <div className="backdrop-blur flex flex-col lg:hidden px-4 py-4 z-50 fixed top-0 left-0 right-0">
+        <div className="flex items-center">
+          <Link
+            href="/"
+            className="text-xl uppercase font-extrabold tracking-tighter hover:text-secondary mb-2"
+            style={{ minWidth: 'fit-content' }}
           >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d={
-                mobileOpen ? 'M6 18L18 6M6 6l12 12' : 'M4 6h16M4 12h16M4 18h16'
-              }
-            />
-          </svg>
-        </button>
-      </div>
-      {/* Mobile Menu Drawer */}
-      {mobileOpen && (
-        <div className=" lg:hidden fixed top-12 left-0 w-full backdrop-blur shadow-lg z-40">
-          <div className="flex flex-col gap-4 p-4 uppercase text-base tracking-wider  font-light">
-            <Link href="/interpretacao" onClick={() => setMobileOpen(false)}>
+            {title}
+          </Link>
+        </div>
+        <nav className="w-full mt-2">
+          <div className="flex gap-6 justify-between items-center uppercase text-base tracking-wider font-light">
+            <Link
+              href="/interpretacao"
+              className={`transition-all duration-200 ${pathname === '/interpretacao' ? 'underline underline-offset-4' : ''}`}
+            >
               Interpretação
             </Link>
-            <Link href="/criacao" onClick={() => setMobileOpen(false)}>
+            <Link
+              href="/criacao"
+              className={`transition-all duration-200 ${pathname === '/criacao' ? 'underline underline-offset-4' : ''}`}
+            >
               Criação
             </Link>
-            <Link href="/colaboracao" onClick={() => setMobileOpen(false)}>
+            <Link
+              href="/colaboracao"
+              className={`transition-all duration-200 ${pathname === '/colaboracao' ? 'underline underline-offset-4' : ''}`}
+            >
               Colaboração
             </Link>
           </div>
-        </div>
-      )}
+        </nav>
+      </div>
       <div className="block lg:hidden backdrop-blur fixed bottom-0 left-0 right-0   z-50">
         <Footer />
       </div>

@@ -16,7 +16,7 @@ export function HomePage({ data }: HomePageProps) {
 
 
   return (
-    <div className="min-h-screen px-4 py-16 lg:px-6 lg:py-8 lg:pl-72 xl:pl-80 2xl:pl-96">
+    <div className="min-h-screen px-4 py-28 lg:px-6 lg:py-8 lg:pl-72 xl:pl-80 2xl:pl-96">
       <div className="flex flex-col lg:flex-row lg:h-[calc(100vh-4rem)] lg:gap-2">
         {/* Image Column - 45% width on desktop */}
         <div className="w-full lg:w-[45%] mb-8 lg:mb-0">

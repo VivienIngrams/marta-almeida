@@ -30,7 +30,7 @@ export default async function CriacaoPage() {
 
   return (
     <section>
-      <div style={topBgStyle} className="py-16  lg:pt-24">
+      <div style={topBgStyle} className="pb-16 pt-28">
         <div className="px-4 lg:pr-8 2xl:pr-24 ">
                  <h1 className="text-right text-3xl lg:text-5xl 2xl:text-7xl  font-light tracking-tight">
                    {title}

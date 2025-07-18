@@ -33,14 +33,14 @@ export default async function InterpretacaoPage() {
         style={{
           backgroundColor: `rgb(${bgColor.r}, ${bgColor.g}, ${bgColor.b})`,
         }}
-        className="py-16 lg:pt-24"
+        className="pb-16 pt-28"
       >
          <div className="px-4 lg:pr-8 2xl:pr-24 ">
-                  <h1 className="text-right text-3xl lg:text-5xl 2xl:text-7xl  font-light tracking-tight">
+                  <h1 className="text-center text-3xl lg:text-5xl 2xl:text-7xl font-light tracking-tight">
                     {title}
                   </h1>
                   {overview?.text && (
-                    <div className="my-4 text-right text-lg lg:text-xl 2xl:text-2xl ml-auto lg:max-w-[80%] cursor-pointer">
+                    <div className="my-4 text-center text-lg lg:text-xl 2xl:text-2xl mx-auto lg:max-w-[80%] cursor-pointer">
                       <CustomPortableText value={overview.text} />
                     </div>
                   )}

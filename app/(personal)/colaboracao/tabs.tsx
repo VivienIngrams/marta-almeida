@@ -25,21 +25,21 @@ export default function ColaboracaoTabs({
 
   return (
     <section>
-      <div className="py-16 lg:pt-24">
-        <div className="px-4 lg:pr-8 2xl:pr-24 ">
-          <h1 className="text-right text-3xl lg:text-5xl 2xl:text-7xl  font-light tracking-tight">
+      <div className="pb-16 pt-28">
+        <div className="lg:pl-96 xl:pl-[400px] 2xl:pl-[450px] px-4 lg:pr-8 2xl:pr-24 ">
+          <h1 className="text-center text-3xl lg:text-5xl 2xl:text-7xl  font-light tracking-tight">
             {title}
           </h1>
           {overview?.text && (
-            <div className="my-4 text-right text-lg lg:text-xl 2xl:text-2xl ml-auto lg:max-w-[80%] cursor-pointer">
+            <div className="my-4 text-center text-lg lg:text-xl 2xl:text-2xl  cursor-pointer">
               <CustomPortableText value={overview.text} />
             </div>
           )}
         </div>
         {/* Tab Menu */}
-        <div className="lg:pl-96 xl:pl-[400px] 2xl:pl-[450px]  my-12">
-        <div className="mx-auto max-w-[85%] ">
-        <div className="flex flex-wrap justify-self-start gap-4 lg:gap-8">
+        <div className="lg:pl-96 xl:pl-[400px] 2xl:pl-[450px] lg:pr-8 2xl:pr-24  my-10">
+        <div className="flex justify-center">
+        <div className="flex flex-wrap justify-around  gap-4 lg:gap-8">
           {CATEGORIES.map((cat) => {
             return (
               <button
