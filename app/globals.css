@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+
 /* globals.css */
 .thin-scrollbar::-webkit-scrollbar {
   height: 6px;

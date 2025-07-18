@@ -1,3 +1,4 @@
+
 import ProjectPreview from '@/components/pages/project/ProjectPreview'
 import { CustomPortableText } from '@/components/shared/CustomPortableText'
 import { loadCriacaoPage, loadProject } from '@/sanity/loader/loadQuery'
