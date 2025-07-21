@@ -45,7 +45,7 @@ export default function ColaboracaoTabs({
           style={{
             backgroundColor: `rgb(${bgColor.r}, ${bgColor.g}, ${bgColor.b})`,
           }}
-          className={`lg:pl-[20%] lg:pr-8 2xl:pr-24 border-black border-b-2 lg:border-none sticky top-24 lg:top-0 bg-[rgb(${bgColor.r}, ${bgColor.g}, ${bgColor.b})] pt-10`}
+          className={`lg:pl-[20%] lg:pr-8 2xl:pr-24  sticky top-24 lg:top-0 bg-[rgb(${bgColor.r}, ${bgColor.g}, ${bgColor.b})] pt-10`}
         >
           <div className="flex justify-center">
             <div className="flex flex-wrap justify-around  gap-4 lg:gap-8">
@@ -56,7 +56,7 @@ export default function ColaboracaoTabs({
                     style={{
                       color: `rgb(${bgColor.r}, ${bgColor.g}, ${bgColor.b})`,
                     }}
-                    className={`p-2 lg:p-3 inline-block bg-black w-fit m-auto text-xs lg:text-lg 2xl:text-xl tracking-wider rounded-sm font-light uppercase transition border border-black
+                    className={`p-2 lg:p-3 inline-block bg-black w-fit m-auto text-xs lg:text-lg 2xl:text-xl tracking-wider rounded-sm font-light uppercase transition 
                   ${
                     activeCategory === cat.key
                       ? 'underline underline-offset-1 lg:underline-offset-[3px] decoration-1 pb-3 lg:decoration-[3px] lg:text-xl 2xl:text-2xl font-normal scale-110'
@@ -73,7 +73,7 @@ export default function ColaboracaoTabs({
           </div>
         </div>
         {/* Projects by Category */}
-        <div className="border-black border-2 lg:border-none">
+        <div className="">
           {projectsToShow.length === 0 && (
             <div className="text-center text-gray-500 py-8">
               No projects in this category.
