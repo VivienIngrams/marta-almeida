@@ -1,62 +1,44 @@
-
-import ProjectPreview from '@/components/pages/project/ProjectPreview'
-import { CustomPortableText } from '@/components/shared/CustomPortableText'
+// app/criacao/page.tsx (or wherever your route file is)
+import ClientCriacaoPage from './clientCriacao'
 import { loadCriacaoPage, loadProject } from '@/sanity/loader/loadQuery'
 import { notFound } from 'next/navigation'
 
 export default async function CriacaoPage() {
   const pageData = await loadCriacaoPage()
   if (!pageData?.data) return notFound()
+
   const showcaseProjects = pageData.data.showcaseProjects || []
-  const title = pageData.data.title
+  const title = pageData.data.title || ''
   const overview = pageData.data.overview
 
   const projectsWithInitial = await Promise.all(
     showcaseProjects.map(async (project: any) => {
       const initial = await loadProject(project.slug)
+      const rawBgColor = initial?.data?.bgColor
+      const bgColor =
+        rawBgColor &&
+        rawBgColor.r !== undefined &&
+        rawBgColor.g !== undefined &&
+        rawBgColor.b !== undefined
+          ? {
+              r: Number(rawBgColor.r),
+              g: Number(rawBgColor.g),
+              b: Number(rawBgColor.b),
+            }
+          : undefined
       return {
         slug: project.slug,
         initial,
-        bgColor: initial?.data?.bgColor,
+        bgColor,
       }
-    }),
+    })
   )
 
-  // Get the bgColor of the first project, if available
-  const firstBgColor = projectsWithInitial[0]?.initial?.data?.bgColor
-  const topBgStyle =
-    firstBgColor &&
-    firstBgColor.r !== undefined &&
-    firstBgColor.g !== undefined &&
-    firstBgColor.b !== undefined
-      ? {
-          backgroundColor: `rgb(${firstBgColor.r}, ${firstBgColor.g}, ${firstBgColor.b})`,
-        }
-      : {}
-
   return (
-    <section>
-    <div style={topBgStyle} className="pb-16 pt-28 lg:pt-16">
-            <div className="lg:pl-[20%] px-4 lg:pr-8 2xl:pr-24 ">
-              <h1 className="hidden lg:block text-center uppercase text-3xl lg:text-5xl 2xl:text-7xl  font-light tracking-tight">
-                {title}
-              </h1>
-              {overview?.text && (
-                <div className="my-4 text-center text-lg lg:text-xl 2xl:text-2xl  cursor-pointer">
-                  <CustomPortableText value={overview.text} />
-                </div>
-              )}
-            </div>
-        <div>
-          {projectsWithInitial.map((project) => (
-            <ProjectPreview
-              key={project.slug}
-              params={{ slug: project.slug }}
-              initial={project.initial}
-            />
-          ))}
-        </div>
-      </div>
-    </section>
+    <ClientCriacaoPage
+      title={title}
+      overview={overview}
+      projects={projectsWithInitial}
+    />
   )
 }
