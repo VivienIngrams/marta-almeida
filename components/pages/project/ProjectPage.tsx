@@ -10,6 +10,8 @@ import { CustomPortableText } from '@/components/shared/CustomPortableText'
 import SingleImage from '@/components/shared/SingleImage'
 import type { ProjectPayload } from '@/types'
 import type { MoreProjectsPayload } from '@/types'
+import { useEffect } from 'react'
+import { useBackgroundColor } from '@/components/providers/BgColorProvider'
 
 export interface ProjectPageProps {
   data: ProjectPayload | null
@@ -48,8 +50,29 @@ export function ProjectPage({
       ? { backgroundColor: `rgb(${bgColor.r}, ${bgColor.g}, ${bgColor.b})` }
       : {}
 
+  const { setBackgroundColor } = useBackgroundColor()
+
+  useEffect(() => {
+    if (
+      bgColor &&
+      bgColor.r !== undefined &&
+      bgColor.g !== undefined &&
+      bgColor.b !== undefined
+    ) {
+      const rgb = `rgb(${bgColor.r}, ${bgColor.g}, ${bgColor.b})`
+      setBackgroundColor(rgb)
+    }
+  }, [bgColor, setBackgroundColor])
+
   return (
-    <div style={bgStyle} className=''>
+    <div
+      className=""
+      style={
+        bgColor
+          ? { backgroundColor: `rgb(${bgColor.r}, ${bgColor.g}, ${bgColor.b})` }
+          : {}
+      }
+    >
       <div className="py-6  px-4 lg:max-w-[50%] mx-auto ">
         <div className="flex flex-wrap justify-between flex-col lg:flex-row ">
           <div className="w-full lg:mx-16">

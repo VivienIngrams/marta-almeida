@@ -3,6 +3,8 @@ import React, { useState } from 'react'
 
 import ProjectPreview from '@/components/pages/project/ProjectPreview'
 import { CustomPortableText } from '@/components/shared/CustomPortableText'
+import { useBackgroundColor } from '@/components/providers/BgColorProvider'
+import { useEffect } from 'react'
 
 const CATEGORIES = [
   { key: 'ensino', label: 'Ensino' },
@@ -27,6 +29,20 @@ export default function ColaboracaoTabs({
     return []
   }, [activeCategory, ensino, producao, outros])
 
+   const { setBackgroundColor } = useBackgroundColor()
+
+  useEffect(() => {
+    if (
+      bgColor &&
+      bgColor.r !== undefined &&
+      bgColor.g !== undefined &&
+      bgColor.b !== undefined
+    ) {
+      const rgb = `rgb(${bgColor.r}, ${bgColor.g}, ${bgColor.b})`
+      setBackgroundColor(rgb)
+    }
+  }, [bgColor, setBackgroundColor])
+  
   return (
     <section>
       <div className="pb-16 pt-28 lg:pt-16">

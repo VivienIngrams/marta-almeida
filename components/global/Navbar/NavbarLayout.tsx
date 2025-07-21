@@ -5,6 +5,8 @@ import { useState } from "react"
 import Footer from "@/components/global/Footer"
 import { urlForLogo } from "@/sanity/lib/utils"
 import type { SettingsPayload } from "@/types"
+import { BackgroundColorProvider } from "@/components/providers/BgColorProvider"
+import { useBackgroundColor } from "@/components/providers/BgColorProvider"
 
 interface NavbarProps {
   data: SettingsPayload
@@ -13,15 +15,16 @@ interface NavbarProps {
 }
 
 export default function Navbar(props: NavbarProps) {
-  const { data } = props
+
   const title = props.title ?? ""
-  const customLogo = props?.logo
-  const logoImageUrl = customLogo && urlForLogo(customLogo)?.url()
-  const [mobileOpen, setMobileOpen] = useState(false)
+ 
+  
   const pathname = usePathname()
 
+    const { backgroundColor } = useBackgroundColor()
+
   return (
-    <>
+    <div style={{ backgroundColor }}>
       {/* Desktop Sidebar */}
       <div className="hidden lg:fixed lg:top-0 lg:left-0 lg:h-screen lg:w-[25%] lg:flex lg:flex-col lg:justify-between lg:items-start p-4 lg:px-12 z-50">
         <div className="w-full flex flex-col mt-32">
@@ -61,8 +64,7 @@ export default function Navbar(props: NavbarProps) {
       {/* Mobile Navbar - Title and horizontal menu */}
       <div
         className="flex flex-col lg:hidden px-4 py-4 z-50 fixed top-0 left-0 right-0"
-        style={{ backgroundColor: "var(--page-bg-color, rgb(255, 255, 255))" }}
-      >
+style={{ backgroundColor }}      >
         <div className="flex items-center">
           <Link
             href="/"
@@ -99,8 +101,7 @@ export default function Navbar(props: NavbarProps) {
       {/* Mobile Footer */}
       <div
         className="block lg:hidden fixed bottom-0 left-0 right-0 z-50"
-        style={{ backgroundColor: "var(--page-bg-color, rgb(255, 255, 255))" }}
-      >
+style={{ backgroundColor }}      >
         <Footer />
       </div>
 
@@ -108,6 +109,6 @@ export default function Navbar(props: NavbarProps) {
       <div className="hidden lg:block fixed bottom-0 left-0 z-50">
         <Footer />
       </div>
-    </>
+    </div>
   )
 }

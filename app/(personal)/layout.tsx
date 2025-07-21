@@ -1,3 +1,4 @@
+
 import type React from "react"
 import "@/styles/index.css"
 import type { Metadata, Viewport } from "next"
@@ -9,6 +10,7 @@ import { Navbar } from "@/components/global/Navbar"
 import { BackgroundColorProvider } from "@/components/providers/BgColorProvider"
 import { urlForImage, urlForOpenGraphImage } from "@/sanity/lib/utils"
 import { loadHomePage, loadSettings } from "@/sanity/loader/loadQuery"
+
 
 const LiveVisualEditing = dynamic(() => import("@/sanity/loader/LiveVisualEditing"))
 
