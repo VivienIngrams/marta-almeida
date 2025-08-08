@@ -1,6 +1,9 @@
 "use client"
-import type { EncodeDataAttributeCallback } from "@sanity/react-loader"
 
+import type { EncodeDataAttributeCallback } from "@sanity/react-loader"
+import { useEffect } from "react"
+
+import { useBackgroundColor } from "@/components/providers/BgColorProvider"
 import { CustomPortableText } from "@/components/shared/CustomPortableText"
 import HomeImageBox from "@/components/shared/HomeImageBox"
 import type { HomePagePayload } from "@/types"
@@ -11,12 +14,27 @@ export interface HomePageProps {
 }
 
 export function HomePage({ data }: HomePageProps) {
-  const { overview, homeMobileImage, bio } = data ?? {}
+  const { overview, homeMobileImage, bio, bgColor } = data ?? {}
+ const { setBackgroundColor } = useBackgroundColor()
+
+  useEffect(() => {
+    if (
+      bgColor &&
+      bgColor.r !== undefined &&
+      bgColor.g !== undefined &&
+      bgColor.b !== undefined
+    ) {
+      const rgb = `rgb(${bgColor.r}, ${bgColor.g}, ${bgColor.b})`
+      setBackgroundColor(rgb)
+    }
+  }, [bgColor, setBackgroundColor])   
+
+
  
 
 
   return (
-    <div className="min-h-screen px-4 py-28 lg:px-6 lg:py-8 lg:pl-[25%]">
+    <div className="min-h-screen px-4 py-28 lg:px-6 lg:py-8 lg:pl-[25%]" style={{ backgroundColor: bgColor ? `rgb(${bgColor.r}, ${bgColor.g}, ${bgColor.b})` : 'transparent' }} >
       <div className="flex flex-col lg:flex-row lg:h-[calc(100vh-4rem)] lg:gap-2">
         {/* Image Column - 45% width on desktop */}
         <div className="w-full lg:w-[45%] mb-8 lg:mb-0">
@@ -35,7 +53,7 @@ export function HomePage({ data }: HomePageProps) {
         {/* Bio Column - Remaining width */}
         <div className="flex-1 flex flex-col justify-center lg:pl-8">
           {bio?.text && (
-            <div className="text-sm lg:text-[15px] xl:text-base font-light text-gray-800 leading-relaxed">
+            <div className="text-sm lg:text-[15px] xl:text-base font-light font-sans text-gray-800 leading-relaxed">
               <CustomPortableText value={bio.text} />
             </div>
           )}

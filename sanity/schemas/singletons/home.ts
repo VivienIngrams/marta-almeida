@@ -92,6 +92,11 @@ export default defineType({
         hotspot: true,
       },
     }),
+     defineField({
+      name: 'bgColor',
+      title: 'Backgroung color',
+      type: 'color',
+    }),
     defineField({
         name: 'bio',
         description:

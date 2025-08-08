@@ -44,7 +44,11 @@ export interface HomePagePayload {
   homeImage?: Image
   homeMobileImage?: Image
   title?: string
-  customLogo?: Image
+ bgColor?: {
+    r?: string
+    g?: string  
+    b?: string
+  }
  bio?: any
 }
 
@@ -82,17 +86,6 @@ export interface SettingsPayload {
   ogImage?: Image
   favIcon?: Image
   title?: string
-  bgColor: {
-    r?: string
-    g?: string
-    b?: string
-  }
-  textColor: {
-    r?: string
-    g?: string
-    b?: string
-  }
-  displayLastUpdated: boolean
 }
 
 

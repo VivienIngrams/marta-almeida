@@ -39,14 +39,10 @@ export async function generateMetadata(): Promise<Metadata> {
   }
 }
 
-export async function viewport(): Promise<Viewport> {
-  const [{ data: settings }] = await Promise.all([loadSettings()])
-  const rgbaBgColor = `${settings?.bgColor?.r || 255}, ${settings?.bgColor?.g || 255}, ${settings?.bgColor?.b || 255}`
-
-  return {
-    themeColor: `rgb(` + rgbaBgColor + `)`,
-  }
-}
+// export async function viewport(): Promise<Viewport> {
+//   const [{ data: settings }] = await Promise.all([loadSettings()])
+ 
+// }
 
 export default async function IndexRoute({
   children,

@@ -6,7 +6,11 @@ export const homePageQuery = groq`
   *[_type == "home"][0]{
     _id,
     title,
-    customLogo,
+     bgColor {
+      'r': rgb.r,
+      'g': rgb.g,
+      'b': rgb.b,
+    },
     overview,
     homeImage{
       _type,
@@ -95,32 +99,10 @@ export const projectPaths = groq`
 
 export const settingsQuery = groq`
   *[_type == "settings"][0]{
-    footer,
-    "menuItems": {
-      "page": menuItems[_type == 'reference']->{
-        _type,
-        "slug": slug.current,
-        title,
-        },
-      "link": menuItems[_type == 'navLink'] {
-        _type,
-        title,
-        url,
-      },
-    },
+   
     ogImage,
     favIcon,
-    bgColor {
-      'r': rgb.r,
-      'g': rgb.g,
-      'b': rgb.b,
-    },
-    textColor {
-      'r': rgb.r,
-      'g': rgb.g,
-      'b': rgb.b,
-    },
-    displayLastUpdated,
+   
   }
 `
 export const allProjectsQuery = groq`

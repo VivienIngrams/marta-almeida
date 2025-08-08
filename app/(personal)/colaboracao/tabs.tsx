@@ -92,7 +92,7 @@ export default function ColaboracaoTabs({
         <div className="">
           {projectsToShow.length === 0 && (
             <div className="text-center text-gray-500 py-8">
-              No projects in this category.
+              
             </div>
           )}
           {projectsToShow.map((project: any) => (
