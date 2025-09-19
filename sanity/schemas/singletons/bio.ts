@@ -11,7 +11,7 @@ export default defineType({
     fields: [
       defineField({
         name: 'title',
-        description: 'This field is the title of your biogra^hy page.',
+        description: 'This field is the title of your biography page.',
         title: 'Title',
         type: 'string',
         validation: (rule) => rule.required(),
