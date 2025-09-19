@@ -3,7 +3,7 @@ import { draftMode } from 'next/headers'
 
 import {
   getHomePageTitle,
-  loadHomePage,
+ 
   loadSettings,
 } from '@/sanity/loader/loadQuery'
 
@@ -13,7 +13,7 @@ const NavbarPreview = dynamic(() => import('./NavbarPreview'))
 export async function Navbar() {
   const initial = await loadSettings()
   const title = await getHomePageTitle()
-  const customLogo = await loadHomePage()
+
 
   const draft = await draftMode();
   if (draft.isEnabled) {
@@ -21,7 +21,7 @@ export async function Navbar() {
       <NavbarPreview
         initial={initial}
         title={title.data}
-        logo={customLogo.data?.customLogo}
+       
       />
     )
   }
@@ -30,7 +30,7 @@ export async function Navbar() {
     <NavbarLayout
       data={initial.data}
       title={title.data}
-      logo={customLogo.data?.customLogo}
+     
     />
   )
 }

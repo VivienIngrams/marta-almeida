@@ -22,9 +22,23 @@ export const homePageQuery = groq`
       asset,
       "lqip": asset->metadata.lqip,
     },
-   bio,
+   
   }
 `
+
+export const bioPageQuery = groq`
+  *[_type == "bio"][0]{
+    _id,
+    title,    
+      
+   bio,
+    bgColor {
+      'r': rgb.r,
+      'g': rgb.g,
+      'b': rgb.b,
+    },
+  }
+`       
 
 export const homePageTitleQuery = groq`
   *[_type == "home"][0].title

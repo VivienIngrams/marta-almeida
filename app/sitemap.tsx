@@ -13,17 +13,17 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       url: `https://${host}`,
       changeFrequency: 'weekly',
       priority: 1,
-      lastModified: homepage.data?._updatedAt || new Date(),
+      // lastModified: homepage.data?._updatedAt || new Date(),
     },
   ]
   // Get links to published projects at Home page
-  const publishedProjects = homepage.data?.showcaseProjects || []
-  const projectLinks: MetadataRoute.Sitemap = publishedProjects.map((page) => ({
-    url: `https://${host}/${page?.slug}`,
-    changeFrequency: 'weekly',
-    priority: 0.7,
-    lastModified: page?._updatedAt,
-  }))
+  // const publishedProjects = homepage.data?.showcaseProjects || []
+  // const projectLinks: MetadataRoute.Sitemap = publishedProjects.map((page) => ({
+  //   url: `https://${host}/${page?.slug}`,
+  //   changeFrequency: 'weekly',
+  //   priority: 0.7,
+  //   lastModified: page?._updatedAt,
+  // }))
 
-  return [...defaultUrls, ...projectLinks]
+  return [...defaultUrls]
 }

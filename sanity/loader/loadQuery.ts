@@ -5,7 +5,7 @@ import { draftMode } from 'next/headers'
 
 import { client } from '@/sanity/lib/client'
 import {
-  allProjectsQuery,
+  bioPageQuery,
   colaboracaoPageQuery,
   criacaoPageQuery,
   homePageQuery,
@@ -19,6 +19,7 @@ import { token } from '@/sanity/lib/token'
 import {
   ColaboracaoPayload,
   CriacaoPayload,
+  BioPayload,
   InterpretacaoPayload,
   HomePagePayload,
   MoreProjectsPayload,
@@ -26,7 +27,6 @@ import {
   SettingsPayload,
 } from '@/types'
 
-import colaboracao from '../schemas/singletons/colaboracao'
 
 const serverClient = client.withConfig({
   token,
@@ -87,6 +87,14 @@ export function loadHomePage() {
     { next: { tags: ['home', 'project'] } },
   )
 }
+
+export function loadBioPage() {
+  return loadQuery<BioPayload | null>(
+    bioPageQuery,
+    {}, 
+    { next: { tags: ['bio'] } },
+  )
+} 
 
 export function loadMoreProjects() {
   return loadQuery<MoreProjectsPayload | null>(

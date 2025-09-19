@@ -49,7 +49,17 @@ export interface HomePagePayload {
     g?: string  
     b?: string
   }
- bio?: any
+ 
+}
+
+export interface BioPayload {
+  title?: string
+  bio?: any // { text?: PortableTextBlock[] } bio is an object with a text array
+  bgColor?: { 
+    r?: string        
+    g?: string
+    b?: string
+  }
 }
 
 export interface ProjectPayload {
