@@ -1,11 +1,15 @@
 'use client'
 
+import Image from 'next/image'
+
+import { urlForImage } from '@/sanity/lib/utils'
+
 import type { EncodeDataAttributeCallback } from '@sanity/react-loader'
 import { useState } from 'react'
 
 import { Module } from '@/components/modules'
 import { CustomPortableText } from '@/components/shared/CustomPortableText'
-import SingleImage from '@/components/shared/SingleImage'
+
 import type { ProjectPayload } from '@/types'
 import type { MoreProjectsPayload } from '@/types'
 
@@ -24,16 +28,8 @@ export function CriacaoProjectPage({
   const { year, overview, site, title, content, slug, coverImage, bgColor } =
     data ?? {}
 
-  // Get a list of showcased projects
-  const { showcaseProjects = [] } = moreProjects ?? {}
-
-  // Get previous and next project
-  const projects = showcaseProjects
-  const currentProjectIndex = projects.findIndex(
-    (project) => project.slug === slug,
-  )
-  const prevProject = projects[currentProjectIndex - 1] || null
-  const nextProject = projects[currentProjectIndex + 1] || null
+  const imageUrl = coverImage && urlForImage(coverImage)?.url()
+  const caption = coverImage?.caption
 
   const [showContent, setShowContent] = useState(false)
 
@@ -46,7 +42,6 @@ export function CriacaoProjectPage({
       ? { backgroundColor: `rgb(${bgColor.r}, ${bgColor.g}, ${bgColor.b})` }
       : {}
 
-
   return (
     <div
       className=""
@@ -56,39 +51,56 @@ export function CriacaoProjectPage({
           : {}
       }
     >
-      <div className="py-6  px-4 lg:max-w-[50%] mx-auto ">
+      <div className="-mt-2 md:py-6  px-4 lg:max-w-[50%] mx-auto ">
         <div className="flex flex-wrap justify-between flex-col lg:flex-row ">
-          <div className="w-full lg:mx-16">
+          {coverImage && (
+            <div className="mt-4 w-full">
+              
+                <div
+                  className={`w-full max-w-screen mx-auto overflow-hidden rounded-[3px] max-h-[90vh]`}
+                >
+                  {imageUrl && (
+                    <Image
+                      alt={
+                        typeof coverImage.caption === 'string'
+                          ? coverImage.caption
+                          : ''
+                      }
+                      sizes="(min-width: 640px) 60vw, 80vw"
+                      width="1200"
+                      height="500"
+                      src={imageUrl}
+                      className="w-full h-auto max-h-[25vh] object-cover"
+                    />
+                  )}
+                </div>
+                {typeof coverImage.caption === 'string' && (
+                  <div className="text-sm lg:text-base text-center">
+                    {coverImage.caption}
+                  </div>
+                )}
+              
+            </div>
+          )}
+          <div className="w-full">
+            {/* Title */}
+            {title && (
+              <div className="my-1  font-bold text-xl lg:text-2xl 2xl:text-3xl">
+                {title}
+              </div>
+            )}
             {/* Year */}
             {year && (
               <div className="text-base lg:text-lg 2xl:text-xl">{year}</div>
             )}
-            {/* Title */}
-            {title && (
-              <div className="my-1 lg:my-3  font-bold text-xl lg:text-2xl 2xl:text-3xl">
-                {title}
-              </div>
-            )}
           </div>
-
-         
-          {coverImage && (
-            <div className="mt-4 w-full">
-              <div className="relative w-full aspect-[16/9] lg:max-w-5xl mx-auto">
-                <SingleImage
-                  image={coverImage}
-                  classesWrapper="w-full h-full"
-                />
-              </div>
-            </div>
-          )}
         </div>
 
         {/* Read more button and content */}
-        <div className="font-sans">
+        <div className="font-sans text-right">
           {!showContent && content && content.length > 0 && (
             <button
-              className="mt-6 px-3 lg:px-6 py-1 lg:py-2 bg-black hover:bg-gray-700 rounded-[2px] text-base lg:font-semibold transition"
+              className="mb-4 px-3 lg:px-6 py-1 lg:py-2 bg-black hover:bg-gray-700 rounded-[2px] text-base lg:font-semibold transition"
               style={
                 bgColor &&
                 bgColor.r !== undefined &&
@@ -103,21 +115,16 @@ export function CriacaoProjectPage({
             </button>
           )}
           {showContent && (
-            
             <div className=" font-light text-sm lg:text-base 2xl:text-lg lg:max-w-5xl mx-auto">
-               {/* Overview */}
-          {overview && (
-            <div className="text-center">
-              <CustomPortableText value={overview} paragraphClasses="" />
-            </div>
-          )}
+              {/* Overview */}
+              {overview && (
+                <div className="text-center">
+                  <CustomPortableText value={overview} paragraphClasses="" />
+                </div>
+              )}
               {/* Display project content by type */}
               {content?.map((content, key) => (
-                <Module
-                  key={key}
-                  content={content}
-                  paragraphClasses=" "
-                />
+                <Module key={key} content={content} paragraphClasses=" " />
               ))}
             </div>
           )}

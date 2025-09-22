@@ -6,7 +6,7 @@ export default function Footer() {
   return (
     <footer className="text-sm lg:text-base  backdrop-blur lg:backdrop-blur-none">
       <div className="p-4 lg:px-12 text-left">
-        <div className="flex items-center space-x-8 pt-2">
+        <div className="flex items-center space-x-6 pt-2">
           <a
             href="https://www.instagram.com/m.f.almeida?igsh=b3pwM3FtajI5b2Q="
             target="_blank"
