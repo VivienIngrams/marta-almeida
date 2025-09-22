@@ -6,6 +6,7 @@ import { projectBySlugQuery } from '@/sanity/lib/queries'
 import { useQuery } from '@/sanity/loader/useQuery'
 import { ProjectPayload } from '@/types'
 
+import CriacaoProjectPage from './CriacaoProjectPage'
 import ProjectPage from './ProjectPage'
 
 type Props = {
@@ -22,4 +23,14 @@ export default function ProjectPreview(props: Props) {
   )
 
   return <ProjectPage data={data!} moreProjects={data!} encodeDataAttribute={encodeDataAttribute} />
+}
+export function ProjectPreviewCriacao(props: Props) {
+  const { params, initial } = props
+  const { data, encodeDataAttribute } = useQuery<ProjectPayload | null>(
+    projectBySlugQuery,
+    params,
+    { initial },
+  )
+
+  return <CriacaoProjectPage data={data!} moreProjects={data!} encodeDataAttribute={encodeDataAttribute} />
 }

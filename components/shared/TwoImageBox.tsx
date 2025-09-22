@@ -36,7 +36,7 @@ export default function ImageBox({
     urlForImage(rightImage)?.url()
 
   return (
-    <div className="mt-5 lg:mt-10">
+       <div className="py-4 lg:py-8">
       <div className="grid gap-5 grid-cols-1 xl:grid-cols-2">
         <div
           className={`w-full ${classesWrapper}`}
@@ -80,7 +80,7 @@ export default function ImageBox({
         </div>
       </div>
       {caption && (
-        <div className="mt-2 lg:mt-4 text-lg lg:text-2xl">{caption}</div>
+       <div className="text-sm lg:text-base text-center">{caption}</div>
       )}
     </div>
   )

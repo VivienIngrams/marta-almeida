@@ -26,7 +26,7 @@ export default function ImageBox({
   const imageUrl = image && urlForImage(image)?.url()
 
   return (
-    <div className="mt-5 lg:mt-10">
+    <div className="py-4 lg:py-8">
   <div
     className={`w-full max-w-screen mx-auto overflow-hidden rounded-[3px] ${classesWrapper} max-h-[90vh]`}
   >
@@ -42,7 +42,7 @@ export default function ImageBox({
     )}
   </div>
   {caption && (
-    <div className="mt-2 lg:mt-4 text-lg lg:text-2xl text-center">
+    <div className="text-sm lg:text-base text-center">
       {caption}
     </div>
   )}

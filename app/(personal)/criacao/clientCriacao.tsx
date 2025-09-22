@@ -2,8 +2,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import ProjectPreview from '@/components/pages/project/ProjectPreview'
-import { CustomPortableText } from '@/components/shared/CustomPortableText'
+import {ProjectPreviewCriacao} from '@/components/pages/project/ProjectPreview'
 import { useBackgroundColor } from '@/components/providers/BgColorProvider'
 interface Project {
   slug: string
@@ -66,7 +65,7 @@ export default function ClientCriacaoPage({
         </div>
         <div>
           {projects.map((project) => (
-            <ProjectPreview
+            <ProjectPreviewCriacao
               key={project.slug}
               params={{ slug: project.slug }}
               initial={project.initial}
