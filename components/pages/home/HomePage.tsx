@@ -1,9 +1,8 @@
 'use client'
 
 
-
 import type { EncodeDataAttributeCallback } from '@sanity/react-loader'
-import { useRef } from 'react'
+import Link from 'next/link'
 
 import { CustomPortableText } from '@/components/shared/CustomPortableText'
 import HomeImageBox from '@/components/shared/HomeImageBox'
@@ -16,11 +15,8 @@ export interface HomePageProps {
 
 export function HomePage({ data }: HomePageProps) {
   const { overview, homeImage, homeMobileImage } = data ?? {}
-  const bioRef = useRef<HTMLDivElement>(null)
-  console.log('HomePage data:', homeMobileImage)
-  const handleScrollToBio = () => {
-    bioRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })
-  }
+
+ 
 
   return (
     <div className="pb-10 md:pb-20 md:px-6  md:pr-8 py-10  px-4 md:pl-80 2xl:pl-96">
@@ -33,7 +29,7 @@ export function HomePage({ data }: HomePageProps) {
         ]
       "
       >
-        <div className="w-full h-full flex flex-col md:flex-1 justify-center">
+        <Link href="/bio" className="w-full h-full flex flex-col md:flex-1 justify-center">
           {/* Home image for desktop/tablet */}
           {homeImage && (
             <div className="hidden lg:block w-full h-full">
@@ -41,7 +37,7 @@ export function HomePage({ data }: HomePageProps) {
                 image={homeImage}
                 alt="Home image"
                 classesWrapper="w-full h-full min-h-[300px] md:flex-1 cursor-pointer"
-                onClick={handleScrollToBio}
+               
               />
             </div>
           )}
@@ -52,7 +48,7 @@ export function HomePage({ data }: HomePageProps) {
                 image={homeMobileImage}
                 alt="Home mobile image"
                 classesWrapper="w-full h-[60vh] cursor-pointer"
-                onClick={handleScrollToBio}
+               
               />
             </div>
           )}
@@ -60,12 +56,12 @@ export function HomePage({ data }: HomePageProps) {
           {overview?.text && (
             <div
               className="mt-2 text-lg md:text-xl 2xl:text-2xl text-black text-right max-w-[80%] ml-auto cursor-pointer"
-              onClick={handleScrollToBio}
+              
             >
               <CustomPortableText value={overview.text} />
             </div>
           )}
-        </div>
+        </Link>
       </div>
   
       

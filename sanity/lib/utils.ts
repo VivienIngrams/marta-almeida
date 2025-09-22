@@ -17,16 +17,9 @@ export const urlForImage = (source: Image | undefined) => {
   return imageBuilder?.image(source).auto('format').fit('max').quality(90)
 }
 
-export function urlForOpenGraphImage(image: Image | undefined) {
-  return urlForImage(image)?.width(1200).height(627).fit('crop').url()
-}
 
-export const urlForLogo = (source: Image | undefined) => {
-  if (!source?.asset?._ref) {
-    return undefined
-  }
-  return imageBuilder?.image(source)
-}
+
+
 
 export function resolveHref(
   documentType?: string,

@@ -28,8 +28,8 @@ export function CriacaoProjectPage({
   const { year, overview, site, title, content, slug, coverImage, bgColor } =
     data ?? {}
 
-  const imageUrl = coverImage && urlForImage(coverImage)?.url()
-  const caption = coverImage?.caption
+  // Use the Sanity image builder with crop/hotspot support
+  const imageUrl = coverImage && urlForImage(coverImage)?.width(1200).height(500).fit('crop').url()
 
   const [showContent, setShowContent] = useState(false)
 
@@ -55,31 +55,21 @@ export function CriacaoProjectPage({
         <div className="flex flex-wrap justify-between flex-col lg:flex-row ">
           {coverImage && (
             <div className="mt-4 w-full">
-              
-                <div
-                  className={`w-full max-w-screen mx-auto overflow-hidden rounded-[3px] max-h-[90vh]`}
-                >
-                  {imageUrl && (
-                    <Image
-                      alt={
-                        typeof coverImage.caption === 'string'
-                          ? coverImage.caption
-                          : ''
-                      }
-                      sizes="(min-width: 640px) 60vw, 80vw"
-                      width="1200"
-                      height="500"
-                      src={imageUrl}
-                      className="w-full h-auto max-h-[25vh] object-cover"
-                    />
-                  )}
-                </div>
-                {typeof coverImage.caption === 'string' && (
-                  <div className="text-sm lg:text-base text-center">
-                    {coverImage.caption}
-                  </div>
+              <div
+                className={`w-full max-w-screen mx-auto overflow-hidden rounded-[3px] max-h-[90vh]`}
+              >
+                {imageUrl && (
+                  <Image
+                    alt={title || 'Cover image'}
+                    sizes="(min-width: 640px) 60vw, 80vw"
+                    width={1200}
+                    height={500}
+                    src={imageUrl}
+                    className="w-full h-auto max-h-[25vh] object-cover"
+                    style={{ objectPosition: coverImage?.hotspot ? `${coverImage.hotspot.x * 100}% ${coverImage.hotspot.y * 100}%` : undefined }}
+                  />
                 )}
-              
+              </div>
             </div>
           )}
           <div className="w-full">
