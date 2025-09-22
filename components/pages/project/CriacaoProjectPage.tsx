@@ -3,7 +3,7 @@
 import Image from 'next/image'
 
 import { urlForImage } from '@/sanity/lib/utils'
-
+import SingleImage from '@/components/shared/SingleImage'
 import type { EncodeDataAttributeCallback } from '@sanity/react-loader'
 import { useState } from 'react'
 
@@ -29,7 +29,9 @@ export function CriacaoProjectPage({
     data ?? {}
 
   // Use the Sanity image builder with crop/hotspot support
-  const imageUrl = coverImage && urlForImage(coverImage)?.width(1200).height(500).fit('crop').url()
+  const imageUrl =
+    coverImage &&
+    urlForImage(coverImage)?.width(1200).height(500).fit('crop').url()
 
   const [showContent, setShowContent] = useState(false)
 
@@ -44,34 +46,49 @@ export function CriacaoProjectPage({
 
   return (
     <div
-      className=""
+      className="lg:pl-[20%] lg:pr-8 2xl:pr-24"
       style={
         bgColor
           ? { backgroundColor: `rgb(${bgColor.r}, ${bgColor.g}, ${bgColor.b})` }
           : {}
       }
     >
-      <div className="-mt-2 md:py-6  px-4 lg:max-w-[50%] mx-auto ">
+      <div className="-mt-2 md:py-6  px-4 lg:max-w-[70%] mx-auto ">
         <div className="flex flex-wrap justify-between flex-col lg:flex-row ">
-          {coverImage && (
+          {coverImage && imageUrl && (
             <div className="mt-4 w-full">
-              <div
-                className={`w-full max-w-screen mx-auto overflow-hidden rounded-[3px] max-h-[90vh]`}
-              >
-                {imageUrl && (
+              {/* Collapsed preview (keeps aspect ratio, cropped to max 25vh) */}
+              {!showContent ? (
+                <div className="w-full overflow-hidden rounded-[3px] max-h-[25vh]">
                   <Image
                     alt={title || 'Cover image'}
-                    sizes="(min-width: 640px) 60vw, 80vw"
-                    width={1200}
-                    height={500}
                     src={imageUrl}
-                    className="w-full h-auto max-h-[25vh] object-cover"
-                    style={{ objectPosition: coverImage?.hotspot ? `${coverImage.hotspot.x * 100}% ${coverImage.hotspot.y * 100}%` : undefined }}
+                    width={1800}
+                    height={700}
+                    sizes="(min-width: 640px) 60vw, 80vw"
+                    className="w-full h-auto object-contain"
+                    style={
+                      coverImage?.hotspot
+                        ? {
+                            objectPosition: `${coverImage.hotspot.x * 100}% ${coverImage.hotspot.y * 100}%`,
+                          }
+                        : undefined
+                    }
                   />
-                )}
-              </div>
+                </div>
+              ) : (
+                <div className="mt-4 w-full">
+                  <div className="relative w-full aspect-[16/9] lg:max-w-5xl mx-auto">
+                    <SingleImage
+                      image={coverImage}
+                      classesWrapper="w-full h-full"
+                    />
+                  </div>
+                </div>
+              )}
             </div>
           )}
+
           <div className="w-full">
             {/* Title */}
             {title && (
@@ -87,25 +104,27 @@ export function CriacaoProjectPage({
         </div>
 
         {/* Read more button and content */}
-        <div className="font-sans text-right">
+        <div className="font-sans">
           {!showContent && content && content.length > 0 && (
-            <button
-              className="mb-4 px-3 lg:px-6 py-1 lg:py-2 bg-black hover:bg-gray-700 rounded-[2px] text-base lg:font-semibold transition"
-              style={
-                bgColor &&
-                bgColor.r !== undefined &&
-                bgColor.g !== undefined &&
-                bgColor.b !== undefined
-                  ? { color: `rgb(${bgColor.r}, ${bgColor.g}, ${bgColor.b})` }
-                  : {}
-              }
-              onClick={() => setShowContent(true)}
-            >
-              Read more...
-            </button>
+            <div className="text-right">
+              <button
+                className="mb-4 px-3 lg:px-6 py-1 lg:py-2 bg-black hover:bg-gray-700 rounded-[2px] text-sm lg:text-base lg:font-semibold transition"
+                style={
+                  bgColor &&
+                  bgColor.r !== undefined &&
+                  bgColor.g !== undefined &&
+                  bgColor.b !== undefined
+                    ? { color: `rgb(${bgColor.r}, ${bgColor.g}, ${bgColor.b})` }
+                    : {}
+                }
+                onClick={() => setShowContent(true)}
+              >
+                Read more...
+              </button>
+            </div>
           )}
           {showContent && (
-            <div className=" font-light text-sm lg:text-base 2xl:text-lg lg:max-w-5xl mx-auto">
+            <div className="py-4 font-light text-sm lg:text-base 2xl:text-lg lg:max-w-5xl mx-auto">
               {/* Overview */}
               {overview && (
                 <div className="text-center">
@@ -116,6 +135,18 @@ export function CriacaoProjectPage({
               {content?.map((content, key) => (
                 <Module key={key} content={content} paragraphClasses=" " />
               ))}
+              {site && (
+                <div className="mt-6 text-center">
+                  <a
+                    href={site.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="underline hover:text-secondary"
+                  >
+                    {site.urltitle}
+                  </a>
+                </div>
+              )}
             </div>
           )}
         </div>

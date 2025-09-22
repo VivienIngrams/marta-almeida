@@ -37,7 +37,7 @@ export default function ImageBox({
         width={width}
         height={height}
         src={imageUrl}
-        className="w-full h-auto max-h-[90vh] object-contain"
+        className="w-full h-auto lg:max-h-[60vh] object-contain"
       />
     )}
   </div>
