@@ -11,7 +11,7 @@ export default defineType({
   fields: [
     defineField({
       name: 'title',
-      description: 'This field is the title of your project.',
+      description: 'This field is the title of your project/performance/work experience.',
       title: 'Title',
       type: 'string',
       validation: (rule) => rule.required(),
@@ -19,7 +19,7 @@ export default defineType({
     defineField({
       name: 'slug',
       description:
-        'This field is the project page name at yourwebsite.com/projects/<name>.',
+        'Please click the button "Generate" to generate the slug (it will create the page address at marta-almeida.com/projects/<slug>).',
       title: 'Slug',
       type: 'slug',
       options: {
@@ -33,7 +33,7 @@ export default defineType({
       name: 'coverImage',
       title: 'Cover Image',
       description:
-        'This image will be used as the cover image for the project. If you choose to add it to Home page, this is the image displayed in the list within the homepage.',
+        'This image will be used as the main image for the project.',
       type: 'image',
       options: {
         hotspot: true,
@@ -43,7 +43,7 @@ export default defineType({
     defineField({
       name: 'overview',
       description:
-        'Used both for project subheader, and the <meta> description tag for SEO.',
+        'Used both for project subheader, and to describe the project in internet search engines.',
       title: 'Overview',
       type: 'array',
       of: [

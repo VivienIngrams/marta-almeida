@@ -9,21 +9,21 @@ export default defineType({
   // Uncomment below to have edits publish automatically as you type
   // liveEdit: true,
   fields: [
-     defineField({
-        name: 'title',
-        description: 'This field is the title of this page.',
-        title: 'Title',
-        type: 'string',
-        validation: (rule) => rule.required(),
-      }),
     defineField({
-        name: 'overview',
-        description:
-          'This text is your description. ',
-        title: 'Introduction text',
-        type: 'object',
-        fields:[
-          {
+      name: 'title',
+      description: 'This field is the title of this page.',
+      title: 'Title',
+      type: 'string',
+      validation: (rule) => rule.required(),
+    }),
+    defineField({
+      name: 'overview',
+      description:
+        'This text is your description of this page to the internet search engines.',
+      title: 'Page description',
+      type: 'object',
+      fields: [
+        {
           name: 'text',
           type: 'array',
           of: [
@@ -61,10 +61,9 @@ export default defineType({
             }),
           ],
           validation: (rule) => rule.max(155),
-          },
-          
-        ],
-      }),
+        },
+      ],
+    }),
     defineField({
       name: 'showcaseProjects',
       title: 'Showcase projects',

@@ -58,11 +58,11 @@ export default function ClientCriacaoPage({
           <h1 className="hidden lg:block text-center uppercase text-3xl lg:text-5xl 2xl:text-7xl font-light tracking-tight">
             {title}
           </h1>
-          {overview?.text && (
+          {/* {overview?.text && (
             <div className="my-4 text-center text-lg lg:text-xl 2xl:text-2xl cursor-pointer">
               <CustomPortableText value={overview.text} />
             </div>
-          )}
+          )} */}
         </div>
         <div>
           {projects.map((project) => (

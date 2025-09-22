@@ -65,7 +65,7 @@ export function ProjectPage({
             )}
             {/* Title */}
             {title && (
-              <div className="lg:my-2  font-bold text-xl lg:text-2xl 2xl:text-3xl">
+              <div className="my-1 lg:my-3  font-bold text-xl lg:text-2xl 2xl:text-3xl">
                 {title}
               </div>
             )}

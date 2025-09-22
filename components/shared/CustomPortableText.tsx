@@ -32,9 +32,11 @@ export function CustomPortableText({
           </a>
         )
       },
+      strong: ({ children }) => (
+        <strong className="font-bold text-lg md:text-xl">{children}</strong>
+      ),
     },
     types: {
-      
       image: ({
         value,
       }: {

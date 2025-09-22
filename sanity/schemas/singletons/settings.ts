@@ -10,15 +10,7 @@ export default defineType({
   // liveEdit: true,
   fields: [
     
-    defineField({
-      name: 'ogImage',
-      title: 'Open Graph Image',
-      type: 'image',
-      description: 'Displayed on social cards and search engine results. It should be 1200 X 630 pixels.',
-      options: {
-        hotspot: true,
-      },
-    }),
+   
     defineField({
       name: 'favIcon',
       title: 'Favicon Image',

@@ -20,8 +20,8 @@ export default defineType({
       defineField({
         name: 'overview',
         description:
-          'This text is your description. Used for the introduction paragraph at a Home page and also for the <meta> description tag for SEO.',
-        title: 'Introduction text',
+          'This text is your description. Used for the introduction paragraph at a Home page and also for the <meta> description tag for SEO (to describe the website to the internet search engines).',
+        title: 'Brief description of yourself',
         type: 'object',
         fields:[
           {
@@ -70,7 +70,7 @@ export default defineType({
       name: 'homeImage',
       title: 'Home Image Desktops',
       description:
-        '(Optional) This image will be displayed on larger screens (landscape) next to your  description.',
+        'This image will be displayed on larger screens (landscape).',
       type: 'image',
       options: {
         hotspot: true,
@@ -80,7 +80,7 @@ export default defineType({
       name: 'homeMobileImage',
       title: 'Home Image Mobile',
       description:
-        '(Optional) This image will be displayed on mobile devices next to your  description.',
+        'This image will be displayed on mobile devices.',
       type: 'image',
       options: {
         hotspot: true,

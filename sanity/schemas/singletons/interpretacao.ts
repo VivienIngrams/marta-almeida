@@ -16,18 +16,12 @@ export default defineType({
       type: 'string',
       validation: (rule) => rule.required(),
     }),
-    defineField({
-      name: 'customLogo',
-      description: 
-        'Upload your custom logo, it will replace your title in the header of your website. Use SVG or PNG with a transparent background.',
-      title: 'Custom logo (Optional)',
-      type: 'image',
-    }),
+   
     defineField({
       name: 'overview',
       description:
-        'This text is your description. Used for the introduction paragraph at a Interpretacao page and also for the <meta> description tag for SEO.',
-      title: 'Introduction text',
+        'This text is your description of this page to the internet search engines.',
+      title: 'Page description',
       type: 'object',
       fields:[
         {
