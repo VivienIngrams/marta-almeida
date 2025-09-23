@@ -1,8 +1,7 @@
-
 'use client'
 
 import { useEffect, useState } from 'react'
-import {ProjectPreviewCriacao} from '@/components/pages/project/ProjectPreview'
+import { ProjectPreviewCriacao } from '@/components/pages/project/ProjectPreview'
 import { useBackgroundColor } from '@/components/providers/BgColorProvider'
 interface Project {
   slug: string
@@ -12,11 +11,9 @@ interface Project {
 
 export default function ClientCriacaoPage({
   title,
-  overview,
   projects,
 }: {
   title: string
-  overview: any
   projects: Project[]
 }) {
   const [bgStyle, setBgStyle] = useState({})
@@ -35,9 +32,9 @@ export default function ClientCriacaoPage({
     }
   }, [projects])
 
-    const { setBackgroundColor } = useBackgroundColor()
+  const { setBackgroundColor } = useBackgroundColor()
 
-    useEffect(() => {
+  useEffect(() => {
     if (
       projects.length > 0 &&
       projects[0].bgColor &&
@@ -47,12 +44,12 @@ export default function ClientCriacaoPage({
     ) {
       const rgb = `rgb(${projects[0].bgColor.r}, ${projects[0].bgColor.g}, ${projects[0].bgColor.b})`
       setBackgroundColor(rgb)
-    }   
-    }, [projects, setBackgroundColor])
+    }
+  }, [projects, setBackgroundColor])
 
   return (
     <section>
-      <div style={bgStyle} className="lg:pb-16 pt-28 lg:pt-16 min-h-screen">
+      <div style={bgStyle} className="pb-16 pt-28 lg:pt-16 min-h-screen">
         <div className="lg:pl-[20%] px-4 lg:pr-8 2xl:pr-24">
           <h1 className="hidden lg:block text-center uppercase text-3xl lg:text-5xl 2xl:text-7xl font-light tracking-tight">
             {title}

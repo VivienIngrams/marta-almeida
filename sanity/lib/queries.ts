@@ -55,53 +55,65 @@ export const projectBySlugQuery = groq`
       'g': rgb.g,
       'b': rgb.b,
     },
-    overview,
+    overview {
+      pt,
+      en
+    },
     site,
     "slug": slug.current,
-    title,
-    content[]{
+    title {
+      pt,
+      en
+    },
+    content[] {
       _type == 'singleImage' => {
         _type,
         _key,
-        photo{
+        photo {
           _type,
           asset,
           "lqip": asset->metadata.lqip,
         },
-        caption,
+        caption {
+          pt,
+          en
+        },
       },
       _type == 'twoImages' => {
         _type,
         _key,
-        photoOne{
+        photoOne {
           _type,
           asset,
           "lqip": asset->metadata.lqip,
         },
-        photoTwo{
+        photoTwo {
           _type,
           asset,
           "lqip": asset->metadata.lqip,
         },
-        caption,
+        caption, // If you want this bilingual, change to: caption { pt, en }
       },
       _type == 'textBlock' => {
         _type,
         _key,
-        description,
+        description {
+          pt,
+          en
+        },
       },
       _type == 'singleVideo' => {
         _type,
         _key,
         videoLink,
-        caption,
+        caption, // If you want this bilingual, change to: caption { pt, en }
       },
       _type == 'twoVideos' => {
         _type,
         _key,
         videoOneLink,
         videoTwoLink,
-        caption,
+        caption, // If you want this bilingual, change to: caption { pt, en }
       },
     },
   }

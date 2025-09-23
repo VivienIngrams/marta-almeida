@@ -6,14 +6,17 @@ export default defineType({
   title: 'Projects',
   type: 'document',
   icon: StarIcon,
-  // Uncomment below to have edits publish automatically as you type
-  // liveEdit: true,
   fields: [
+    // BILINGUAL TITLE
     defineField({
       name: 'title',
-      description: 'This field is the title of your project/performance/work experience.',
       title: 'Title',
-      type: 'string',
+      description: 'Project title in both languages',
+      type: 'object',
+      fields: [
+        { name: 'pt', title: 'Português', type: 'string', validation: rule => rule.required() },
+        { name: 'en', title: 'English', type: 'string', validation: rule => rule.required() },
+      ],
       validation: (rule) => rule.required(),
     }),
     defineField({
@@ -40,34 +43,53 @@ export default defineType({
       },
     
     }),
+    // BILINGUAL OVERVIEW
     defineField({
       name: 'overview',
-      description:
-        'Used both for project subheader, and to describe the project in internet search engines.',
       title: 'Overview',
-      type: 'array',
-      of: [
-        // Paragraphs
-        defineArrayMember({
-          lists: [],
-          marks: {
-            annotations: [],
-            decorators: [
-              {
-                title: 'Italic',
-                value: 'em',
+      description: 'Project overview in both languages',
+      type: 'object',
+      fields: [
+        {
+          name: 'pt',
+          title: 'Português',
+          type: 'array',
+          of: [
+            defineArrayMember({
+              type: 'block',
+              lists: [],
+              marks: {
+                annotations: [],
+                decorators: [
+                  { title: 'Italic', value: 'em' },
+                  { title: 'Strong', value: 'strong' },
+                ],
               },
-              {
-                title: 'Strong',
-                value: 'strong',
+              styles: [],
+            }),
+          ],
+        },
+        {
+          name: 'en',
+          title: 'English',
+          type: 'array',
+          of: [
+            defineArrayMember({
+              type: 'block',
+              lists: [],
+              marks: {
+                annotations: [],
+                decorators: [
+                  { title: 'Italic', value: 'em' },
+                  { title: 'Strong', value: 'strong' },
+                ],
               },
-            ],
-          },
-          styles: [],
-          type: 'block',
-        }),
+              styles: [],
+            }),
+          ],
+        },
       ],
-      validation: (rule) => rule.max(155).required(),
+      validation: (rule) => rule.required(),
     }),
     defineField({
       name: 'year',
@@ -100,7 +122,7 @@ export default defineType({
     }),
     defineField({
       name: 'bgColor',
-      title: 'Backgroung color',
+      title: 'Background color',
       type: 'color',
     }),
     // Content blocks
@@ -129,8 +151,12 @@ export default defineType({
             {
               title: 'Caption',
               name: 'caption',
-              type: 'string',
-              description: '(Optional) Caption below the image',
+              type: 'object',
+              fields: [
+                { name: 'pt', title: 'Português', type: 'string' },
+                { name: 'en', title: 'English', type: 'string' },
+              ],
+              description: '(Optional) Caption below the image (bilingual)',
             },
           ],
           preview: {
@@ -168,11 +194,15 @@ export default defineType({
                 hotspot: true,
               },
             },
-            {
+           {
               title: 'Caption',
               name: 'caption',
-              type: 'string',
-              description: '(Optional) Caption below 2 images',
+              type: 'object',
+              fields: [
+                { name: 'pt', title: 'Português', type: 'string' },
+                { name: 'en', title: 'English', type: 'string' },
+              ],
+              description: '(Optional) Caption below the images (bilingual)',
             },
           ],
           preview: {
@@ -197,39 +227,72 @@ export default defineType({
             {
               name: 'description',
               title: 'Text Block',
-              type: 'array',
-              of: [
-                defineArrayMember({
-                  lists: [],
-                  marks: {
-                    annotations: [
-                      {
-                        name: 'link',
-                        type: 'object',
-                        title: 'Link',
-                        fields: [
+              type: 'object',
+              fields: [
+                {
+                  name: 'pt',
+                  title: 'Português',
+                  type: 'array',
+                  of: [
+                    defineArrayMember({
+                      lists: [],
+                      marks: {
+                        annotations: [
                           {
-                            name: 'href',
-                            type: 'url',
-                            title: 'Url',
+                            name: 'link',
+                            type: 'object',
+                            title: 'Link',
+                            fields: [
+                              {
+                                name: 'href',
+                                type: 'url',
+                                title: 'Url',
+                              },
+                            ],
                           },
                         ],
+                        decorators: [
+                          { title: 'Italic', value: 'em' },
+                          { title: 'Strong', value: 'strong' },
+                        ],
                       },
-                    ],
-                    decorators: [
-                      {
-                        title: 'Italic',
-                        value: 'em',
+                      styles: [],
+                      type: 'block',
+                    }),
+                  ],
+                },
+                {
+                  name: 'en',
+                  title: 'English',
+                  type: 'array',
+                  of: [
+                    defineArrayMember({
+                      lists: [],
+                      marks: {
+                        annotations: [
+                          {
+                            name: 'link',
+                            type: 'object',
+                            title: 'Link',
+                            fields: [
+                              {
+                                name: 'href',
+                                type: 'url',
+                                title: 'Url',
+                              },
+                            ],
+                          },
+                        ],
+                        decorators: [
+                          { title: 'Italic', value: 'em' },
+                          { title: 'Strong', value: 'strong' },
+                        ],
                       },
-                      {
-                        title: 'Strong',
-                        value: 'strong',
-                      },
-                    ],
-                  },
-                  styles: [],
-                  type: 'block',
-                }),
+                      styles: [],
+                      type: 'block',
+                    }),
+                  ],
+                },
               ],
             },
           ],
@@ -240,7 +303,6 @@ export default defineType({
             prepare({ content }) {
               return {
                 title: 'Text Block',
-                // subtitle: content
               }
             },
           },

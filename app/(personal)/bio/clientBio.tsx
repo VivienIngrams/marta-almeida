@@ -24,7 +24,7 @@ export default function ClientBio({ title, bio, bgColor }: BioClientProps) {
       setBackgroundColor(rgb)
     }
   }, [bgColor, setBackgroundColor])
-console.log(bgColor)
+
   return (
     <section
       className="min-h-screen pb-16 pt-28 lg:pt-16"

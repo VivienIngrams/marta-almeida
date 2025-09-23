@@ -9,7 +9,7 @@ export default async function CriacaoPage() {
 
   const showcaseProjects = pageData.data.showcaseProjects || []
   const title = pageData.data.title || ''
-  const overview = pageData.data.overview
+ 
 
   const projectsWithInitial = await Promise.all(
     showcaseProjects.map(async (project: any) => {
@@ -37,7 +37,7 @@ export default async function CriacaoPage() {
   return (
     <ClientCriacaoPage
       title={title}
-      overview={overview}
+    
       projects={projectsWithInitial}
     />
   )

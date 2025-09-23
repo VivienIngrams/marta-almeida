@@ -1,7 +1,6 @@
 'use client'
 
 import Image from 'next/image'
-
 import { urlForImage } from '@/sanity/lib/utils'
 import SingleImage from '@/components/shared/SingleImage'
 import type { EncodeDataAttributeCallback } from '@sanity/react-loader'
@@ -11,38 +10,25 @@ import { Module } from '@/components/modules'
 import { CustomPortableText } from '@/components/shared/CustomPortableText'
 
 import type { ProjectPayload } from '@/types'
-import type { MoreProjectsPayload } from '@/types'
 
 export interface ProjectPageProps {
   data: ProjectPayload | null
-  moreProjects: MoreProjectsPayload | null
   encodeDataAttribute?: EncodeDataAttributeCallback
 }
 
 export function CriacaoProjectPage({
   data,
-  moreProjects,
   encodeDataAttribute,
 }: ProjectPageProps) {
   // Default to an empty object to allow previews on non-existent documents
-  const { year, overview, site, title, content, slug, coverImage, bgColor } =
+  const { year, overview, site, title, content, coverImage, bgColor } =
     data ?? {}
 
-  // Use the Sanity image builder with crop/hotspot support
   const imageUrl =
     coverImage &&
     urlForImage(coverImage)?.width(1200).height(500).fit('crop').url()
 
   const [showContent, setShowContent] = useState(false)
-
-  // Compute background color style
-  const bgStyle =
-    bgColor &&
-    bgColor.r !== undefined &&
-    bgColor.g !== undefined &&
-    bgColor.b !== undefined
-      ? { backgroundColor: `rgb(${bgColor.r}, ${bgColor.g}, ${bgColor.b})` }
-      : {}
 
   return (
     <div
@@ -55,13 +41,13 @@ export function CriacaoProjectPage({
     >
       <div className="-mt-2 md:py-6  px-4 lg:max-w-[70%] mx-auto ">
         <div className="flex flex-wrap justify-between flex-col lg:flex-row ">
+          {/* Cover Image */}
           {coverImage && imageUrl && (
             <div className="mt-4 w-full">
-              {/* Collapsed preview (keeps aspect ratio, cropped to max 25vh) */}
               {!showContent ? (
                 <div className="w-full overflow-hidden rounded-[3px] max-h-[25vh]">
                   <Image
-                    alt={title || 'Cover image'}
+                    alt={title?.pt || 'Cover image'}
                     src={imageUrl}
                     width={1800}
                     height={700}
@@ -90,10 +76,10 @@ export function CriacaoProjectPage({
           )}
 
           <div className="w-full">
-            {/* Title */}
-            {title && (
-              <div className="my-1  font-bold text-xl lg:text-2xl 2xl:text-3xl">
-                {title}
+            {/* Title (Portuguese) */}
+            {title?.pt && (
+              <div className="my-1 font-bold text-xl lg:text-2xl 2xl:text-3xl">
+                {title.pt}
               </div>
             )}
             {/* Year */}
@@ -103,7 +89,7 @@ export function CriacaoProjectPage({
           </div>
         </div>
 
-        {/* Read more button and content */}
+        {/* Read more button + content */}
         <div className="font-sans">
           {!showContent && content && content.length > 0 && (
             <div className="text-right">
@@ -119,23 +105,62 @@ export function CriacaoProjectPage({
                 }
                 onClick={() => setShowContent(true)}
               >
-                Read more...
+                Ler mais...
               </button>
             </div>
           )}
+
           {showContent && (
             <div className="py-4 font-light text-sm lg:text-base 2xl:text-lg lg:max-w-5xl mx-auto">
-              {/* Overview */}
-              {overview && (
+              {/* Overview (Portuguese) */}
+              {overview?.pt && (
                 <div className="text-center">
-                  <CustomPortableText value={overview} paragraphClasses="" />
+                  <CustomPortableText value={overview.pt} paragraphClasses="" />
                 </div>
               )}
-              {/* Display project content by type */}
-              {content?.map((content, key) => (
-                <Module key={key} content={content} paragraphClasses=" " />
-              ))}
-              {site && (
+
+              {/* Content blocks */}
+              {content?.map((block, key) => {
+                // If block has a caption, pick PT
+                if (
+                  typeof block === 'object' &&
+                  block !== null &&
+                  'caption' in block &&
+                  typeof (block as any).caption === 'object' &&
+                  (block as any).caption?.pt
+                ) {
+                  return (
+                    <Module
+                      key={key}
+                      content={{
+                        ...block,
+                        caption: (block as any).caption.en, // only PT
+                      }}
+                      paragraphClasses=" "
+                    />
+                  )
+                }
+
+                // If block is a textBlock, pick description.pt
+                if (block._type === 'textBlock' ) {
+                  return (
+                    <Module
+                      key={key}
+                      content={{
+                        ...block,
+                        description: (block as any).description.en, // only PT
+                      }}
+                      paragraphClasses=" "
+                    />
+                  )
+                }
+
+                // fallback
+                return <Module key={key} content={block} paragraphClasses=" " />
+              })}
+
+              {/* External site */}
+              {site && site.url && (
                 <div className="mt-6 text-center">
                   <a
                     href={site.url}
@@ -150,9 +175,6 @@ export function CriacaoProjectPage({
             </div>
           )}
         </div>
-
-        {/* Previous and next project links */}
-        {/* {projects && <MoreProjects previous={prevProject} next={nextProject} />} */}
       </div>
     </div>
   )

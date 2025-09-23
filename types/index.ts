@@ -1,6 +1,17 @@
 import type { PortableTextBlock } from '@portabletext/types'
 import type { Image } from 'sanity'
 
+
+export interface BilingualString {
+  pt?: string
+  en?: string
+}
+
+export interface BilingualBlock {
+  pt?: PortableTextBlock[]
+  en?: PortableTextBlock[]
+}
+
 export interface MenuItem {
   page?: {
     _type: string
@@ -61,25 +72,33 @@ export interface BioPayload {
     b?: string
   }
 }
-
 export interface ProjectPayload {
   year?: string
   coverImage?: Image
-  description?: PortableTextBlock[]
+  description?: BilingualBlock
   bgColor?: {
     r?: string
     g?: string
     b?: string
   }
-  overview?: PortableTextBlock[]
+  overview?: BilingualBlock
   site?: {
     urltitle?: string
     url: string
   }
   slug: string
   tags?: string[]
-  title?: string
-  content?: Content[]
+  title?: BilingualString
+  content?: ProjectContent[]
+}
+export interface ProjectContent {
+   _type: string
+  _key: string
+  photo: object[]
+  photoOne: object[]
+  photoTwo: object[]
+  textBlock: object[]
+  videoLink: object[]
 }
 
 export interface Content {
