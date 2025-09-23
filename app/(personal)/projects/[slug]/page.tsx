@@ -5,7 +5,6 @@ import { notFound } from 'next/navigation'
 import { toPlainText } from 'next-sanity'
 
 import { ProjectPage } from '@/components/pages/project/ProjectPage'
-import { urlForOpenGraphImage } from '@/sanity/lib/utils'
 import { generateStaticSlugs } from '@/sanity/loader/generateStaticSlugs'
 import { loadMoreProjects, loadProject } from '@/sanity/loader/loadQuery'
 const ProjectPreview = dynamic(
