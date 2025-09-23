@@ -46,7 +46,7 @@ export function CriacaoProjectPage({
 
   return (
     <div
-      className="lg:pl-[20%] lg:pr-8 2xl:pr-24"
+      className="lg:pl-[20%] lg:pr-8 2xl:pr-24 "
       style={
         bgColor
           ? { backgroundColor: `rgb(${bgColor.r}, ${bgColor.g}, ${bgColor.b})` }

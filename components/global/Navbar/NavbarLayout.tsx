@@ -82,10 +82,10 @@ export default function Navbar(props: NavbarProps) {
           </Link>
         </div>
         <nav className="w-full mt-2">
-          <div className="flex gap-6 justify-between items-center uppercase text-base tracking-wider font-light">
+          <div className="flex gap-4 justify-between items-center uppercase text-base tracking-wider font-light">
             <Link
               href="/bio"
-              className={`transition-all duration-200 ${pathname === '/' ? 'underline underline-offset-4' : ''}`}
+              className={`transition-all duration-200 ${pathname === '/bio' ? 'underline underline-offset-4' : ''}`}
             >
               Bio
             </Link>

@@ -1,12 +1,13 @@
 'use client'
 
-
 import type { EncodeDataAttributeCallback } from '@sanity/react-loader'
 import Link from 'next/link'
 
 import { CustomPortableText } from '@/components/shared/CustomPortableText'
 import HomeImageBox from '@/components/shared/HomeImageBox'
 import type { HomePagePayload } from '@/types'
+import { useBackgroundColor } from '@/components/providers/BgColorProvider'
+import { useEffect, useState } from 'react'
 
 export interface HomePageProps {
   data: HomePagePayload | null
@@ -14,58 +15,72 @@ export interface HomePageProps {
 }
 
 export function HomePage({ data }: HomePageProps) {
-  const { overview, homeImage, homeMobileImage } = data ?? {}
+  const { overview, homeImage, homeMobileImage, bgColor } = data ?? {}
 
- 
+  const { setBackgroundColor } = useBackgroundColor()
+
+  useEffect(() => {
+    if (
+      bgColor &&
+      bgColor.r !== undefined &&
+      bgColor.g !== undefined &&
+      bgColor.b !== undefined
+    ) {
+      const rgb = `rgb(${bgColor.r}, ${bgColor.g}, ${bgColor.b})`
+      setBackgroundColor(rgb)
+    }
+  }, [bgColor, setBackgroundColor])
+  console.log(bgColor)
 
   return (
-    <div className="pb-10 md:pb-20 md:px-6  md:pr-8 py-10  px-4 md:pl-80 2xl:pl-96">
-      <div
-        className="
+    <section
+      className=" pb-16 pt-28 lg:pt-16
         flex flex-col items-center justify-center
         md:w-auto
-        min-h-[80vh]
+        min-h-[80vh] max-h-screen
         md:h-[calc(100vh-80px)]
         ]
       "
-      >
-        <Link href="/bio" className="w-full h-full flex flex-col md:flex-1 justify-center">
-          {/* Home image for desktop/tablet */}
-          {homeImage && (
-            <div className="hidden lg:block w-full h-full">
-              <HomeImageBox
-                image={homeImage}
-                alt="Home image"
-                classesWrapper="w-full h-full min-h-[300px] md:flex-1 cursor-pointer"
-               
-              />
-            </div>
-          )}
-          {/* Home image for mobile */}
-          {homeMobileImage && (
-            <div className="block lg:hidden w-full h-full">
-              <HomeImageBox
-                image={homeMobileImage}
-                alt="Home mobile image"
-                classesWrapper="w-full h-[60vh] cursor-pointer"
-               
-              />
-            </div>
-          )}
-          {/* Overview text below the image */}
-          {overview?.text && (
-            <div
-              className="mt-2 text-lg md:text-xl 2xl:text-2xl text-black text-right max-w-[80%] ml-auto cursor-pointer"
-              
-            >
-              <CustomPortableText value={overview.text} />
-            </div>
-          )}
-        </Link>
+      style={{
+        backgroundColor: `rgb(${bgColor.r}, ${bgColor.g}, ${bgColor.b})`,
+      }}
+    >
+      <div className="pb-10 md:pb-20 md:px-6  md:pr-8 py-10  px-4 md:pl-80 2xl:pl-96">
+        <div>
+          <Link
+            href="/bio"
+            className="w-full h-full flex flex-col md:flex-1 justify-center"
+          >
+            {/* Home image for desktop/tablet */}
+            {homeImage && (
+              <div className="hidden lg:block w-full h-full">
+                <HomeImageBox
+                  image={homeImage}
+                  alt="Home image"
+                  classesWrapper="w-full h-full min-h-[300px] md:flex-1 cursor-pointer"
+                />
+              </div>
+            )}
+            {/* Home image for mobile */}
+            {homeMobileImage && (
+              <div className="block lg:hidden w-full h-full">
+                <HomeImageBox
+                  image={homeMobileImage}
+                  alt="Home mobile image"
+                  classesWrapper="w-full h-[60vh] cursor-pointer"
+                />
+              </div>
+            )}
+            {/* Overview text below the image */}
+            {overview?.text && (
+              <div className="mt-2 text-lg md:text-xl 2xl:text-2xl text-black text-right max-w-[80%] ml-auto cursor-pointer">
+                <CustomPortableText value={overview.text} />
+              </div>
+            )}
+          </Link>
+        </div>
       </div>
-  
-      
-    </div>
+    </section>
   )
 }
 
