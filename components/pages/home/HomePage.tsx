@@ -34,30 +34,31 @@ export function HomePage({ data }: HomePageProps) {
 
   return (
     <section
-      className=" pb-16 pt-28 lg:pt-16
-        flex flex-col items-center justify-center
-        md:w-auto
-        min-h-[80vh] max-h-screen
-        md:h-[calc(100vh-80px)]
-        ]
-      "
+     className='min-h-screen h-screen'
       style={{
-        backgroundColor: `rgb(${bgColor.r}, ${bgColor.g}, ${bgColor.b})`,
+        backgroundColor: bgColor
+          ? `rgb(${bgColor.r}, ${bgColor.g}, ${bgColor.b})`
+          : undefined,
       }}
     >
-      <div className="pb-10 md:pb-20 md:px-6  md:pr-8 py-10  px-4 md:pl-80 2xl:pl-96">
-        <div>
-          <Link
-            href="/bio"
-            className="w-full h-full flex flex-col md:flex-1 justify-center"
-          >
-            {/* Home image for desktop/tablet */}
+      <div className="pb-10  lg:px-6  lg:pr-8 py-10  px-4 lg:pl-80 2xl:pl-96">
+      <div
+        className="
+        flex flex-col items-center justify-center
+        lg:w-auto
+        min-h-[90vh]
+        lg:h-[calc(100vh-80px)]
+        
+      "
+      >
+        <Link href="/bio" className="w-full h-full flex flex-col lg:flex-1 justify-center">
+          {/* Home image for desktop/tablet */}
             {homeImage && (
               <div className="hidden lg:block w-full h-full">
                 <HomeImageBox
                   image={homeImage}
                   alt="Home image"
-                  classesWrapper="w-full h-full min-h-[300px] md:flex-1 cursor-pointer"
+                  classesWrapper="w-full h-full min-h-[80vh] md:flex-1 cursor-pointer"
                 />
               </div>
             )}
@@ -73,13 +74,14 @@ export function HomePage({ data }: HomePageProps) {
             )}
             {/* Overview text below the image */}
             {overview?.text && (
-              <div className="mt-2 text-lg md:text-xl 2xl:text-2xl text-black text-right max-w-[80%] ml-auto cursor-pointer">
+              <div className="mt-2 text-base md:text-xl 2xl:text-2xl text-black text-right max-w-[80%] ml-auto cursor-pointer">
                 <CustomPortableText value={overview.text} />
               </div>
             )}
           </Link>
         </div>
       </div>
+      
     </section>
   )
 }
