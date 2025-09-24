@@ -13,7 +13,11 @@ export default defineType({
       name: 'title',
       description: 'This field is the title of this page.',
       title: 'Title',
-      type: 'string',
+      type: 'object',
+      fields: [
+        { name: 'pt', title: 'Português', type: 'string', validation: rule => rule.required() },
+        { name: 'en', title: 'English', type: 'string', validation: rule => rule.required() },
+      ],
       validation: (rule) => rule.required(),
     }),
     defineField({
@@ -24,7 +28,48 @@ export default defineType({
       type: 'object',
       fields: [
         {
-          name: 'text',
+           name: 'pt',
+          title: 'Português',
+          type: 'array',
+          of: [
+            // Paragraphs
+            defineArrayMember({
+              lists: [],
+              marks: {
+                annotations: [
+                  {
+                    name: 'link',
+                    type: 'object',
+                    title: 'Link',
+                    fields: [
+                      {
+                        name: 'href',
+                        type: 'url',
+                        title: 'Url',
+                      },
+                    ],
+                  },
+                ],
+                decorators: [
+                  {
+                    title: 'Italic',
+                    value: 'em',
+                  },
+                  {
+                    title: 'Strong',
+                    value: 'strong',
+                  },
+                ],
+              },
+              styles: [],
+              type: 'block',
+            }),
+          ],
+          validation: (rule) => rule.max(155),
+        },
+        {
+           name: 'en',
+          title: 'Inglês',
           type: 'array',
           of: [
             // Paragraphs

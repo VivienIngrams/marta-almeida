@@ -32,9 +32,14 @@ export const homePageQuery = groq`
 export const bioPageQuery = groq`
   *[_type == "bio"][0]{
     _id,
-    title,    
-      
-   bio,
+   title {
+      pt,
+      en
+    },   
+         bio {
+      pt,
+      en
+    },
     bgColor {
       'r': rgb.r,
       'g': rgb.g,
@@ -140,34 +145,58 @@ export const allProjectsQuery = groq`
     year,
     coverImage,
     description,
-    overview,
+     overview {
+      pt,
+      en
+    },
     site,
     "slug": slug.current,
-    title,
+     title {
+      pt,
+      en
+    },
   }
 `
 export const criacaoPageQuery = groq`
   *[_type == "criacao"][0]{
     _id,
-    title,
-    overview,
+    title {
+      pt,
+      en
+    },
+     overview {
+      pt,
+      en
+    },
     showcaseProjects[]->{
       _id,  
       year,
       coverImage,
       description,
-      overview,
+       overview {
+      pt,
+      en
+    },
       site,
       "slug": slug.current,
-      title,
+       title {
+      pt,
+      en
+    },
     },
 
   }`
   export const colaboracaoPageQuery = groq`
   *[_type == "colaboracao"][0]{
     _id,
-    title,
-    overview,
+    title {
+      pt,
+      en
+    },
+     overview {
+      pt,
+      en
+    },
      bgColor {
       'r': rgb.r,
       'g': rgb.g,
@@ -181,27 +210,42 @@ export const criacaoPageQuery = groq`
       overview,
       site,
       "slug": slug.current,
-      title,
+       title {
+      pt,
+      en
+    },
     },
     showcaseProjectsEnsino[]->{
       _id,  
       year,
       coverImage,
       description,
-      overview,
+       overview {
+      pt,
+      en
+    },
       site,
       "slug": slug.current,
-      title,
+       title {
+      pt,
+      en
+    },
     },
     showcaseProjectsProducao[]->{
       _id,  
       year,
       coverImage,
       description,
-      overview,
+       overview {
+      pt,
+      en
+    },
       site,
       "slug": slug.current,
-      title,
+       title {
+      pt,
+      en
+    },
     },
 
   }`
@@ -209,8 +253,14 @@ export const criacaoPageQuery = groq`
   export const interpretacaoPageQuery = groq`
   *[_type == "interpretacao"][0]{
     _id,
-    title,
-    overview,
+    title {
+      pt,
+      en
+    },
+     overview {
+      pt,
+      en
+    },
     bgColor {
       'r': rgb.r,
       'g': rgb.g,
@@ -233,10 +283,16 @@ export const criacaoPageQuery = groq`
       year,
       coverImage,
       description,
-      overview,
+       overview {
+      pt,
+      en
+    },
       site,
       "slug": slug.current,
-      title,
+       title {
+      pt,
+      en
+    },
     },
   }`
 
@@ -247,9 +303,15 @@ export const criacaoPageQuery = groq`
     year,
     coverImage,
     description,
-    overview,
+     overview {
+      pt,
+      en
+    },
     site,
     "slug": slug.current,
-    title,
+     title {
+      pt,
+      en
+    },
   }[0...6]
 `

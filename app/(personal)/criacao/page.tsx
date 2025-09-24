@@ -8,11 +8,11 @@ export default async function CriacaoPage() {
   const pageData = await loadCriacaoPage()
   if (!pageData?.data) return notFound()
 
-  const showcaseProjects = pageData.data.showcaseProjects || []
-  const title = pageData.data.title || ''
-
   const cookieStore = cookies()
   const language = cookieStore.get('language')?.value || 'pt'
+
+  const showcaseProjects = pageData.data.showcaseProjects || []
+  const title = pageData.data.title?.[language] || ''
 
   const projectsWithInitial = await Promise.all(
     showcaseProjects.map(async (project: any) => {
@@ -37,5 +37,11 @@ export default async function CriacaoPage() {
     }),
   )
 
-  return <ClientCriacaoPage title={title} projects={projectsWithInitial} language={language} />
+  return (
+    <ClientCriacaoPage
+      title={title}
+      projects={projectsWithInitial}
+      language={language}
+    />
+  )
 }

@@ -112,15 +112,15 @@ export interface Content {
 }
 
 export interface SettingsPayload {
-  ogImage?: Image
+ 
   favIcon?: Image
   title?: string
 }
 
 
 export interface CriacaoPayload {
-  title?: string
-  overview?: { text?: PortableTextBlock[] } // overview is an object with a text array
+  title?: BilingualString
+  overview?: BilingualBlock
   showcaseProjects?: ShowcaseProject[]
 }
 export interface InterpretacaoPayload {

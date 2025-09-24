@@ -69,7 +69,7 @@ export default function Navbar(props: NavbarProps) {
       </div>
 
       {/* LanguageSwitcher - Desktop (top right) */}
-      <div className="hidden lg:block fixed top-4 right-4 z-[100]">
+      <div className="hidden lg:block fixed top-2 right-2 z-[100]">
         <LanguageSwitcher />
       </div>
 
