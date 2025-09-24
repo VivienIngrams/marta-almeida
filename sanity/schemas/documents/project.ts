@@ -7,17 +7,30 @@ export default defineType({
   type: 'document',
   icon: StarIcon,
   fields: [
+    // TITLE
     defineField({
       name: 'title',
       title: 'Title',
       description: 'Project title in both languages',
       type: 'object',
       fields: [
-        { name: 'pt', title: 'Português', type: 'string', validation: rule => rule.required() },
-        { name: 'en', title: 'English', type: 'string', validation: rule => rule.required() },
+        defineField({
+          name: 'pt',
+          title: 'Português',
+          type: 'string',
+          validation: (rule) => rule.required(),
+        }),
+        defineField({
+          name: 'en',
+          title: 'English',
+          type: 'string',
+          validation: (rule) => rule.required(),
+        }),
       ],
       validation: (rule) => rule.required(),
     }),
+
+    // SLUG
     defineField({
       name: 'slug',
       description:
@@ -25,71 +38,48 @@ export default defineType({
       title: 'Slug',
       type: 'slug',
       options: {
-        source: 'title',
+        source: 'title.pt', // ✅ safer to use pt title for slug
         maxLength: 96,
         isUnique: (value, context) => context.defaultIsUnique(value, context),
       },
       validation: (rule) => rule.required(),
     }),
+
+    // COVER IMAGE
     defineField({
       name: 'coverImage',
       title: 'Cover Image',
-      description:
-        'This image will be used as the main image for the project.',
+      description: 'This image will be used as the main image for the project.',
       type: 'image',
       options: {
         hotspot: true,
       },
-    
     }),
-    // BILINGUAL OVERVIEW
+
+    // OVERVIEW
     defineField({
       name: 'overview',
       title: 'Overview',
       description: 'Project overview in both languages',
       type: 'object',
       fields: [
-        {
+        defineField({
           name: 'pt',
           title: 'Português',
           type: 'array',
-          of: [
-            defineArrayMember({
-              type: 'block',
-              lists: [],
-              marks: {
-                annotations: [],
-                decorators: [
-                  { title: 'Italic', value: 'em' },
-                  { title: 'Strong', value: 'strong' },
-                ],
-              },
-              styles: [],
-            }),
-          ],
-        },
-        {
+          of: [defineArrayMember({ type: 'block' })],
+        }),
+        defineField({
           name: 'en',
           title: 'English',
           type: 'array',
-          of: [
-            defineArrayMember({
-              type: 'block',
-              lists: [],
-              marks: {
-                annotations: [],
-                decorators: [
-                  { title: 'Italic', value: 'em' },
-                  { title: 'Strong', value: 'strong' },
-                ],
-              },
-              styles: [],
-            }),
-          ],
-        },
+          of: [defineArrayMember({ type: 'block' })],
+        }),
       ],
       validation: (rule) => rule.required(),
     }),
+
+    // YEAR
     defineField({
       name: 'year',
       description:
@@ -97,34 +87,37 @@ export default defineType({
       title: 'Year',
       type: 'string',
     }),
-       defineField({
+
+    // SITE
+    defineField({
       name: 'site',
       title: 'Website link',
       description:
         '(Optional) External link related to your project, it is displayed below your project overview text.',
       type: 'object',
-      options: {
-        columns: 2,
-      },
+      options: { columns: 2 },
       fields: [
-        {
+        defineField({
           title: 'URL Title',
           name: 'urltitle',
           type: 'string',
-        },
-        {
+        }),
+        defineField({
           title: 'URL link',
           name: 'url',
           type: 'url',
-        },
+        }),
       ],
     }),
+
+    // BACKGROUND COLOR
     defineField({
       name: 'bgColor',
       title: 'Background color',
       type: 'color',
     }),
-    // Content blocks
+
+    // CONTENT BUILDER
     defineField({
       title: 'Content builder',
       description:
@@ -132,249 +125,174 @@ export default defineType({
       name: 'content',
       type: 'array',
       of: [
-        // Single image block
+        // SINGLE IMAGE
         defineArrayMember({
           title: 'Single Image',
           name: 'singleImage',
           type: 'object',
           icon: ImageIcon,
           fields: [
-            {
+            defineField({
               title: 'Photo',
               name: 'photo',
               type: 'image',
-              options: {
-                hotspot: true,
-              },
-            },
-            {
+              options: { hotspot: true },
+            }),
+            defineField({
               title: 'Caption',
               name: 'caption',
               type: 'object',
               fields: [
-                { name: 'pt', title: 'Português', type: 'string' },
-                { name: 'en', title: 'English', type: 'string' },
+                defineField({ name: 'pt', title: 'Português', type: 'string' }),
+                defineField({ name: 'en', title: 'English', type: 'string' }),
               ],
               description: '(Optional) Caption below the image (bilingual)',
-            },
+            }),
           ],
           preview: {
-            select: {
-              photo: 'photo',
-            },
+            select: { photo: 'photo' },
             prepare({ photo }) {
-              return {
-                title: 'Single image',
-                media: photo,
-              }
+              return { title: 'Single image', media: photo }
             },
           },
         }),
-        // Two images block
+
+        // TWO IMAGES
         defineArrayMember({
           title: 'Two Images',
           name: 'twoImages',
           type: 'object',
           icon: ImageIcon,
           fields: [
-            {
+            defineField({
               title: 'Left photo',
               name: 'photoOne',
               type: 'image',
-              options: {
-                hotspot: true,
-              },
-            },
-            {
+              options: { hotspot: true },
+            }),
+            defineField({
               title: 'Right photo',
               name: 'photoTwo',
               type: 'image',
-              options: {
-                hotspot: true,
-              },
-            },
-           {
+              options: { hotspot: true },
+            }),
+            defineField({
               title: 'Caption',
               name: 'caption',
               type: 'object',
               fields: [
-                { name: 'pt', title: 'Português', type: 'string' },
-                { name: 'en', title: 'English', type: 'string' },
+                defineField({ name: 'pt', title: 'Português', type: 'string' }),
+                defineField({ name: 'en', title: 'English', type: 'string' }),
               ],
               description: '(Optional) Caption below the images (bilingual)',
-            },
+            }),
           ],
           preview: {
-            select: {
-              photo: 'photoOne',
-            },
+            select: { photo: 'photoOne' },
             prepare({ photo }) {
-              return {
-                title: 'Two images',
-                media: photo,
-              }
+              return { title: 'Two images', media: photo }
             },
           },
         }),
-        // Text block
+
+        // TEXT BLOCK
         defineArrayMember({
           title: 'Text Block',
           name: 'textBlock',
           type: 'object',
           icon: TextIcon,
           fields: [
-            {
+            defineField({
               name: 'description',
               title: 'Text Block',
               type: 'object',
               fields: [
-                {
+                defineField({
                   name: 'pt',
                   title: 'Português',
                   type: 'array',
-                  of: [
-                    defineArrayMember({
-                      lists: [],
-                      marks: {
-                        annotations: [
-                          {
-                            name: 'link',
-                            type: 'object',
-                            title: 'Link',
-                            fields: [
-                              {
-                                name: 'href',
-                                type: 'url',
-                                title: 'Url',
-                              },
-                            ],
-                          },
-                        ],
-                        decorators: [
-                          { title: 'Italic', value: 'em' },
-                          { title: 'Strong', value: 'strong' },
-                        ],
-                      },
-                      styles: [],
-                      type: 'block',
-                    }),
-                  ],
-                },
-                {
+                  of: [defineArrayMember({ type: 'block' })],
+                }),
+                defineField({
                   name: 'en',
                   title: 'English',
                   type: 'array',
-                  of: [
-                    defineArrayMember({
-                      lists: [],
-                      marks: {
-                        annotations: [
-                          {
-                            name: 'link',
-                            type: 'object',
-                            title: 'Link',
-                            fields: [
-                              {
-                                name: 'href',
-                                type: 'url',
-                                title: 'Url',
-                              },
-                            ],
-                          },
-                        ],
-                        decorators: [
-                          { title: 'Italic', value: 'em' },
-                          { title: 'Strong', value: 'strong' },
-                        ],
-                      },
-                      styles: [],
-                      type: 'block',
-                    }),
-                  ],
-                },
+                  of: [defineArrayMember({ type: 'block' })],
+                }),
               ],
-            },
+            }),
           ],
-          preview: {
-            select: {
-              content: 'description',
-            },
-            prepare({ content }) {
-              return {
-                title: 'Text Block',
-              }
-            },
-          },
         }),
-        // Single video
+
+        // SINGLE VIDEO
         defineArrayMember({
           title: 'Single Video (Youtube/Video link)',
           name: 'singleVideo',
           type: 'object',
           icon: PlayIcon,
           fields: [
-            {
+            defineField({
               title: 'Youtube or Vimeo link',
               name: 'videoLink',
               type: 'url',
-            },
-            {
+            }),
+            defineField({
               title: 'Caption',
               name: 'caption',
               type: 'object',
               fields: [
-                { name: 'pt', title: 'Português', type: 'string' },
-                { name: 'en', title: 'English', type: 'string' },
+                defineField({ name: 'pt', title: 'Português', type: 'string' }),
+                defineField({ name: 'en', title: 'English', type: 'string' }),
               ],
               description: '(Optional) Caption below the video (bilingual)',
-            },
+            }),
           ],
           preview: {
-            select: {
-              link: 'videoLink',
-            },
+            select: { link: 'videoLink' },
             prepare({ link }) {
-              return {
-                title: 'Single video',
-                subtitle: link,
-              }
+              return { title: 'Single video', subtitle: link }
             },
           },
         }),
-        // Two videos
+
+        // TWO VIDEOS
         defineArrayMember({
           title: 'Two Videos (Youtube/Video link)',
           name: 'twoVideos',
           type: 'object',
           icon: PlayIcon,
           fields: [
-            {
+            defineField({
               title: 'Left video (Youtube/Video link)',
               name: 'videoOneLink',
               type: 'url',
-            },
-            {
+            }),
+            defineField({
               title: 'Right video (Youtube/Video link)',
               name: 'videoTwoLink',
               type: 'url',
-            },
-            {
+            }),
+            defineField({
               title: 'Caption',
               name: 'caption',
-              type: 'string',
-              description: '(Optional) Caption below 2 videos',
-            },
+              type: 'object',
+              fields: [
+                defineField({ name: 'pt', title: 'Português', type: 'string' }),
+                defineField({ name: 'en', title: 'English', type: 'string' }),
+              ],
+              description: '(Optional) Caption below 2 videos (bilingual)',
+            }),
           ],
           preview: {
             select: {
-              linkOne: 'videoOneLink',
-              linkTwo: 'videoTwoLink',
+              desc: 'description',
             },
-            prepare({ linkOne, linkTwo }) {
-              return {
-                title: 'Two videos',
-                subtitle: linkOne + ` + ` + linkTwo,
-              }
+            prepare({ desc }) {
+              const text =
+                (desc?.pt && desc.pt[0]?.children?.[0]?.text) ||
+                (desc?.en && desc.en[0]?.children?.[0]?.text) ||
+                'Text block'
+              return { title: text }
             },
           },
         }),

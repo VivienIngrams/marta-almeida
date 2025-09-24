@@ -23,7 +23,6 @@ export default function CriacaoProjectPage({
   const [showContent, setShowContent] = useState(false)
 
   if (!data) return null
-console.log(language)
   const { year, overview, site, title, content, coverImage, bgColor } = data
   const lang = language || 'pt'
 
