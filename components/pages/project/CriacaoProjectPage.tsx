@@ -111,10 +111,10 @@ export function CriacaoProjectPage({
           )}
 
           {showContent && (
-            <div className="py-4 font-light text-sm lg:text-base 2xl:text-lg lg:max-w-5xl mx-auto">
+            <div className="py-8 font-light text-sm lg:text-base 2xl:text-lg lg:max-w-5xl mx-auto">
               {/* Overview (Portuguese) */}
               {overview?.pt && (
-                <div className="text-center">
+                <div className="">
                   <CustomPortableText value={overview.pt} paragraphClasses="" />
                 </div>
               )}

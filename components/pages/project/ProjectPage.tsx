@@ -11,29 +11,20 @@ import type { MoreProjectsPayload } from '@/types'
 
 export interface ProjectPageProps {
   data: ProjectPayload | null
-  moreProjects: MoreProjectsPayload | null
+
   encodeDataAttribute?: EncodeDataAttributeCallback
 }
 
 export function ProjectPage({
   data,
-  moreProjects,
+
   encodeDataAttribute,
 }: ProjectPageProps) {
   // Default to an empty object to allow previews on non-existent documents
   const { year, overview, site, title, content, slug, coverImage, bgColor } =
     data ?? {}
 
-  // Get a list of showcased projects
-  const { showcaseProjects = [] } = moreProjects ?? {}
 
-  // Get previous and next project
-  const projects = showcaseProjects
-  const currentProjectIndex = projects.findIndex(
-    (project) => project.slug === slug,
-  )
-  const prevProject = projects[currentProjectIndex - 1] || null
-  const nextProject = projects[currentProjectIndex + 1] || null
 
   const [showContent, setShowContent] = useState(false)
 
@@ -66,7 +57,7 @@ export function ProjectPage({
             {/* Title */}
             {title && (
               <div className="my-1 lg:my-3  font-bold text-xl lg:text-2xl 2xl:text-3xl">
-                {title}
+                {title.pt}
               </div>
             )}
           </div>

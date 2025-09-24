@@ -85,25 +85,25 @@ export default function Navbar(props: NavbarProps) {
           <div className="flex gap-4 justify-between items-center uppercase text-base tracking-wider font-light">
             <Link
               href="/bio"
-              className={`transition-all duration-200 ${pathname === '/bio' ? 'underline underline-offset-4' : ''}`}
+              className={`transition-all duration-200 ${pathname === '/bio' ? 'underline underline-offset-4 font-bold text-lg tracking-tighter' : ''}`}
             >
               Bio
             </Link>
             <Link
               href="/interpretacao"
-              className={`transition-all duration-200 ${pathname === '/interpretacao' ? 'underline underline-offset-4' : ''}`}
+              className={`transition-all duration-200 ${pathname === '/interpretacao' ? 'underline underline-offset-4 font-bold text-lg tracking-tighter' : ''}`}
             >
               Interpretação
             </Link>
             <Link
               href="/criacao"
-              className={`transition-all duration-200 ${pathname === '/criacao' ? 'underline underline-offset-4' : ''}`}
+              className={`transition-all duration-200 ${pathname === '/criacao' ? 'underline underline-offset-4 font-bold text-lg tracking-tighter' : ''}`}
             >
               Criação
             </Link>
             <Link
               href="/colaboracao"
-              className={`transition-all duration-200 ${pathname === '/colaboracao' ? 'underline underline-offset-4' : ''}`}
+              className={`transition-all duration-200 ${pathname === '/colaboracao' ? 'underline underline-offset-4 font-bold text-lg tracking-tighter' : ''}`}
             >
               Colaboração
             </Link>

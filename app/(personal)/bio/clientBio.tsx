@@ -33,10 +33,13 @@ export default function ClientBio({ title, bio, bgColor }: BioClientProps) {
       }}
     >
       <div className="lg:pl-[20%] px-4 lg:pr-8 2xl:pr-24 ">
+         <h1 className="hidden lg:block text-center uppercase text-3xl lg:text-5xl 2xl:text-7xl font-light tracking-tight">
+            {title}
+          </h1>
         {/* Biography */}
-        <div className="lg:mx-[7vw]">
+        <div className="lg:px-[15vw] ">
           {bio?.text && (
-            <div className="lg:py-20 text-base lg:text-lg 2xl:text-xl font-sans font-light text-gray-800 md:max-w-[80%] ">
+            <div className="lg:py-12 text-base lg:text-lg 2xl:text-xl font-sans font-light text-gray-800 ">
               <CustomPortableText value={bio.text} />
             </div>
           )}
