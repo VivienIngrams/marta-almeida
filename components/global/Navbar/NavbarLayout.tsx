@@ -1,22 +1,24 @@
 'use client'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { useState } from 'react'
-import Footer from '@/components/global/Footer'
 
-import type { SettingsPayload } from '@/types'
-import { BackgroundColorProvider } from '@/components/providers/BgColorProvider'
+
+import Footer from '@/components/global/Footer'
 import { useBackgroundColor } from '@/components/providers/BgColorProvider'
+import type { SettingsPayload } from '@/types'
+
+import { useLanguage } from '../../context/LanguageProvider'
+import LanguageSwitcher from '../../context/LanguageSwitcher'
 
 interface NavbarProps {
   data: SettingsPayload
   title: string | null
-  
+  language: string
 }
 
 export default function Navbar(props: NavbarProps) {
   const title = props.title ?? ''
-
+ const language = props.language
   const pathname = usePathname()
 
   const { backgroundColor } = useBackgroundColor()
@@ -25,6 +27,7 @@ export default function Navbar(props: NavbarProps) {
     <div style={{ backgroundColor }}>
       {/* Desktop Sidebar */}
       <div className="hidden lg:fixed lg:top-0 lg:left-0 lg:h-screen lg:w-[25%] lg:flex lg:flex-col lg:justify-between lg:items-start p-4 lg:px-12 z-50">
+        <LanguageSwitcher />
         <div className="w-full flex flex-col mt-32">
           <Link
             href={`/`}

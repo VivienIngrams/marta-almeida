@@ -12,6 +12,7 @@ import ProjectPage from './ProjectPage'
 type Props = {
   params: { slug: string }
   initial: QueryResponseInitial<ProjectPayload | null>
+  language: string
 }
 
 export default function ProjectPreview(props: Props) {
@@ -25,12 +26,12 @@ export default function ProjectPreview(props: Props) {
   return <ProjectPage data={data!}  encodeDataAttribute={encodeDataAttribute} />
 }
 export function ProjectPreviewCriacao(props: Props) {
-  const { params, initial } = props
+  const { params, initial, language } = props
   const { data, encodeDataAttribute } = useQuery<ProjectPayload | null>(
     projectBySlugQuery,
     params,
     { initial },
   )
 
-  return <CriacaoProjectPage data={data!}  encodeDataAttribute={encodeDataAttribute} />
+  return <CriacaoProjectPage data={data!}  encodeDataAttribute={encodeDataAttribute} language={language} />
 }

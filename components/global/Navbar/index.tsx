@@ -1,5 +1,6 @@
 import dynamic from 'next/dynamic'
-import { draftMode } from 'next/headers'
+import { draftMode, cookies } from 'next/headers'
+
 
 import {
   getHomePageTitle,
@@ -15,13 +16,17 @@ export async function Navbar() {
   const title = await getHomePageTitle()
 
 
+  const cookieStore = cookies()
+  const language = cookieStore.get('language')?.value || 'pt'
+  console.log('Language from cookie:', language)
+
   const draft = await draftMode();
   if (draft.isEnabled) {
     return (
       <NavbarPreview
         initial={initial}
         title={title.data}
-       
+       language={language}
       />
     )
   }
@@ -30,7 +35,7 @@ export async function Navbar() {
     <NavbarLayout
       data={initial.data}
       title={title.data}
-     
+     language={language}
     />
   )
 }

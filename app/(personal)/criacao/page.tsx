@@ -2,6 +2,7 @@
 import ClientCriacaoPage from './clientCriacao'
 import { loadCriacaoPage, loadProject } from '@/sanity/loader/loadQuery'
 import { notFound } from 'next/navigation'
+import { cookies } from 'next/headers'
 
 export default async function CriacaoPage() {
   const pageData = await loadCriacaoPage()
@@ -9,7 +10,10 @@ export default async function CriacaoPage() {
 
   const showcaseProjects = pageData.data.showcaseProjects || []
   const title = pageData.data.title || ''
- 
+
+  const cookieStore = cookies()
+  const language = cookieStore.get('language')?.value || 'pt'
+  console.log('Language from cookie:', language)
 
   const projectsWithInitial = await Promise.all(
     showcaseProjects.map(async (project: any) => {
@@ -31,14 +35,8 @@ export default async function CriacaoPage() {
         initial,
         bgColor,
       }
-    })
+    }),
   )
 
-  return (
-    <ClientCriacaoPage
-      title={title}
-    
-      projects={projectsWithInitial}
-    />
-  )
+  return <ClientCriacaoPage title={title} projects={projectsWithInitial} language={language} />
 }

@@ -12,9 +12,11 @@ interface Project {
 export default function ClientCriacaoPage({
   title,
   projects,
+  language,
 }: {
   title: string
   projects: Project[]
+  language: string
 }) {
   const [bgStyle, setBgStyle] = useState({})
 
@@ -66,6 +68,7 @@ export default function ClientCriacaoPage({
               key={project.slug}
               params={{ slug: project.slug }}
               initial={project.initial}
+              language={language}
             />
           ))}
         </div>
