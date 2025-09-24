@@ -129,22 +129,6 @@ export function ProjectPage({
                     />
                   )
                 }
-                <div>
-                 
-                  {site && (
-                    /* Website link */
-                    <div className="w-full lg:mx-16 mt-4">
-                      <a
-                        href={site.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-base lg:text-lg 2xl:text-xl underline hover:text-gray-600"
-                      >
-                        {site.urltitle}
-                      </a>
-                    </div>
-                  )}
-                </div>
 
                 // fallback
                 return (
@@ -155,6 +139,20 @@ export function ProjectPage({
                   />
                 )
               })}
+
+              {/* External site */}
+              {site && site.url && (
+                <div className="w-full lg:mx-16 mt-4">
+                  <a
+                    href={site.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-base lg:text-lg 2xl:text-xl underline hover:text-gray-600"
+                  >
+                    {site.urltitle}
+                  </a>
+                </div>
+              )}
             </div>
           )}
         </div>
