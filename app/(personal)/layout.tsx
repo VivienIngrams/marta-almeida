@@ -27,7 +27,7 @@ export async function generateMetadata(): Promise<Metadata> {
           default: homePage.title || "Personal website",
         }
       : undefined,
-    description: homePage?.overview?.text ? toPlainText(homePage.overview.text) : undefined,
+    description: homePage?.overview?.pt ? toPlainText(homePage.overview?.pt) : undefined,
    
     icons: {
       icon: favIcon ? [favIcon] : [],

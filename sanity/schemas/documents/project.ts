@@ -14,18 +14,18 @@ export default defineType({
       description: 'Project title in both languages',
       type: 'object',
       fields: [
-        defineField({
+        {
           name: 'pt',
           title: 'Português',
           type: 'string',
           validation: (rule) => rule.required(),
-        }),
-        defineField({
+        },
+        {
           name: 'en',
           title: 'English',
           type: 'string',
           validation: (rule) => rule.required(),
-        }),
+        },
       ],
       validation: (rule) => rule.required(),
     }),
@@ -63,19 +63,46 @@ export default defineType({
       description: 'Project overview in both languages',
       type: 'object',
       fields: [
-        defineField({
+              {
           name: 'pt',
           title: 'Português',
           type: 'array',
-          of: [defineArrayMember({ type: 'block' })],
-        }),
-        defineField({
+          of: [
+            defineArrayMember({
+              type: 'block',
+              lists: [],
+              marks: {
+                annotations: [],
+                decorators: [
+                  { title: 'Italic', value: 'em' },
+                  { title: 'Strong', value: 'strong' },
+                ],
+              },
+              styles: [],
+            }),
+          ],
+        },
+        {
           name: 'en',
           title: 'English',
           type: 'array',
-          of: [defineArrayMember({ type: 'block' })],
-        }),
+          of: [
+            defineArrayMember({
+              type: 'block',
+              lists: [],
+              marks: {
+                annotations: [],
+                decorators: [
+                  { title: 'Italic', value: 'em' },
+                  { title: 'Strong', value: 'strong' },
+                ],
+              },
+              styles: [],
+            }),
+          ],
+        },
       ],
+      
       validation: (rule) => rule.required(),
     }),
 
@@ -308,11 +335,7 @@ export default defineType({
   preview: {
     select: {
       title: 'title.pt',
-    },
-    prepare({ title }) {
-      return {
-                title,
-      }
+   
     },
   },
 })

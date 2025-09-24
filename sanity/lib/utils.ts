@@ -37,7 +37,33 @@ export function resolveHref(
   }
 }
 
+// Add this to your utils file (sanity/lib/utils.ts)
+
+export function getSafeTitle(
+  titleObj: { pt?: string; en?: string } | string | undefined,
+  language: 'pt' | 'en' = 'pt'
+): string {
+  // If it's already a string, return it
+  if (typeof titleObj === 'string') {
+    return titleObj
+  }
+  
+  // If it's undefined or null
+  if (!titleObj) {
+    return 'Untitled'
+  }
+  
+  // If it's an object, get the appropriate language
+  if (typeof titleObj === 'object' && titleObj !== null) {
+    return titleObj[language] || titleObj.pt || titleObj.en || 'Untitled'
+  }
+  
+  // Fallback
+  return 'Untitled'
+}
+
+// Update your existing getLang function to be more defensive
 export function getLang(field: { pt?: any; en?: any } | undefined, lang: 'pt' | 'en') {
-  if (!field) return ''
-  return field[lang] ?? ''
+  if (!field || typeof field !== 'object') return ''
+  return field[lang] || field.pt || field.en || ''
 }

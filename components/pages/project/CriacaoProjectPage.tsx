@@ -25,7 +25,7 @@ export default function CriacaoProjectPage({
   if (!data) return null
   const { year, overview, site, title, content, coverImage, bgColor } = data
   const lang = language || 'pt'
-
+console.log(data)
   const imageUrl =
     coverImage &&
     urlForImage(coverImage)?.width(1200).height(500).fit('crop').url()

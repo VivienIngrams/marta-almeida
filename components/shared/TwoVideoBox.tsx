@@ -7,7 +7,17 @@ import ReactPlayer from 'react-player'
 interface VideoBoxProps {
   videoOneLink?: any
   videoTwoLink?: any
-  caption?: string
+  caption?: string | { pt?: string; en?: string }
+}
+
+// Helper function to safely get caption text
+const getSafeCaption = (caption: string | { pt?: string; en?: string } | undefined): string => {
+  if (!caption) return ''
+  if (typeof caption === 'string') return caption
+  if (typeof caption === 'object' && caption !== null) {
+    return caption.pt || caption.en || ''
+  }
+  return ''
 }
 
 export default function VideoBox({
@@ -18,6 +28,8 @@ export default function VideoBox({
   const videoUrlOne = videoOneLink
   const videoUrlTwo = videoTwoLink
   const [isClient, setIsClient] = useState(false)
+  const safeCaption = getSafeCaption(caption)
+  
   useEffect(() => {
     setIsClient(true)
   }, [])
@@ -54,8 +66,8 @@ export default function VideoBox({
           )}
         </div>
       </div>
-      {caption && (
-        <div className="mt-2 lg:mt-4 text-lg lg:text-2xl">{caption}</div>
+      {safeCaption && (
+        <div className="mt-2 lg:mt-4 text-lg lg:text-2xl">{safeCaption}</div>
       )}
     </div>
   )

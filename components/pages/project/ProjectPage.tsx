@@ -17,7 +17,7 @@ export function ProjectPage({ data, encodeDataAttribute, language }: ProjectPage
   const [showContent, setShowContent] = useState(false)
 
   if (!data) return null
-
+console.log(data)
   const { year, overview, site, title, content, coverImage, bgColor } = data
   const lang = language || 'pt'
 
@@ -78,6 +78,7 @@ export function ProjectPage({ data, encodeDataAttribute, language }: ProjectPage
             <div>
               {/* Project content blocks */}
               {content?.map((block, index) => {
+                
                 // TextBlock: use description[lang]
                 if (block._type === 'textBlock' && block.description) {
                   return (
@@ -123,7 +124,7 @@ export function ProjectPage({ data, encodeDataAttribute, language }: ProjectPage
                 }
 
                 // fallback
-                return <Module key={block._key || index} content={block} paragraphClasses="font-light text-sm lg:text-base 2xl:text-lg" />
+                return null
               })}
 
               {/* External site */}
