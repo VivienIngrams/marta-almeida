@@ -12,9 +12,10 @@ import { useEffect, useState } from 'react'
 export interface HomePageProps {
   data: HomePagePayload | null
   encodeDataAttribute?: EncodeDataAttributeCallback
+  language: string
 }
 
-export function HomePage({ data }: HomePageProps) {
+export function HomePage({ data, language }: HomePageProps) {
   const { overview, homeImage, homeMobileImage, bgColor } = data ?? {}
 
   const { setBackgroundColor } = useBackgroundColor()
@@ -30,7 +31,10 @@ export function HomePage({ data }: HomePageProps) {
       setBackgroundColor(rgb)
     }
   }, [bgColor, setBackgroundColor])
-  console.log(bgColor)
+  
+  const overviewText =
+    overview?.[language] || overview?.en || overview?.pt
+console.log(overviewText, language)
 
   return (
     <section
@@ -73,9 +77,9 @@ export function HomePage({ data }: HomePageProps) {
               </div>
             )}
             {/* Overview text below the image */}
-            {overview?.text && (
+            {overviewText && (
               <div className="mt-2 text-base md:text-xl 2xl:text-2xl text-black text-right max-w-[80%] ml-auto cursor-pointer">
-                <CustomPortableText value={overview.text} />
+                <CustomPortableText value={overviewText} />
               </div>
             )}
           </Link>

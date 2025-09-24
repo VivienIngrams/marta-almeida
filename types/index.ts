@@ -51,7 +51,7 @@ export interface ShowcaseProject {
 // Page payloads
 
 export interface HomePagePayload {
-  overview?: any
+  overview?: BilingualBlock
   homeImage?: Image
   homeMobileImage?: Image
   title?: string

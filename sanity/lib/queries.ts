@@ -11,7 +11,10 @@ export const homePageQuery = groq`
       'g': rgb.g,
       'b': rgb.b,
     },
-    overview,
+     overview {
+      pt,
+      en
+    },
     homeImage{
       _type,
       asset,

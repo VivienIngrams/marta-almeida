@@ -17,55 +17,53 @@ export default defineType({
         validation: (rule) => rule.required(),
       }),
     
-      defineField({
-        name: 'overview',
-        description:
-          'This text is your description. Used for the introduction paragraph at a Home page and also for the <meta> description tag for SEO (to describe the website to the internet search engines).',
-        title: 'Brief description of yourself',
-        type: 'object',
-        fields:[
-          {
-          name: 'text',
+     defineField({
+      name: 'overview',
+      title: 'Overview',
+      description: 'Text used to describe website on internet search engines and on home page intro (in both languages)',
+      type: 'object',
+      fields: [
+        {
+          name: 'pt',
+          title: 'Português',
           type: 'array',
           of: [
-            // Paragraphs
             defineArrayMember({
+              type: 'block',
               lists: [],
               marks: {
-                annotations: [
-                  {
-                    name: 'link',
-                    type: 'object',
-                    title: 'Link',
-                    fields: [
-                      {
-                        name: 'href',
-                        type: 'url',
-                        title: 'Url',
-                      },
-                    ],
-                  },
-                ],
+                annotations: [],
                 decorators: [
-                  {
-                    title: 'Italic',
-                    value: 'em',
-                  },
-                  {
-                    title: 'Strong',
-                    value: 'strong',
-                  },
+                  { title: 'Italic', value: 'em' },
+                  { title: 'Strong', value: 'strong' },
                 ],
               },
               styles: [],
-              type: 'block',
             }),
           ],
-          validation: (rule) => rule.max(155).required(),
-          },
-        
-        ],
-      }),
+        },
+        {
+          name: 'en',
+          title: 'English',
+          type: 'array',
+          of: [
+            defineArrayMember({
+              type: 'block',
+              lists: [],
+              marks: {
+                annotations: [],
+                decorators: [
+                  { title: 'Italic', value: 'em' },
+                  { title: 'Strong', value: 'strong' },
+                ],
+              },
+              styles: [],
+            }),
+          ],
+        },
+      ],
+      validation: (rule) => rule.required(),
+    }),
     defineField({
       name: 'homeImage',
       title: 'Home Image Desktops',

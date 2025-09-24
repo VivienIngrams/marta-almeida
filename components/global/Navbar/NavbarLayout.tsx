@@ -18,16 +18,14 @@ interface NavbarProps {
 
 export default function Navbar(props: NavbarProps) {
   const title = props.title ?? ''
- const language = props.language
+  const language = props.language
   const pathname = usePathname()
-
   const { backgroundColor } = useBackgroundColor()
 
   return (
     <div style={{ backgroundColor }}>
       {/* Desktop Sidebar */}
       <div className="hidden lg:fixed lg:top-0 lg:left-0 lg:h-screen lg:w-[25%] lg:flex lg:flex-col lg:justify-between lg:items-start p-4 lg:px-12 z-50">
-        <LanguageSwitcher />
         <div className="w-full flex flex-col mt-32">
           <Link
             href={`/`}
@@ -68,6 +66,11 @@ export default function Navbar(props: NavbarProps) {
             Colaboração
           </Link>
         </div>
+      </div>
+
+      {/* LanguageSwitcher - Desktop (top right) */}
+      <div className="hidden lg:block fixed top-4 right-4 z-[100]">
+        <LanguageSwitcher />
       </div>
 
       {/* Mobile Navbar - Title and horizontal menu */}
@@ -114,11 +117,16 @@ export default function Navbar(props: NavbarProps) {
         </nav>
       </div>
 
+     
+
       {/* Mobile Footer */}
       <div
         className="block lg:hidden fixed bottom-0 left-0 right-0 z-50"
         style={{ backgroundColor }}
-      >
+      > {/* LanguageSwitcher - Mobile (bottom right) */}
+      <div className=" fixed bottom-2 right-4 z-[100]">
+        <LanguageSwitcher />
+      </div>
         <Footer />
       </div>
 

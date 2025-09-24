@@ -13,7 +13,6 @@ export default async function CriacaoPage() {
 
   const cookieStore = cookies()
   const language = cookieStore.get('language')?.value || 'pt'
-  console.log('Language from cookie:', language)
 
   const projectsWithInitial = await Promise.all(
     showcaseProjects.map(async (project: any) => {
