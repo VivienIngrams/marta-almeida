@@ -1,14 +1,13 @@
 'use client'
 
-import type { EncodeDataAttributeCallback } from '@sanity/react-loader'
-import Image from 'next/image'
 import { useState } from 'react'
-
-import { Module } from '@/components/modules'
+import Image from 'next/image'
+import { urlForImage } from '@/sanity/lib/utils'
 import { CustomPortableText } from '@/components/shared/CustomPortableText'
 import SingleImage from '@/components/shared/SingleImage'
-import { urlForImage } from '@/sanity/lib/utils'
-import type { ProjectPayload } from '@/types'
+import { Module } from '@/components/modules'
+import type { EncodeDataAttributeCallback } from '@sanity/react-loader'
+import type { ProjectPayload, ProjectContent, BilingualBlock } from '@/types'
 
 export interface ProjectPageProps {
   data: ProjectPayload | null
@@ -16,36 +15,32 @@ export interface ProjectPageProps {
   language: string
 }
 
-export function CriacaoProjectPage({
+export default function CriacaoProjectPage({
   data,
   encodeDataAttribute,
   language,
 }: ProjectPageProps) {
-  // Default to an empty object to allow previews on non-existent documents
-  const { year, overview, site, title, content, coverImage, bgColor } =
-    data ?? {}
+  const [showContent, setShowContent] = useState(false)
+
+  if (!data) return null
+console.log(language)
+  const { year, overview, site, title, content, coverImage, bgColor } = data
+  const lang = language || 'pt'
 
   const imageUrl =
     coverImage &&
     urlForImage(coverImage)?.width(1200).height(500).fit('crop').url()
 
-  const [showContent, setShowContent] = useState(false)
-
-  // Use the language prop, fallback to 'pt'
-  const lang = language || 'pt'
+  const bgStyle =
+    bgColor && bgColor.r !== undefined && bgColor.g !== undefined && bgColor.b !== undefined
+      ? { backgroundColor: `rgb(${bgColor.r}, ${bgColor.g}, ${bgColor.b})` }
+      : {}
 
   return (
-    <div
-      className="lg:pl-[20%] lg:pr-8 2xl:pr-24 "
-      style={
-        bgColor
-          ? { backgroundColor: `rgb(${bgColor.r}, ${bgColor.g}, ${bgColor.b})` }
-          : {}
-      }
-    >
-      <div className="-mt-2 md:py-6  px-4 lg:max-w-[70%] mx-auto ">
-        <div className="flex flex-wrap justify-between flex-col lg:flex-row ">
-          {/* Cover Image */}
+    <div className="lg:pl-[20%] lg:pr-8 2xl:pr-24" style={bgStyle}>
+      <div className="-mt-2 md:py-6 px-4 lg:max-w-[70%] mx-auto">
+        {/* Header */}
+        <div className="flex flex-wrap justify-between flex-col lg:flex-row">
           {coverImage && imageUrl && (
             <div className="mt-4 w-full">
               {!showContent ? (
@@ -69,31 +64,23 @@ export function CriacaoProjectPage({
               ) : (
                 <div className="mt-4 w-full">
                   <div className="relative w-full aspect-[16/9] lg:max-w-5xl mx-auto">
-                    <SingleImage
-                      image={coverImage}
-                      classesWrapper="w-full h-full"
-                    />
+                    <SingleImage image={coverImage} classesWrapper="w-full h-full" />
                   </div>
                 </div>
               )}
             </div>
           )}
 
-          <div className="w-full">
-            {/* Title (dynamic language) */}
+          {/* Title and Year */}
+          <div className="w-full mt-4">
             {title?.[lang] && (
-              <div className="my-1 font-bold text-xl lg:text-2xl 2xl:text-3xl">
-                {title[lang]}
-              </div>
+              <div className="my-1 font-bold text-xl lg:text-2xl 2xl:text-3xl">{title[lang]}</div>
             )}
-            {/* Year */}
-            {year && (
-              <div className="text-base lg:text-lg 2xl:text-xl">{year}</div>
-            )}
+            {year && <div className="text-base lg:text-lg 2xl:text-xl">{year}</div>}
           </div>
         </div>
 
-        {/* Read more button + content */}
+        {/* Overview and Content */}
         <div className="font-sans">
           {!showContent && content && content.length > 0 && (
             <div className="text-right">
@@ -116,55 +103,65 @@ export function CriacaoProjectPage({
 
           {showContent && (
             <div className="py-8 font-light text-sm lg:text-base 2xl:text-lg lg:max-w-5xl mx-auto">
-              {/* Overview (dynamic language) */}
-              {overview?.[lang] && (
-                <div className="">
-                  <CustomPortableText value={overview[lang]} paragraphClasses="" />
-                </div>
-              )}
+              {/* Overview */}
+              {overview?.[lang] && <CustomPortableText value={overview[lang] as any} />}
 
               {/* Content blocks */}
-              {content?.map((block, key) => {
-                // If block has a caption, pick correct language
-                if (
-                  typeof block === 'object' &&
-                  block !== null &&
-                  'caption' in block &&
-                  typeof (block as any).caption === 'object' &&
-                  (block as any).caption?.[lang]
-                ) {
+              {content?.map((block, index) => {
+                // Handle TextBlock
+                if (block._type === 'textBlock' && block.description) {
                   return (
                     <Module
-                      key={key}
+                      key={block._key || index}
                       content={{
                         ...block,
-                        caption: (block as any).caption[lang],
+                        description: block.description[lang] || [],
                       }}
-                      paragraphClasses=" "
+                      paragraphClasses=""
                     />
                   )
                 }
 
-                // If block is a textBlock, pick description.[lang]
-                if (block._type === 'textBlock') {
+                // Handle Single Image or Two Images
+                if (block._type === 'singleImage' || block._type === 'twoImages') {
                   return (
                     <Module
-                      key={key}
+                      key={block._key || index}
                       content={{
                         ...block,
-                        description: (block as any).description[lang],
+                        caption:
+                          typeof block.caption === 'object'
+                            ? block.caption[lang] || ''
+                            : block.caption || '',
                       }}
-                      paragraphClasses=" "
+                      paragraphClasses=""
                     />
                   )
                 }
 
-                // fallback
-                return <Module key={key} content={block} paragraphClasses=" " />
+                // Handle Single Video or Two Videos
+                if (block._type === 'singleVideo' || block._type === 'twoVideos') {
+                  return (
+                    <Module
+                      key={block._key || index}
+                      content={{
+                        ...block,
+                        caption:
+                          typeof block.caption === 'object'
+                            ? block.caption[lang] || ''
+                            : block.caption || '',
+                      }}
+                      paragraphClasses=""
+                    />
+                  )
+                }
+
+                // Fallback
+                return <Module key={block._key || index} content={block} paragraphClasses="" />
               })}
 
               {/* External site */}
-              {site && site.url && (
+              {site?.url && (
                 <div className="mt-6 text-center">
                   <a
                     href={site.url}
@@ -172,7 +169,7 @@ export function CriacaoProjectPage({
                     rel="noopener noreferrer"
                     className="underline hover:text-secondary"
                   >
-                    {site.urltitle}
+                    {site.urltitle || site.url}
                   </a>
                 </div>
               )}
@@ -184,4 +181,3 @@ export function CriacaoProjectPage({
   )
 }
 
-export default CriacaoProjectPage

@@ -100,7 +100,7 @@ export const projectBySlugQuery = groq`
           asset,
           "lqip": asset->metadata.lqip,
         },
-        caption, // If you want this bilingual, change to: caption { pt, en }
+        caption { pt, en },
       },
       _type == 'textBlock' => {
         _type,
@@ -114,14 +114,14 @@ export const projectBySlugQuery = groq`
         _type,
         _key,
         videoLink,
-        caption, // If you want this bilingual, change to: caption { pt, en }
+         caption { pt, en },
       },
       _type == 'twoVideos' => {
         _type,
         _key,
         videoOneLink,
         videoTwoLink,
-        caption, // If you want this bilingual, change to: caption { pt, en }
+        caption { pt, en },
       },
     },
   }

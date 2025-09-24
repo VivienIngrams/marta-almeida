@@ -321,8 +321,12 @@ export default defineType({
             {
               title: 'Caption',
               name: 'caption',
-              type: 'string',
-              description: '(Optional) Caption below the video',
+              type: 'object',
+              fields: [
+                { name: 'pt', title: 'Português', type: 'string' },
+                { name: 'en', title: 'English', type: 'string' },
+              ],
+              description: '(Optional) Caption below the video (bilingual)',
             },
           ],
           preview: {

@@ -36,3 +36,8 @@ export function resolveHref(
       return undefined
   }
 }
+
+export function getLang(field: { pt?: any; en?: any } | undefined, lang: 'pt' | 'en') {
+  if (!field) return ''
+  return field[lang] ?? ''
+}

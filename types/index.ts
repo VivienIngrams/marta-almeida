@@ -67,15 +67,49 @@ export interface ProjectPayload {
   title?: BilingualString
   content?: ProjectContent[]
 }
-export interface ProjectContent {
-   _type: string
+export interface ProjectContentBase {
+  _type: string
   _key: string
-  photo: object[]
-  photoOne: object[]
-  photoTwo: object[]
-  textBlock: BilingualBlock
-  videoLink: object[]
 }
+
+export interface TextBlockContent extends ProjectContentBase {
+  _type: 'textBlock'
+  description: BilingualBlock
+}
+
+export interface SingleImageContent extends ProjectContentBase {
+  _type: 'singleImage'
+  photo: Image
+  caption: BilingualString
+}
+
+export interface TwoImagesContent extends ProjectContentBase {
+  _type: 'twoImages'
+  photoOne: Image
+  photoTwo: Image
+  caption: BilingualString
+}
+
+export interface SingleVideoContent extends ProjectContentBase {
+  _type: 'singleVideo'
+  videoLink: string
+  caption: BilingualString
+}
+
+export interface TwoVideosContent extends ProjectContentBase {
+  _type: 'twoVideos'
+  videoOneLink: string
+  videoTwoLink: string
+  caption: BilingualString
+}
+
+export type ProjectContent =
+  | TextBlockContent
+  | SingleImageContent
+  | TwoImagesContent
+  | SingleVideoContent
+  | TwoVideosContent
+
 
 export interface SettingsPayload {
    favIcon?: Image

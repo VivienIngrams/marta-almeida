@@ -22,7 +22,7 @@ export default function ProjectPreview(props: Props) {
     params,
     { initial, },
   )
-
+console.log(language)
   return <ProjectPage data={data!}  encodeDataAttribute={encodeDataAttribute} language={language} />
 }
 export function ProjectPreviewCriacao(props: Props) {

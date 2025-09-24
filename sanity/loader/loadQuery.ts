@@ -11,7 +11,6 @@ import {
   homePageQuery,
   homePageTitleQuery,
   interpretacaoPageQuery,
-  moreProjectsQuery,
   projectBySlugQuery,
   settingsQuery,
 } from '@/sanity/lib/queries'
@@ -22,7 +21,7 @@ import {
   BioPayload,
   InterpretacaoPayload,
   HomePagePayload,
-  MoreProjectsPayload,
+
   ProjectPayload,
   SettingsPayload,
 } from '@/types'
@@ -96,13 +95,7 @@ export function loadBioPage() {
   )
 } 
 
-export function loadMoreProjects() {
-  return loadQuery<MoreProjectsPayload | null>(
-    moreProjectsQuery,
-    {},
-    { next: { tags: ['home', 'project'] } },
-  )
-}
+
 
 export function getHomePageTitle() {
   return loadQuery<string | null>(
