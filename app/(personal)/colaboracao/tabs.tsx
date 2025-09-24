@@ -5,9 +5,9 @@ import ProjectPreview from '@/components/pages/project/ProjectPreview'
 import { useBackgroundColor } from '@/components/providers/BgColorProvider'
 
 const CATEGORIES = [
-  { key: 'producao', label: 'Produção' },
-  { key: 'ensino', label: 'Ensino' },
-  { key: 'outros', label: 'Assistente Coreográfica' },
+  { key: 'producao', label: { pt: 'Produção', en: 'Production' } },
+  { key: 'ensino', label: { pt: 'Ensino', en: 'Teaching' } },
+  { key: 'outros', label: { pt: 'Assistente Coreográfica', en: 'Choreographic Assistant' } },
 ]
 
 export default function ColaboracaoTabs({
@@ -16,6 +16,7 @@ export default function ColaboracaoTabs({
   producao,
   outros,
   bgColor,
+  language
 }: any) {
   const [activeCategory, setActiveCategory] = useState<string | null>(null)
   const [hasClicked, setHasClicked] = useState(false)
@@ -77,7 +78,7 @@ export default function ColaboracaoTabs({
                     setHasClicked(true)
                   }}
                 >
-                  {cat.label}
+                     {cat.label[language] || cat.label.pt}
                 </button>
               ))}
             </div>
@@ -90,6 +91,7 @@ export default function ColaboracaoTabs({
               key={project.slug}
               params={{ slug: project.slug }}
               initial={project.initial}
+              language={language}
             />
           ))}
         </div>

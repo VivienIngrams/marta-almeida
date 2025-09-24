@@ -12,38 +12,14 @@ export interface BilingualBlock {
   en?: PortableTextBlock[]
 }
 
-export interface MenuItem {
-  page?: {
-    _type: string
-    slug?: string
-    title?: string
-  }
-  link?: {
-    _type: string
-    url?: string
-    title?: string
-  }
-}
-
-export interface PageItem {
-  _type: string
-  slug?: string
-  title?: string
-}
-
-export interface LinkItem {
-  _type: string
-  url?: string
-  title?: string
-}
 
 export interface ShowcaseProject {
   _type: string
   coverImage?: Image
-  overview?: PortableTextBlock[]
+  overview?: BilingualBlock
   slug?: string
   tags?: string[]
-  title?: string
+  title?: BilingualString
   year?: string
   _updatedAt?: string
 }
@@ -64,8 +40,8 @@ export interface HomePagePayload {
 }
 
 export interface BioPayload {
-  title?: string
-  bio?: any // { text?: PortableTextBlock[] } bio is an object with a text array
+  title?: BilingualString
+  bio?: BilingualBlock
   bgColor?: { 
     r?: string        
     g?: string
@@ -97,24 +73,13 @@ export interface ProjectContent {
   photo: object[]
   photoOne: object[]
   photoTwo: object[]
-  textBlock: object[]
-  videoLink: object[]
-}
-
-export interface Content {
-  _type: string
-  _key: string
-  photo: object[]
-  photoOne: object[]
-  photoTwo: object[]
-  textBlock: object[]
+  textBlock: BilingualBlock
   videoLink: object[]
 }
 
 export interface SettingsPayload {
- 
-  favIcon?: Image
-  title?: string
+   favIcon?: Image
+  
 }
 
 
@@ -161,8 +126,8 @@ overview?: BilingualBlock
   showcaseProjectsOutros?: ShowcaseProject[]
 }
 
-export interface MoreProjectsPayload {
-  title?: string
-  overview?: PortableTextBlock[]
-  showcaseProjects?: ShowcaseProject[]
-}
+// export interface MoreProjectsPayload {
+//   title?: string
+//   overview?: PortableTextBlock[]
+//   showcaseProjects?: ShowcaseProject[]
+// }

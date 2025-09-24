@@ -301,22 +301,22 @@ export const criacaoPageQuery = groq`
     },
   }`
 
-  export const moreProjectsQuery = groq`
-  *[_type == "project" && !(_id in path("drafts.**
-"))] | order(year desc) {
-    _id,
-    year,
-    coverImage,
-    description,
-     overview {
-      pt,
-      en
-    },
-    site,
-    "slug": slug.current,
-     title {
-      pt,
-      en
-    },
-  }[0...6]
-`
+//   export const moreProjectsQuery = groq`
+//   *[_type == "project" && !(_id in path("drafts.**
+// "))] | order(year desc) {
+//     _id,
+//     year,
+//     coverImage,
+//     description,
+//      overview {
+//       pt,
+//       en
+//     },
+//     site,
+//     "slug": slug.current,
+//      title {
+//       pt,
+//       en
+//     },
+//   }[0...6]
+// `
