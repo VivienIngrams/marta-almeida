@@ -1,15 +1,18 @@
-// app/interpretacao/page.tsx
 import ClientInterpretacaoPage from './clientInterpretacao'
 import { loadInterpretacaoPage, loadProject } from '@/sanity/loader/loadQuery'
 import { notFound } from 'next/navigation'
+import { cookies } from 'next/headers'
 
 export default async function InterpretacaoPage() {
   const pageData = await loadInterpretacaoPage()
   if (!pageData?.data) return notFound()
+  const cookieStore = cookies()
+  const language = cookieStore.get('language')?.value || 'pt'
 
   const showcaseProjects = pageData.data.showcaseProjects || []
-  const title = pageData.data.title || ''
-  const overview = pageData.data.overview
+  const title = pageData.data.title?.[language] || ''
+  const overview =
+    pageData.data.overview?.[language] || pageData.data.overview?.pt || []
   const images = pageData.data.images || []
   const rawBgColor = pageData.data.bgColor || { r: 255, g: 255, b: 255 }
 
@@ -45,7 +48,7 @@ export default async function InterpretacaoPage() {
         initial,
         bgColor,
       }
-    })
+    }),
   )
 
   return (
@@ -55,6 +58,7 @@ export default async function InterpretacaoPage() {
       bgColor={bgColor}
       images={images}
       projects={projectsWithInitial}
+      language={language}
     />
   )
 }

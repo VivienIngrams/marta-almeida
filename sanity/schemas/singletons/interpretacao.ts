@@ -13,7 +13,11 @@ export default defineType({
       name: 'title',
       description: 'This field is the title of your personal website.',
       title: 'Title',
-      type: 'string',
+      type: 'object',
+      fields: [
+        { name: 'pt', title: 'Português', type: 'string', validation: rule => rule.required() },
+        { name: 'en', title: 'English', type: 'string', validation: rule => rule.required() },
+      ],
       validation: (rule) => rule.required(),
     }),
    
@@ -23,52 +27,86 @@ export default defineType({
         'This text is your description of this page to the internet search engines.',
       title: 'Page description',
       type: 'object',
-      fields:[
+       fields: [
         {
-        name: 'text',
-        type: 'array',
-        of: [
-          // Paragraphs
-          defineArrayMember({
-            lists: [],
-            marks: {
-              annotations: [
-                {
-                  name: 'link',
-                  type: 'object',
-                  title: 'Link',
-                  fields: [
-                    {
-                      name: 'href',
-                      type: 'url',
-          
-                      title: 'Url',
-                    },
-                  ],
-                },
-              ],
-              decorators: [
-                {
-                  title: 'Italic',
-                  value: 'em',
-                },
-                {
-                  title: 'Strong',
-                  value: 'strong',
-                },
-              ],
-            },
-            styles: [],
-            type: 'block',
-          }),
-        ],
-        validation: (rule) => rule.max(155).required(),
+           name: 'pt',
+          title: 'Português',
+          type: 'array',
+          of: [
+            // Paragraphs
+            defineArrayMember({
+              lists: [],
+              marks: {
+                annotations: [
+                  {
+                    name: 'link',
+                    type: 'object',
+                    title: 'Link',
+                    fields: [
+                      {
+                        name: 'href',
+                        type: 'url',
+                        title: 'Url',
+                      },
+                    ],
+                  },
+                ],
+                decorators: [
+                  {
+                    title: 'Italic',
+                    value: 'em',
+                  },
+                  {
+                    title: 'Strong',
+                    value: 'strong',
+                  },
+                ],
+              },
+              styles: [],
+              type: 'block',
+            }),
+          ],
+          validation: (rule) => rule.max(155),
         },
         {
-          title: 'Display this introduction on Interpretacao page?',
-          description: 'If you turn in off it still be used for SEO description',
-          name: 'displayText',
-          type: 'boolean',
+           name: 'en',
+          title: 'Inglês',
+          type: 'array',
+          of: [
+            // Paragraphs
+            defineArrayMember({
+              lists: [],
+              marks: {
+                annotations: [
+                  {
+                    name: 'link',
+                    type: 'object',
+                    title: 'Link',
+                    fields: [
+                      {
+                        name: 'href',
+                        type: 'url',
+                        title: 'Url',
+                      },
+                    ],
+                  },
+                ],
+                decorators: [
+                  {
+                    title: 'Italic',
+                    value: 'em',
+                  },
+                  {
+                    title: 'Strong',
+                    value: 'strong',
+                  },
+                ],
+              },
+              styles: [],
+              type: 'block',
+            }),
+          ],
+          validation: (rule) => rule.max(155),
         },
       ],
     }),
@@ -111,11 +149,15 @@ export default defineType({
           },
           fields: [
             {
+              title: 'Caption',
               name: 'caption',
-              type: 'string',
-              title: 'Legend/Caption',
-              description: 'A legend for this image (name of piece, artist, year, etc.)',
-            }
+              type: 'object',
+              fields: [
+                { name: 'pt', title: 'Português', type: 'string' },
+                { name: 'en', title: 'English', type: 'string' },
+              ],
+              description: '(Optional) Caption below the image (bilingual)',
+            },
           ]
         }),
       ],

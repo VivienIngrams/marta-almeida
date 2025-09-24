@@ -134,7 +134,6 @@ export const projectPaths = groq`
 export const settingsQuery = groq`
   *[_type == "settings"][0]{
    
-    ogImage,
     favIcon,
    
   }
@@ -207,7 +206,10 @@ export const criacaoPageQuery = groq`
       year,
       coverImage,
       description,
-      overview,
+      overview {
+      pt,
+      en
+    },
       site,
       "slug": slug.current,
        title {
@@ -268,7 +270,10 @@ export const criacaoPageQuery = groq`
     },
     images[] {
   ...,
-  caption,
+  caption {
+      pt,
+      en
+    },
   asset->{
     url,
     metadata {

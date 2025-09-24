@@ -124,11 +124,8 @@ export interface CriacaoPayload {
   showcaseProjects?: ShowcaseProject[]
 }
 export interface InterpretacaoPayload {
-  title?: string
-  overview?: {
-    text?: PortableTextBlock[]
-    displayText?: boolean
-  }
+  title?: BilingualString
+  overview?: BilingualBlock
   images?: CarouselImage[]
   bgColor?: {
     r?: number
@@ -140,7 +137,7 @@ export interface InterpretacaoPayload {
 
 export interface CarouselImage {
   _key?: string
-  caption?: string
+  caption?: BilingualString
   asset?: {
     url: string
     metadata?: {
@@ -152,13 +149,13 @@ export interface CarouselImage {
 }
 
 export interface ColaboracaoPayload {
-  title?: string
+  title?: BilingualString
   bgColor?: {
     r?: string
     g?: string
     b?: string
   }
-  overview?: { text?: PortableTextBlock[] } // overview is an object with a text array
+overview?: BilingualBlock
   showcaseProjectsEnsino?: ShowcaseProject[]
   showcaseProjectsProducao?: ShowcaseProject[]
   showcaseProjectsOutros?: ShowcaseProject[]

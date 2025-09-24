@@ -7,7 +7,6 @@ export default defineType({
   type: 'document',
   icon: StarIcon,
   fields: [
-    // BILINGUAL TITLE
     defineField({
       name: 'title',
       title: 'Title',

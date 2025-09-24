@@ -16,14 +16,14 @@ type Props = {
 }
 
 export default function ProjectPreview(props: Props) {
-  const { params, initial } = props
+  const { params, initial, language } = props
   const { data, encodeDataAttribute } = useQuery<ProjectPayload | null>(
     projectBySlugQuery,
     params,
-    { initial },
+    { initial, },
   )
 
-  return <ProjectPage data={data!}  encodeDataAttribute={encodeDataAttribute} />
+  return <ProjectPage data={data!}  encodeDataAttribute={encodeDataAttribute} language={language} />
 }
 export function ProjectPreviewCriacao(props: Props) {
   const { params, initial, language } = props

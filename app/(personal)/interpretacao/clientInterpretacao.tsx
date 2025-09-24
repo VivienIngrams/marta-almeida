@@ -25,12 +25,14 @@ export default function ClientInterpretacaoPage({
   bgColor,
   images,
   projects,
+  language,
 }: {
   title: string
   overview: any
   bgColor: BgColor
   images: any[]
   projects: Project[]
+  language: string
 }) {
   const { setBackgroundColor } = useBackgroundColor()
 
@@ -39,6 +41,7 @@ export default function ClientInterpretacaoPage({
     setBackgroundColor(rgb)
   }, [bgColor, setBackgroundColor])
 
+ 
   return (
     <section>
       <div
@@ -51,11 +54,6 @@ export default function ClientInterpretacaoPage({
           <h1 className="hidden lg:block text-center uppercase text-3xl lg:text-5xl 2xl:text-7xl font-light tracking-tight">
             {title}
           </h1>
-          {/* {overview?.text && (
-            <div className="my-4 text-center text-lg lg:text-xl 2xl:text-2xl cursor-pointer">
-              <CustomPortableText value={overview.text} />
-            </div>
-          )} */}
         </div>
 
         <div>
@@ -64,6 +62,7 @@ export default function ClientInterpretacaoPage({
               key={project.slug}
               params={{ slug: project.slug }}
               initial={project.initial}
+              language={language}
             />
           ))}
         </div>
@@ -93,13 +92,14 @@ export default function ClientInterpretacaoPage({
                             src={imageUrl}
                             alt={`Gallery image ${index + 1}`}
                             fill
+                            sizes='( min-width: 640px) 50vw, 80vw'
                             className="object-cover hover:scale-105 transition-transform duration-500"
                           />
                         </div>
 
-                        {image.caption && (
+                        {image.caption && image.caption[language] && (
                           <p className="mt-2 text-sm text-center text-gray-800 max-w-[24rem]">
-                            {image.caption}
+                            {image.caption[language]}
                           </p>
                         )}
                       </div>
