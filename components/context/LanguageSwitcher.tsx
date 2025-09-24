@@ -7,7 +7,7 @@ const LanguageSwitcher = () => {
     language: 'pt',
     toggleLanguage: () => {},
   }
-  console.log('Language in LanguageSwitcher:', language)
+
   return (
     <div>
       <button

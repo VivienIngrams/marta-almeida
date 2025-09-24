@@ -34,7 +34,6 @@ export function HomePage({ data, language }: HomePageProps) {
   
   const overviewText =
     overview?.[language] || overview?.en || overview?.pt
-console.log(overviewText, language)
 
   return (
     <section

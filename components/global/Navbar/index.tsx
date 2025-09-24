@@ -18,8 +18,7 @@ export async function Navbar() {
 
   const cookieStore = cookies()
   const language = cookieStore.get('language')?.value || 'pt'
-  console.log('Language from cookie:', language)
-
+ 
   const draft = await draftMode();
   if (draft.isEnabled) {
     return (

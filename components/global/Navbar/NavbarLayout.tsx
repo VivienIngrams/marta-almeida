@@ -1,4 +1,5 @@
 'use client'
+
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
@@ -16,9 +17,28 @@ interface NavbarProps {
   language: string
 }
 
+const MENU_ITEMS = [
+  {
+    href: '/bio',
+    label: { pt: 'Bio', en: 'About' },
+  },
+  {
+    href: '/criacao',
+    label: { pt: 'Criação', en: 'Creations' },
+  },
+  {
+    href: '/interpretacao',
+    label: { pt: 'Interpretação', en: 'Performing' },
+  },
+  {
+    href: '/colaboracao',
+    label: { pt: 'Colaboração', en: 'Collaborations' },
+  },
+]
+
 export default function Navbar(props: NavbarProps) {
   const title = props.title ?? ''
-  const language = props.language
+  const language = props.language || 'pt'
   const pathname = usePathname()
   const { backgroundColor } = useBackgroundColor()
 
@@ -35,36 +55,17 @@ export default function Navbar(props: NavbarProps) {
           </Link>
         </div>
         <div className="flex flex-col gap-4 uppercase text-lg tracking-wider font-light h-full w-full">
-          <Link
-            href="/bio"
-            className={`transition-all duration-200 ${pathname === '/bio' ? 'underline underline-offset-4' : ''}`}
-          >
-            Bio
-          </Link>
-          <Link
-            href="/interpretacao"
-            className={`transition-all duration-200 ${
-              pathname === '/interpretacao'
-                ? 'underline underline-offset-4'
-                : ''
-            }`}
-          >
-            Interpretação
-          </Link>
-          <Link
-            href="/criacao"
-            className={`transition-all duration-200 ${pathname === '/criacao' ? 'underline underline-offset-4' : ''}`}
-          >
-            Criação
-          </Link>
-          <Link
-            href="/colaboracao"
-            className={`transition-all duration-200 ${
-              pathname === '/colaboracao' ? 'underline underline-offset-4' : ''
-            }`}
-          >
-            Colaboração
-          </Link>
+          {MENU_ITEMS.map((item) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              className={`transition-all duration-200 ${
+                pathname === item.href ? 'underline underline-offset-4' : ''
+              }`}
+            >
+              {item.label[language] || item.label.pt}
+            </Link>
+          ))}
         </div>
       </div>
 
@@ -88,45 +89,33 @@ export default function Navbar(props: NavbarProps) {
           </Link>
         </div>
         <nav className="w-full mt-2">
-          <div className="flex gap-4 justify-between items-center uppercase text-base tracking-wider font-light">
-            <Link
-              href="/bio"
-              className={`transition-all duration-200 ${pathname === '/bio' ? 'underline underline-offset-4 font-bold text-lg tracking-tighter' : ''}`}
-            >
-              Bio
-            </Link>
-            <Link
-              href="/interpretacao"
-              className={`transition-all duration-200 ${pathname === '/interpretacao' ? 'underline underline-offset-4 font-bold text-lg tracking-tighter' : ''}`}
-            >
-              Interpretação
-            </Link>
-            <Link
-              href="/criacao"
-              className={`transition-all duration-200 ${pathname === '/criacao' ? 'underline underline-offset-4 font-bold text-lg tracking-tighter' : ''}`}
-            >
-              Criação
-            </Link>
-            <Link
-              href="/colaboracao"
-              className={`transition-all duration-200 ${pathname === '/colaboracao' ? 'underline underline-offset-4 font-bold text-lg tracking-tighter' : ''}`}
-            >
-              Colaboração
-            </Link>
+          <div className="flex gap-3 justify-between items-center uppercase text-base tracking-wider font-light">
+            {MENU_ITEMS.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className={`transition-all duration-200 ${
+                  pathname === item.href
+                    ? 'underline underline-offset-4 font-bold text-lg tracking-tighter'
+                    : ''
+                }`}
+              >
+                {item.label[language] || item.label.pt}
+              </Link>
+            ))}
           </div>
         </nav>
       </div>
-
-     
 
       {/* Mobile Footer */}
       <div
         className="block lg:hidden fixed bottom-0 left-0 right-0 z-50"
         style={{ backgroundColor }}
-      > {/* LanguageSwitcher - Mobile (bottom right) */}
-      <div className=" fixed bottom-2 right-4 z-[100]">
-        <LanguageSwitcher />
-      </div>
+      >
+        {/* LanguageSwitcher - Mobile (bottom right) */}
+        <div className=" fixed bottom-2 right-4 z-[100]">
+          <LanguageSwitcher />
+        </div>
         <Footer />
       </div>
 

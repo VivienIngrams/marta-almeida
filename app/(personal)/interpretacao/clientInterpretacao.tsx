@@ -48,7 +48,7 @@ export default function ClientInterpretacaoPage({
         style={{
           backgroundColor: `rgb(${bgColor.r}, ${bgColor.g}, ${bgColor.b})`,
         }}
-        className="pb-16 pt-28 lg:pt-16"
+        className="pb-16 pt-28 lg:pt-16 min-h-screen"
       >
         <div className="lg:pl-[20%] px-4 lg:pr-8 2xl:pr-24">
           <h1 className="hidden lg:block text-center uppercase text-3xl lg:text-5xl 2xl:text-7xl font-light tracking-tight">
