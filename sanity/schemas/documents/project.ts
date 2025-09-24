@@ -222,6 +222,17 @@ export default defineType({
               ],
             }),
           ],
+          preview: {
+            select: { desc: 'description' },
+            prepare({ desc }) {
+              const extractFirstText = (arr) =>
+                Array.isArray(arr) && arr.length && arr[0]?.children?.length
+                  ? arr[0].children[0].text
+                  : undefined
+              const title = extractFirstText(desc?.en) || extractFirstText(desc?.pt) || 'Text block'
+              return { title }
+            },
+          },
         }),
 
         // SINGLE VIDEO
@@ -284,19 +295,24 @@ export default defineType({
             }),
           ],
           preview: {
-            select: {
-              desc: 'description',
-            },
-            prepare({ desc }) {
-              const text =
-                (desc?.pt && desc.pt[0]?.children?.[0]?.text) ||
-                (desc?.en && desc.en[0]?.children?.[0]?.text) ||
-                'Text block'
-              return { title: text }
+            select: { left: 'videoOneLink', right: 'videoTwoLink' },
+            prepare({ left, right }) {
+              const subtitle = [left, right].filter(Boolean).join(' | ')
+              return { title: 'Two videos', subtitle }
             },
           },
         }),
       ],
     }),
   ],
+  preview: {
+    select: {
+      title: 'title.pt',
+    },
+    prepare({ title }) {
+      return {
+                title,
+      }
+    },
+  },
 })

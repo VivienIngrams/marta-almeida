@@ -166,11 +166,11 @@ export default defineType({
   
   preview: {
     select: {
-      title: 'title',
+      title: 'title.pt',
     },
     prepare({ title }) {
       return {
-        subtitle: 'Interpretacao',
+       
         title,
       }
     },

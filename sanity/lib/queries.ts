@@ -1,7 +1,5 @@
 import { groq } from 'next-sanity'
 
-
-
 export const homePageQuery = groq`
   *[_type == "home"][0]{
     _id,
@@ -138,24 +136,7 @@ export const settingsQuery = groq`
    
   }
 `
-export const allProjectsQuery = groq`
-  *[_type == "project"] | order(year desc) {
-    _id,
-    year,
-    coverImage,
-    description,
-     overview {
-      pt,
-      en
-    },
-    site,
-    "slug": slug.current,
-     title {
-      pt,
-      en
-    },
-  }
-`
+
 export const criacaoPageQuery = groq`
   *[_type == "criacao"][0]{
     _id,

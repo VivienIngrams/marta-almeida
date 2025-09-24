@@ -86,9 +86,12 @@ export default defineType({
   ],
 
   preview: {
-    prepare() {
+    select: {
+      title: 'title.pt', 
+    },
+    prepare({ title }) {
       return {
-        title: 'Biography page',
+        title: title,
       }
     },
   },

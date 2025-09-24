@@ -167,12 +167,11 @@ export default defineType({
   ],
   preview: {
     select: {
-      title: 'title',
+      title: 'title.pt',
     },
     prepare({ title }) {
       return {
-        subtitle: 'Colaboracao',
-        title,
+                title,
       }
     },
   },
