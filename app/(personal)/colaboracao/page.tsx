@@ -14,7 +14,7 @@ export default async function ColaboracaoPage() {
   const showcaseProjectsProducao = pageData.data.showcaseProjectsProducao || []
   const showcaseProjectsOutros = pageData.data.showcaseProjectsOutros || []
   const title = pageData?.data?.title?.[language] || ''
-  const overview = pageData?.data?.overview?.[language] || pageData?.data?.overview?.pt || []
+
   const bgColor = pageData.data.bgColor || { r: 255, g: 255, b: 255 }
 
   // Fetch initial data for each project in each category
@@ -48,7 +48,7 @@ export default async function ColaboracaoPage() {
       }
     }),
   )
-
+  
   return (
     <section className='min-h-screen'
       style={{
@@ -57,7 +57,7 @@ export default async function ColaboracaoPage() {
     >
       <ColaboracaoTabs
         title={title}
-        overview={overview}
+       
         ensino={ensinoWithInitial}
         producao={producaoWithInitial}
         outros={outrosWithInitial}

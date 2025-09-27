@@ -21,7 +21,6 @@ import {
   BioPayload,
   InterpretacaoPayload,
   HomePagePayload,
-
   ProjectPayload,
   SettingsPayload,
 } from '@/types'

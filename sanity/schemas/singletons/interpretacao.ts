@@ -109,6 +109,22 @@ export default defineType({
           validation: (rule) => rule.max(155),
         },
       ],
+      preview: {
+        select: {
+          overviewPt: 'pt',
+          overviewEn: 'en',
+        },
+        prepare({ overviewPt, overviewEn }) {
+          const extractFirst = (arr) =>
+            Array.isArray(arr) && arr.length && arr[0]?.children?.length
+              ? arr[0].children[0].text
+              : ''
+          return {
+            title: 'Page Description',
+            subtitle: extractFirst(overviewEn) || extractFirst(overviewPt) || 'No content',
+          }
+        },
+      },
     }),
     defineField({
       name: 'showcaseProjects',
@@ -157,8 +173,34 @@ export default defineType({
                 { name: 'en', title: 'English', type: 'string' },
               ],
               description: '(Optional) Caption below the image (bilingual)',
+              preview: {
+                select: {
+                  captionPt: 'pt',
+                  captionEn: 'en',
+                },
+                prepare({ captionPt, captionEn }) {
+                  return {
+                    title: 'Caption',
+                    subtitle: captionEn || captionPt || 'No caption',
+                  }
+                },
+              },
             },
-          ]
+          ],
+          preview: {
+            select: {
+              media: 'asset',
+              captionPt: 'caption.pt',
+              captionEn: 'caption.en',
+            },
+            prepare({ media, captionPt, captionEn }) {
+              return {
+                title: 'Carousel Image',
+                subtitle: captionEn || captionPt || '',
+                media,
+              }
+            },
+          },
         }),
       ],
     }),
@@ -166,12 +208,12 @@ export default defineType({
   
   preview: {
     select: {
-      title: 'title.pt',
+      titlePt: 'title.pt',
+      titleEn: 'title.en',
     },
-    prepare({ title }) {
+    prepare({ titlePt, titleEn }) {
       return {
-       
-        title,
+        title: titleEn || titlePt || 'Untitled Interpretacao',
       }
     },
   },

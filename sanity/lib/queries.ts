@@ -55,8 +55,7 @@ export const projectBySlugQuery = groq`
     _id,
     year,
     coverImage,
-    description,
-    bgColor {
+   bgColor {
       'r': rgb.r,
       'g': rgb.g,
       'b': rgb.b,
@@ -152,8 +151,7 @@ export const criacaoPageQuery = groq`
       _id,  
       year,
       coverImage,
-      description,
-       overview {
+            overview {
       pt,
       en
     },
@@ -186,8 +184,7 @@ export const criacaoPageQuery = groq`
       _id,  
       year,
       coverImage,
-      description,
-      overview {
+           overview {
       pt,
       en
     },
@@ -202,8 +199,7 @@ export const criacaoPageQuery = groq`
       _id,  
       year,
       coverImage,
-      description,
-       overview {
+            overview {
       pt,
       en
     },
@@ -218,8 +214,7 @@ export const criacaoPageQuery = groq`
       _id,  
       year,
       coverImage,
-      description,
-       overview {
+            overview {
       pt,
       en
     },
@@ -268,8 +263,7 @@ export const criacaoPageQuery = groq`
       _id,  
       year,
       coverImage,
-      description,
-       overview {
+            overview {
       pt,
       en
     },
@@ -282,22 +276,3 @@ export const criacaoPageQuery = groq`
     },
   }`
 
-//   export const moreProjectsQuery = groq`
-//   *[_type == "project" && !(_id in path("drafts.**
-// "))] | order(year desc) {
-//     _id,
-//     year,
-//     coverImage,
-//     description,
-//      overview {
-//       pt,
-//       en
-//     },
-//     site,
-//     "slug": slug.current,
-//      title {
-//       pt,
-//       en
-//     },
-//   }[0...6]
-// `

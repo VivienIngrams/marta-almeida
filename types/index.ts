@@ -51,8 +51,7 @@ export interface BioPayload {
 export interface ProjectPayload {
   year?: string
   coverImage?: Image
-  description?: BilingualBlock
-  bgColor?: {
+    bgColor?: {
     r?: string
     g?: string
     b?: string

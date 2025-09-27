@@ -1,4 +1,3 @@
-// app/criacao/page.tsx (or wherever your route file is)
 import ClientCriacaoPage from './clientCriacao'
 import { loadCriacaoPage, loadProject } from '@/sanity/loader/loadQuery'
 import { notFound } from 'next/navigation'

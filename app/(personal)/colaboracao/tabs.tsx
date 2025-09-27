@@ -60,6 +60,7 @@ export default function ColaboracaoTabs({
           <div className="flex justify-center">
                 <div className={`${!hasClicked ? 'flex flex-col md:flex-row items-center gap-6' : 'flex flex-wrap justify-around gap-4 lg:gap-8'}`}>
               {CATEGORIES.map((cat) => (
+                
                 <button
                   key={cat.key}
                   style={{
@@ -78,6 +79,7 @@ export default function ColaboracaoTabs({
                     setHasClicked(true)
                   }}
                 >
+                  
                      {cat.label[language] || cat.label.pt}
                 </button>
               ))}

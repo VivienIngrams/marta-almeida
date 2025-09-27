@@ -2,12 +2,13 @@
 
 import { useState } from 'react'
 import Image from 'next/image'
-import { urlForImage } from '@/sanity/lib/utils'
+import type { EncodeDataAttributeCallback } from '@sanity/react-loader'
+
+import { Module } from '@/components/modules'
 import { CustomPortableText } from '@/components/shared/CustomPortableText'
 import SingleImage from '@/components/shared/SingleImage'
-import { Module } from '@/components/modules'
-import type { EncodeDataAttributeCallback } from '@sanity/react-loader'
-import type { ProjectPayload, ProjectContent, BilingualBlock } from '@/types'
+import { urlForImage } from '@/sanity/lib/utils'
+import type { ProjectPayload } from '@/types'
 
 export interface ProjectPageProps {
   data: ProjectPayload | null
@@ -25,16 +26,20 @@ export default function CriacaoProjectPage({
   if (!data) return null
   const { year, overview, site, title, content, coverImage, bgColor } = data
   const lang = language || 'pt'
-console.log(data)
+
   const imageUrl =
     coverImage &&
     urlForImage(coverImage)?.width(1200).height(500).fit('crop').url()
 
   const bgStyle =
-    bgColor && bgColor.r !== undefined && bgColor.g !== undefined && bgColor.b !== undefined
+    bgColor &&
+    bgColor.r !== undefined &&
+    bgColor.g !== undefined &&
+    bgColor.b !== undefined
       ? { backgroundColor: `rgb(${bgColor.r}, ${bgColor.g}, ${bgColor.b})` }
       : {}
-
+  const langTitle = typeof title?.[lang] === 'string' ? title[lang] : ''
+  const langOverview = overview?.[lang] || []
   return (
     <div className="lg:pl-[20%] lg:pr-8 2xl:pr-24" style={bgStyle}>
       <div className="-mt-2 md:py-6 px-4 lg:max-w-[70%] mx-auto">
@@ -45,7 +50,7 @@ console.log(data)
               {!showContent ? (
                 <div className="w-full overflow-hidden rounded-[3px] max-h-[25vh]">
                   <Image
-                    alt={title?.[lang] || 'Cover image'}
+                    alt={langTitle || 'Cover image'}
                     src={imageUrl}
                     width={1800}
                     height={700}
@@ -63,7 +68,10 @@ console.log(data)
               ) : (
                 <div className="mt-4 w-full">
                   <div className="relative w-full aspect-[16/9] lg:max-w-5xl mx-auto">
-                    <SingleImage image={coverImage} classesWrapper="w-full h-full" />
+                    <SingleImage
+                      image={coverImage}
+                      classesWrapper="w-full h-full"
+                    />
                   </div>
                 </div>
               )}
@@ -72,13 +80,16 @@ console.log(data)
 
           {/* Title and Year */}
           <div className="w-full mt-4">
-            {title?.[lang] && (
-              <div className="my-1 font-bold text-xl lg:text-2xl 2xl:text-3xl">{title[lang]}</div>
+            {langTitle && (
+              <div className="my-1 font-bold text-xl lg:text-2xl 2xl:text-3xl">
+                {langTitle}
+              </div>
             )}
-            {year && <div className="text-base lg:text-lg 2xl:text-xl">{year}</div>}
+            {year && (
+              <div className="text-base lg:text-lg 2xl:text-xl">{year}</div>
+            )}
           </div>
         </div>
-
         {/* Overview and Content */}
         <div className="font-sans">
           {!showContent && content && content.length > 0 && (
@@ -103,8 +114,9 @@ console.log(data)
           {showContent && (
             <div className="py-8 font-light text-sm lg:text-base 2xl:text-lg lg:max-w-5xl mx-auto">
               {/* Overview */}
-              {overview?.[lang] && <CustomPortableText value={overview[lang] as any} />}
-
+              {langOverview && Array.isArray(langOverview) && (
+                <CustomPortableText value={langOverview} />
+              )}
               {/* Content blocks */}
               {content?.map((block, index) => {
                 // Handle TextBlock
@@ -122,7 +134,10 @@ console.log(data)
                 }
 
                 // Handle Single Image or Two Images
-                if (block._type === 'singleImage' || block._type === 'twoImages') {
+                if (
+                  block._type === 'singleImage' ||
+                  block._type === 'twoImages'
+                ) {
                   return (
                     <Module
                       key={block._key || index}
@@ -139,7 +154,10 @@ console.log(data)
                 }
 
                 // Handle Single Video or Two Videos
-                if (block._type === 'singleVideo' || block._type === 'twoVideos') {
+                if (
+                  block._type === 'singleVideo' ||
+                  block._type === 'twoVideos'
+                ) {
                   return (
                     <Module
                       key={block._key || index}
@@ -156,7 +174,13 @@ console.log(data)
                 }
 
                 // Fallback
-                return <Module key={block._key || index} content={block} paragraphClasses="" />
+                return (
+                  <Module
+                    key={block._key || index}
+                    content={block}
+                    paragraphClasses=""
+                  />
+                )
               })}
 
               {/* External site */}
@@ -179,4 +203,3 @@ console.log(data)
     </div>
   )
 }
-

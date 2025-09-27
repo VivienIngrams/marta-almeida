@@ -63,6 +63,22 @@ export default defineType({
         },
       ],
       validation: (rule) => rule.required(),
+      preview: {
+        select: {
+          overviewPt: 'pt',
+          overviewEn: 'en',
+        },
+        prepare({ overviewPt, overviewEn }) {
+          const extractFirst = (arr) =>
+            Array.isArray(arr) && arr.length && arr[0]?.children?.length
+              ? arr[0].children[0].text
+              : ''
+          return {
+            title: 'Overview',
+            subtitle: extractFirst(overviewEn) || extractFirst(overviewPt) || 'No content',
+          }
+        },
+      },
     }),
     defineField({
       name: 'homeImage',

@@ -17,10 +17,9 @@ export function ProjectPage({ data, encodeDataAttribute, language }: ProjectPage
   const [showContent, setShowContent] = useState(false)
 
   if (!data) return null
-console.log(data)
+
   const { year, overview, site, title, content, coverImage, bgColor } = data
   const lang = language || 'pt'
-
   // Background color style
   const bgStyle =
     bgColor && bgColor.r !== undefined && bgColor.g !== undefined && bgColor.b !== undefined

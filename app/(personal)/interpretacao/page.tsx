@@ -11,8 +11,7 @@ export default async function InterpretacaoPage() {
 
   const showcaseProjects = pageData.data.showcaseProjects || []
   const title = pageData.data.title?.[language] || ''
-  const overview =
-    pageData.data.overview?.[language] || pageData.data.overview?.pt || []
+
   const images = pageData.data.images || []
   const rawBgColor = pageData.data.bgColor || { r: 255, g: 255, b: 255 }
 
@@ -54,7 +53,6 @@ export default async function InterpretacaoPage() {
   return (
     <ClientInterpretacaoPage
       title={title}
-      overview={overview}
       bgColor={bgColor}
       images={images}
       projects={projectsWithInitial}

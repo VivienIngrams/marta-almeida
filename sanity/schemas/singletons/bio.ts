@@ -82,16 +82,33 @@ export default defineType({
         },
       ],
       validation: (rule) => rule.required(),
+      preview: {
+        select: {
+          bioPt: 'pt',
+          bioEn: 'en',
+        },
+        prepare({ bioPt, bioEn }) {
+          const extractFirst = (arr) =>
+            Array.isArray(arr) && arr.length && arr[0]?.children?.length
+              ? arr[0].children[0].text
+              : ''
+          return {
+            title: 'Biography',
+            subtitle: extractFirst(bioEn) || extractFirst(bioPt) || 'No content',
+          }
+        },
+      },
     }),
   ],
 
   preview: {
     select: {
-      title: 'title.pt', 
+      titlePt: 'title.pt',
+      titleEn: 'title.en',
     },
-    prepare({ title }) {
+    prepare({ titlePt, titleEn }) {
       return {
-        title: title,
+        title: titleEn || titlePt || 'Untitled Bio',
       }
     },
   },
