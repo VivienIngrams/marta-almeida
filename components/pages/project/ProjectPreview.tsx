@@ -23,7 +23,7 @@ export default function ProjectPreview(props: Props) {
     { initial, },
   )
 
-  return <ProjectPage data={data!}  encodeDataAttribute={encodeDataAttribute} language={language} />
+  return <ProjectPage data={data}  encodeDataAttribute={encodeDataAttribute} language={language} />
 }
 export function ProjectPreviewCriacao(props: Props) {
   const { params, initial, language } = props
@@ -33,5 +33,5 @@ export function ProjectPreviewCriacao(props: Props) {
     { initial },
   )
 
-  return <CriacaoProjectPage data={data!}  encodeDataAttribute={encodeDataAttribute} language={language} />
+  return <CriacaoProjectPage data={data}  encodeDataAttribute={encodeDataAttribute} language={language} />
 }

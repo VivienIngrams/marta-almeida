@@ -57,8 +57,7 @@ export default async function ColaboracaoPage() {
     >
       <ColaboracaoTabs
         title={title}
-       
-        ensino={ensinoWithInitial}
+              ensino={ensinoWithInitial}
         producao={producaoWithInitial}
         outros={outrosWithInitial}
         bgColor={bgColor}

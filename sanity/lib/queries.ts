@@ -66,10 +66,7 @@ export const projectBySlugQuery = groq`
     },
     site,
     "slug": slug.current,
-    title {
-      pt,
-      en
-    },
+    title,
     content[] {
       _type == 'singleImage' => {
         _type,
@@ -130,10 +127,8 @@ export const projectPaths = groq`
 
 export const settingsQuery = groq`
   *[_type == "settings"][0]{
-   
-    favIcon,
-   
-  }
+       favIcon,
+    }
 `
 
 export const criacaoPageQuery = groq`
@@ -157,10 +152,7 @@ export const criacaoPageQuery = groq`
     },
       site,
       "slug": slug.current,
-       title {
-      pt,
-      en
-    },
+       title,
     },
 
   }`
@@ -190,10 +182,7 @@ export const criacaoPageQuery = groq`
     },
       site,
       "slug": slug.current,
-       title {
-      pt,
-      en
-    },
+       title,
     },
     showcaseProjectsEnsino[]->{
       _id,  
@@ -205,10 +194,7 @@ export const criacaoPageQuery = groq`
     },
       site,
       "slug": slug.current,
-       title {
-      pt,
-      en
-    },
+       title,
     },
     showcaseProjectsProducao[]->{
       _id,  
@@ -220,10 +206,7 @@ export const criacaoPageQuery = groq`
     },
       site,
       "slug": slug.current,
-       title {
-      pt,
-      en
-    },
+       title,
     },
 
   }`
@@ -269,10 +252,7 @@ export const criacaoPageQuery = groq`
     },
       site,
       "slug": slug.current,
-       title {
-      pt,
-      en
-    },
+       title,
     },
   }`
 

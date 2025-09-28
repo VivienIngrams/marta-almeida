@@ -6,30 +6,15 @@ export default defineType({
   title: 'Projects',
   type: 'document',
   icon: StarIcon,
-  fields: [
-    // TITLE
+   fields: [
     defineField({
       name: 'title',
+      description: 'This field is the title of your project.',
       title: 'Title',
-      description: 'Project title in both languages',
-      type: 'object',
-      fields: [
-        {
-          name: 'pt',
-          title: 'Português',
-          type: 'string',
-          validation: (rule) => rule.required(),
-        },
-        {
-          name: 'en',
-          title: 'English',
-          type: 'string',
-          validation: (rule) => rule.required(),
-        },
-      ],
+      type: 'string',
+      validation: (rule) => rule.required(),
     }),
 
-    // SLUG
     defineField({
       name: 'slug',
       title: 'Slug',
@@ -37,7 +22,7 @@ export default defineType({
         'Click "Generate" to create the slug (it will define the page address at marta-almeida.com/projects/<slug>).',
       type: 'slug',
       options: {
-        source: 'title.pt',
+        source: 'title',
         maxLength: 96,
         isUnique: (value, context) => context.defaultIsUnique(value, context),
       },
@@ -328,19 +313,14 @@ export default defineType({
     }),
   ],
 
-  // DOCUMENT PREVIEW
   preview: {
     select: {
-      titlePt: 'title.pt',
-      titleEn: 'title.en',
-      media: 'coverImage',
-      subtitle: 'year',
+      title: 'title',
     },
-    prepare({ titlePt, titleEn, media, subtitle }) {
+    prepare({ title }) {
       return {
-        title: titleEn || titlePt || 'Untitled project',
-        subtitle: subtitle || '',
-        media,
+        subtitle: 'Home',
+        title,
       }
     },
   },

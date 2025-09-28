@@ -36,10 +36,6 @@ export async function generateMetadata(): Promise<Metadata> {
   }
 }
 
-// export async function viewport(): Promise<Viewport> {
-//   const [{ data: settings }] = await Promise.all([loadSettings()])
- 
-// }
 
 export default async function IndexRoute({
   children,

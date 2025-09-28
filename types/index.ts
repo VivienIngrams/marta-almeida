@@ -19,12 +19,10 @@ export interface ShowcaseProject {
   overview?: BilingualBlock
   slug?: string
   tags?: string[]
-  title?: BilingualString
+  title?: string
   year?: string
   _updatedAt?: string
 }
-
-// Page payloads
 
 export interface HomePagePayload {
   overview?: BilingualBlock
@@ -63,7 +61,7 @@ export interface ProjectPayload {
   }
   slug: string
   tags?: string[]
-  title?: BilingualString
+  title?: string
   content?: ProjectContent[]
 }
 export interface ProjectContentBase {
@@ -159,8 +157,3 @@ overview?: BilingualBlock
   showcaseProjectsOutros?: ShowcaseProject[]
 }
 
-// export interface MoreProjectsPayload {
-//   title?: string
-//   overview?: PortableTextBlock[]
-//   showcaseProjects?: ShowcaseProject[]
-// }

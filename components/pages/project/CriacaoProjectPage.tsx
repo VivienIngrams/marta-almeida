@@ -38,7 +38,7 @@ export default function CriacaoProjectPage({
     bgColor.b !== undefined
       ? { backgroundColor: `rgb(${bgColor.r}, ${bgColor.g}, ${bgColor.b})` }
       : {}
-  const langTitle = typeof title?.[lang] === 'string' ? title[lang] : ''
+
   const langOverview = overview?.[lang] || []
   return (
     <div className="lg:pl-[20%] lg:pr-8 2xl:pr-24" style={bgStyle}>
@@ -50,7 +50,7 @@ export default function CriacaoProjectPage({
               {!showContent ? (
                 <div className="w-full overflow-hidden rounded-[3px] max-h-[25vh]">
                   <Image
-                    alt={langTitle || 'Cover image'}
+                    alt={title || 'Cover image'}
                     src={imageUrl}
                     width={1800}
                     height={700}
@@ -80,9 +80,9 @@ export default function CriacaoProjectPage({
 
           {/* Title and Year */}
           <div className="w-full mt-4">
-            {langTitle && (
+            {title && (
               <div className="my-1 font-bold text-xl lg:text-2xl 2xl:text-3xl">
-                {langTitle}
+                {title}
               </div>
             )}
             {year && (
