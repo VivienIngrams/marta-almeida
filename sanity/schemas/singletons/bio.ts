@@ -108,7 +108,7 @@ export default defineType({
     },
     prepare({ titlePt, titleEn }) {
       return {
-        title: titleEn || titlePt || 'Untitled Bio',
+        title: titlePt || titleEn || 'Untitled Bio',
       }
     },
   },

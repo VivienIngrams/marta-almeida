@@ -188,7 +188,7 @@ export default defineType({
     },
     prepare({ titlePt, titleEn }) {
       return {
-        title: titleEn || titlePt || 'Untitled Colaboracao',
+        title: titlePt || titleEn || 'Untitled Colaboracao',
       }
     },
   },

@@ -158,9 +158,3 @@ overview?: BilingualBlock
   showcaseProjectsProducao?: ShowcaseProject[]
   showcaseProjectsOutros?: ShowcaseProject[]
 }
-
-// export interface MoreProjectsPayload {
-//   title?: string
-//   overview?: PortableTextBlock[]
-//   showcaseProjects?: ShowcaseProject[]
-// }

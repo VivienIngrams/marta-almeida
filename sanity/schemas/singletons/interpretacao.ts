@@ -11,7 +11,7 @@ export default defineType({
   fields: [
     defineField({
       name: 'title',
-      description: 'This field is the title of your personal website.',
+      description: 'This field is the title of this page of your website.',
       title: 'Title',
       type: 'object',
       fields: [
@@ -213,7 +213,7 @@ export default defineType({
     },
     prepare({ titlePt, titleEn }) {
       return {
-        title: titleEn || titlePt || 'Untitled Interpretacao',
+        title: titlePt || titleEn || 'Untitled Interpretacao',
       }
     },
   },

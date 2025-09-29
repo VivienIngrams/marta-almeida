@@ -50,7 +50,7 @@ export default function ClientInterpretacaoPage({
       >
         <div className="lg:pl-[20%] px-4 lg:pr-8 2xl:pr-24">
           <h1 className="hidden lg:block text-center uppercase text-3xl lg:text-5xl 2xl:text-7xl font-light tracking-tight">
-            {title[language]}
+            {title}
           </h1>
         </div>
 
