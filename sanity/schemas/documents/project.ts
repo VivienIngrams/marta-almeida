@@ -338,7 +338,7 @@ export default defineType({
     },
     prepare({ titlePt, titleEn, media, subtitle }) {
       return {
-        title: titleEn || titlePt || 'Untitled project',
+        title: titlePt || titleEn || 'Untitled project',
         subtitle: subtitle || '',
         media,
       }
