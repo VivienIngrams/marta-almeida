@@ -9,18 +9,18 @@ import { defineConfig, NavbarProps, useWorkspace } from 'sanity'
 import { presentationTool } from 'sanity/presentation'
 import { structureTool } from 'sanity/structure'
 
+import { apiVersion, dataset, projectId, studioUrl } from './sanity/lib/api'
+import { Logo } from './sanity/plugins/Logo'
+import * as resolve from './sanity/plugins/resolve'
+import { pageStructure, singletonPlugin } from './sanity/plugins/settings'
+import project from './sanity/schemas/documents/project'
+import bio from './sanity/schemas/singletons/bio'
+import criacao from './sanity/schemas/singletons/criacao'
+import home from './sanity/schemas/singletons/home'
+import settings from './sanity/schemas/singletons/settings'
 
-import { apiVersion, dataset, projectId, studioUrl } from '@/sanity/lib/api'
-import { Logo } from '@/sanity/plugins/Logo'
-import * as resolve from '@/sanity/plugins/resolve'
-import { pageStructure, singletonPlugin } from '@/sanity/plugins/settings'
-import project from '@/sanity/schemas/documents/project'
-import home from '@/sanity/schemas/singletons/home'
-import criacao from '@/sanity/schemas/singletons/criacao'
 import colaboracao from './sanity/schemas/singletons/colaboracao'
 import interpretacao from './sanity/schemas/singletons/interpretacao'
-import settings from '@/sanity/schemas/singletons/settings'
-import bio from '@/sanity/schemas/singletons/bio'
 
 const title =
   process.env.NEXT_PUBLIC_SANITY_PROJECT_TITLE ||
