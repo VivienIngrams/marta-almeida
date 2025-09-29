@@ -77,7 +77,7 @@ export function HomePage({ data, language }: HomePageProps) {
             )}
             {/* Overview text below the image */}
             {overviewText && (
-              <div className="mt-2 text-base md:text-xl 2xl:text-2xl text-black text-right max-w-[80%] ml-auto cursor-pointer">
+              <div className="mt-2 text-base md:text-lg 2xl:text-xl text-black text-right max-w-[80%] ml-auto cursor-pointer">
                 <CustomPortableText value={overviewText} />
               </div>
             )}

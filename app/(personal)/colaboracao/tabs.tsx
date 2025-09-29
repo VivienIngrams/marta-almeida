@@ -67,7 +67,7 @@ export default function ColaboracaoTabs({
                     color: `rgb(${bgColor.r}, ${bgColor.g}, ${bgColor.b})`,
                   }}
                   className={`inline-block  w-fit m-auto tracking-wider rounded-md font-light uppercase transition shadow-md shadow-black
-                    ${!hasClicked ? 'p-4 lg:p-6 2xl:p-10  2xl:text-3xl bg-black/30 shadow-lg shadow-black mt-8 md:mt-20 mx-4 xl:mx-8 ' : 'p-2 lg:p-3 text-xs lg:text-lg 2xl:text-xl bg-black/30'}
+                    ${!hasClicked ? 'p-4 lg:p-6 2xl:p-10 lg:text-xl 2xl:text-2xl bg-black/30 shadow-lg shadow-black mt-8 md:mt-20 xl:mt-32 mx-4 xl:mx-8 ' : 'p-2 lg:p-3 text-xs lg:text-lg 2xl:text-xl bg-black/30'}
                     ${
                       activeCategory === cat.key
                         ? 'underline underline-offset-1  lg:underline-offset-[3px] decoration-1 pb-3 lg:decoration-2 lg:text-xl 2xl:text-2xl font-normal scale-110'
