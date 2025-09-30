@@ -33,7 +33,7 @@ export function CustomPortableText({
         )
       },
       strong: ({ children }) => (
-        <strong className="font-bold text-base md:text-xl">{children}</strong>
+        <strong className="font-bold text-base md:text-lg 2xl:text-xl">{children}</strong>
       ),
     },
     types: {

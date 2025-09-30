@@ -7,6 +7,7 @@ import { loadSettings } from '@/sanity/loader/loadQuery'
 const oswald = Oswald({
   subsets: ['latin'],
   weight: ['200', '300', '400', '500', '700'],
+  variable: '--font-oswald',
 })
 
 export default async function RootLayout({
@@ -24,7 +25,7 @@ export default async function RootLayout({
       className={`bg-primary ${oswald.className}`}
     >
       <LanguageProvider>
-        <body>{children}</body>
+        <body className='thin-scrollbar font-oswald'>{children}</body>
       </LanguageProvider>
     </html>
   )
