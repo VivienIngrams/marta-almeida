@@ -33,7 +33,8 @@ export const bioPageQuery = groq`
    title {
       pt,
       en
-    },   
+    }, 
+    image,  
          bio {
       pt,
       en

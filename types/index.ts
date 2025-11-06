@@ -41,6 +41,7 @@ export interface HomePagePayload {
 
 export interface BioPayload {
   title?: BilingualString
+  image?: Image
   bio?: BilingualBlock
   bgColor?: { 
     r?: string        

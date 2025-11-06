@@ -1,8 +1,10 @@
 
-import { notFound } from 'next/navigation'
-import { loadBioPage } from '@/sanity/loader/loadQuery'
-import ClientBio from './clientBio'
 import { cookies } from 'next/headers'
+import { notFound } from 'next/navigation'
+
+import { loadBioPage } from '@/sanity/loader/loadQuery'
+
+import ClientBio from './clientBio'
 
 
 export default async function BioPage() {
@@ -34,7 +36,7 @@ export default async function BioPage() {
           backgroundColor: `rgb(${bgColor.r}, ${bgColor.g}, ${bgColor.b})`,
         }}
       >
-        <ClientBio title={title} bio={bio} bgColor={bgColor} />
+        <ClientBio title={title} bio={bio} bgColor={bgColor} image={pageData.data.image}/>
       </section>
     )
 }

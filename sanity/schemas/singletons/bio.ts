@@ -9,6 +9,14 @@ export default defineType({
   // Uncomment below to have edits publish automatically as you type
   // liveEdit: true,
   fields: [
+     defineField({
+      name: 'image',
+      title: 'Image',
+            type: 'image',
+      options: {
+        hotspot: true,
+      },
+    }),
     defineField({
       name: 'title',
       description: 'This field is the title of your biography page.',
