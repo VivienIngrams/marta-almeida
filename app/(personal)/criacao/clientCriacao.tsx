@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react'
 import { ProjectPreviewCriacao } from '@/components/pages/project/ProjectPreview'
 import { useBackgroundColor } from '@/components/providers/BgColorProvider'
+
 interface Project {
   slug: string
   initial: any
@@ -19,32 +20,14 @@ export default function ClientCriacaoPage({
   language: string
 }) {
   const [bgStyle, setBgStyle] = useState({})
+  const { setBackgroundColor } = useBackgroundColor()
+  const [activeSlug, setActiveSlug] = useState<string | null>(null)
 
   useEffect(() => {
     const firstBgColor = projects[0]?.bgColor
-    if (
-      firstBgColor &&
-      firstBgColor.r !== undefined &&
-      firstBgColor.g !== undefined &&
-      firstBgColor.b !== undefined
-    ) {
-      setBgStyle({
-        backgroundColor: `rgb(${firstBgColor.r}, ${firstBgColor.g}, ${firstBgColor.b})`,
-      })
-    }
-  }, [projects])
-
-  const { setBackgroundColor } = useBackgroundColor()
-
-  useEffect(() => {
-    if (
-      projects.length > 0 &&
-      projects[0].bgColor &&
-      projects[0].bgColor.r !== undefined &&
-      projects[0].bgColor.g !== undefined &&
-      projects[0].bgColor.b !== undefined
-    ) {
-      const rgb = `rgb(${projects[0].bgColor.r}, ${projects[0].bgColor.g}, ${projects[0].bgColor.b})`
+    if (firstBgColor) {
+      const rgb = `rgb(${firstBgColor.r}, ${firstBgColor.g}, ${firstBgColor.b})`
+      setBgStyle({ backgroundColor: rgb })
       setBackgroundColor(rgb)
     }
   }, [projects, setBackgroundColor])
@@ -52,20 +35,50 @@ export default function ClientCriacaoPage({
   return (
     <section>
       <div style={bgStyle} className="pb-16 pt-28 lg:pt-16 min-h-screen">
-        <div className="lg:pl-[20%] px-4 lg:pr-8 2xl:pr-24">
+        <div className="lg:pl-[20%] px-4 lg:pr-8 2xl:pr-24 mb-8">
           <h1 className="hidden lg:block text-center uppercase text-3xl lg:text-5xl 2xl:text-7xl font-light tracking-tight">
             {title}
           </h1>
         </div>
-        <div>
-          {projects.map((project) => (
-            <ProjectPreviewCriacao
-              key={project.slug}
-              params={{ slug: project.slug }}
-              initial={project.initial}
-              language={language}
-            />
-          ))}
+
+        {/* Projects Grid */}
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: activeSlug 
+              ? '1fr' 
+              : 'repeat(auto-fill, minmax(320px, 1fr))',
+            gap: '2rem',
+            maxWidth: '1600px',
+            margin: '0 auto',
+            padding: '0 1rem',
+            transition: 'grid-template-columns 0.5s ease',
+          }}
+        >
+          {projects.map((project) => {
+            const isExpanded = activeSlug === project.slug
+            const isOtherExpanded = activeSlug && activeSlug !== project.slug
+
+            return (
+              <div
+                key={project.slug}
+                style={{
+                  gridColumn: isExpanded ? '1 / -1' : 'auto',
+                  opacity: isOtherExpanded ? 0.4 : 1,
+                  transform: isOtherExpanded ? 'scale(0.95)' : 'scale(1)',
+                  transition: 'all 0.5s ease',
+                }}
+              >
+                <ProjectPreviewCriacao
+                  params={{ slug: project.slug }}
+                  initial={project.initial}
+                  language={language}
+                  onToggle={(open) => setActiveSlug(open ? project.slug : null)}
+                  isActive={isExpanded}
+                />
+              </div>
+            )
+          })}
         </div>
       </div>
     </section>

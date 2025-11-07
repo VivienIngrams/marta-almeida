@@ -20,18 +20,40 @@ export default function ProjectPreview(props: Props) {
   const { data, encodeDataAttribute } = useQuery<ProjectPayload | null>(
     projectBySlugQuery,
     params,
-    { initial, },
+    { initial }
   )
 
-  return <ProjectPage data={data!}  encodeDataAttribute={encodeDataAttribute} language={language} />
+  return (
+    <ProjectPage 
+      data={data!} 
+      encodeDataAttribute={encodeDataAttribute} 
+      language={language} 
+    />
+  )
 }
-export function ProjectPreviewCriacao(props: Props) {
-  const { params, initial, language } = props
+
+export function ProjectPreviewCriacao(
+  props: Props & {
+    onToggle: (open: boolean) => void
+    isActive: boolean
+  }
+) {
+  const { params, initial, language, onToggle, isActive } = props
   const { data, encodeDataAttribute } = useQuery<ProjectPayload | null>(
     projectBySlugQuery,
     params,
-    { initial },
+    { initial }
   )
 
-  return <CriacaoProjectPage data={data!}  encodeDataAttribute={encodeDataAttribute} language={language} />
+  if (!data) return null
+
+  return (
+    <CriacaoProjectPage
+      data={data}
+      encodeDataAttribute={encodeDataAttribute}
+      language={language}
+      onToggle={onToggle}
+      isActive={isActive}
+    />
+  )
 }
