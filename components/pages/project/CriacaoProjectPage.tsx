@@ -37,7 +37,7 @@ export default function CriacaoProjectPage({
   const lang = language || 'pt'
   const imageUrl =
     coverImage &&
-    urlForImage(coverImage)?.width(1200).height(500).fit('crop').url()
+    urlForImage(coverImage)?.width(1200).height(1200).fit('max').url() // minimal crop
 
   const bgStyle =
     bgColor && bgColor.r !== undefined
@@ -52,38 +52,39 @@ export default function CriacaoProjectPage({
       style={bgStyle}
     >
       <div
-        className={`px-6 py-6 ${showContent ? 'max-w-[90%] mx-auto' : 'max-w-[380px] mx-auto'}`}
+        className={`px-6 py-6 ${
+          showContent ? 'max-w-[90%] mx-auto' : 'max-w-[380px] mx-auto'
+        }`}
       >
-        {/* Cover image */}
-        {coverImage && imageUrl && (
-          <div className="mb-4 w-full overflow-hidden rounded-md">
+        {/* Cover image (shown only when collapsed) */}
+        {!showContent && coverImage && imageUrl && (
+          <div className="mb-4 w-full overflow-hidden  aspect-square relative">
             <Image
               alt={langTitle || 'Cover image'}
               src={imageUrl}
-              width={1800}
-              height={700}
+              fill
               sizes="(min-width: 640px) 60vw, 80vw"
-              className={`h-auto object-contain mx-auto transition-all duration-500 ${
-                showContent ? 'w-full' : 'max-w-full'
-              }`}
+              className="object-contain transition-all duration-500"
             />
           </div>
         )}
 
-        {/* Title + Year */}
-        <div className="flex justify-between items-center mb-2">
+        {/* Title + Year stacked */}
+        <div className="mb-2">
           <h2 className="font-bold text-xl">{langTitle}</h2>
-          {year && <span className="text-sm opacity-70">{year}</span>}
+          {year && <span className="text-sm opacity-70 block mt-1">{year}</span>}
         </div>
 
-        {/* Toggle button - collapsed state */}
+        {/* Toggle button - collapsed state (RIGHT-ALIGNED) */}
         {!showContent && (
-          <button
-            onClick={() => onToggle(true)}
-            className="text-sm font-semibold underline hover:opacity-70 transition-opacity"
-          >
-            {lang === 'en' ? 'Read more...' : 'Ler mais...'}
-          </button>
+          <div className="text-right">
+            <button
+              onClick={() => onToggle(true)}
+              className="text-sm font-semibold underline hover:opacity-70 transition-opacity"
+            >
+              {lang === 'en' ? 'Read more...' : 'Ler mais...'}
+            </button>
+          </div>
         )}
 
         {/* Expanded content */}
@@ -122,7 +123,7 @@ export default function CriacaoProjectPage({
                   setShowContent(false)
                   onToggle(false)
                 }}
-                className="px-4 py-2 border rounded-md hover:bg-black/5 transition-colors text-sm"
+                className="px-4 py-2 underline underline-offset-2 hover:bg-black/5 transition-colors text-sm"
               >
                 {lang === 'en' ? 'See less' : 'Ver menos'}
               </button>

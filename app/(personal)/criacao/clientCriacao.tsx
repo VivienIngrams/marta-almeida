@@ -1,8 +1,7 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { ProjectPreviewCriacao } from '@/components/pages/project/ProjectPreview'
-import { useBackgroundColor } from '@/components/providers/BgColorProvider'
 
 interface Project {
   slug: string
@@ -19,23 +18,20 @@ export default function ClientCriacaoPage({
   projects: Project[]
   language: string
 }) {
-  const [bgStyle, setBgStyle] = useState({})
-  const { setBackgroundColor } = useBackgroundColor()
   const [activeSlug, setActiveSlug] = useState<string | null>(null)
 
-  useEffect(() => {
-    const firstBgColor = projects[0]?.bgColor
-    if (firstBgColor) {
-      const rgb = `rgb(${firstBgColor.r}, ${firstBgColor.g}, ${firstBgColor.b})`
-      setBgStyle({ backgroundColor: rgb })
-      setBackgroundColor(rgb)
-    }
-  }, [projects, setBackgroundColor])
+  // Sort projects so that the active project comes first
+  const sortedProjects = activeSlug
+    ? [
+        ...projects.filter((p) => p.slug === activeSlug),
+        ...projects.filter((p) => p.slug !== activeSlug),
+      ]
+    : projects
 
   return (
     <section>
-      <div style={bgStyle} className=" lg:pl-[20%] pb-16 pt-28 lg:pt-16 min-h-screen">
-        <div className=" px-4 lg:pr-8 2xl:pr-24 mb-8">
+      <div className="lg:pl-[20%] pb-16 pt-28 lg:pt-16 min-h-screen">
+        <div className="px-4 lg:pr-8 2xl:pr-24 mb-8">
           <h1 className="hidden lg:block text-center uppercase text-3xl lg:text-5xl 2xl:text-7xl font-light tracking-tight">
             {title}
           </h1>
@@ -45,8 +41,8 @@ export default function ClientCriacaoPage({
         <div
           style={{
             display: 'grid',
-            gridTemplateColumns: activeSlug 
-              ? '1fr' 
+            gridTemplateColumns: activeSlug
+              ? '1fr'
               : 'repeat(auto-fill, minmax(320px, 1fr))',
             gap: '2rem',
             maxWidth: '1600px',
@@ -55,18 +51,17 @@ export default function ClientCriacaoPage({
             transition: 'grid-template-columns 0.5s ease',
           }}
         >
-          {projects.map((project) => {
+          {sortedProjects.map((project) => {
             const isExpanded = activeSlug === project.slug
-            const isOtherExpanded = activeSlug && activeSlug !== project.slug
 
             return (
               <div
                 key={project.slug}
                 style={{
                   gridColumn: isExpanded ? '1 / -1' : 'auto',
-                  opacity: isOtherExpanded ? 0.4 : 1,
-                  transform: isOtherExpanded ? 'scale(0.95)' : 'scale(1)',
+                  transform: 'scale(1)',
                   transition: 'all 0.5s ease',
+                  opacity: 1, // all fully opaque
                 }}
               >
                 <ProjectPreviewCriacao
