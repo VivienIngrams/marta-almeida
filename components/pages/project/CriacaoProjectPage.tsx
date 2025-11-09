@@ -26,7 +26,7 @@ export default function CriacaoProjectPage({
   isActive: boolean
 }) {
   const [showContent, setShowContent] = useState(isActive)
-  
+
   useEffect(() => {
     setShowContent(isActive)
   }, [isActive])
@@ -51,7 +51,9 @@ export default function CriacaoProjectPage({
       className="transition-all duration-500 rounded-lg overflow-hidden"
       style={bgStyle}
     >
-      <div className={`px-4 py-6 ${showContent ? 'max-w-[90%] mx-auto' : 'max-w-[380px] mx-auto'}`}>
+      <div
+        className={`px-6 py-6 ${showContent ? 'max-w-[90%] mx-auto' : 'max-w-[380px] mx-auto'}`}
+      >
         {/* Cover image */}
         {coverImage && imageUrl && (
           <div className="mb-4 w-full overflow-hidden rounded-md">
@@ -92,7 +94,7 @@ export default function CriacaoProjectPage({
                 <CustomPortableText value={langOverview} />
               </div>
             )}
-            
+
             {content?.map((block, index) => (
               <Module
                 key={block._key || index}
@@ -100,7 +102,7 @@ export default function CriacaoProjectPage({
                 paragraphClasses=""
               />
             ))}
-            
+
             {site?.url && (
               <div className="mt-6 text-center">
                 <a
@@ -113,13 +115,16 @@ export default function CriacaoProjectPage({
                 </a>
               </div>
             )}
-            
+
             <div className="text-right mt-6">
               <button
-                onClick={() => onToggle(false)}
+                onClick={() => {
+                  setShowContent(false)
+                  onToggle(false)
+                }}
                 className="px-4 py-2 border rounded-md hover:bg-black/5 transition-colors text-sm"
               >
-                {lang === 'en' ? 'Close' : 'Fechar'}
+                {lang === 'en' ? 'See less' : 'Ver menos'}
               </button>
             </div>
           </div>

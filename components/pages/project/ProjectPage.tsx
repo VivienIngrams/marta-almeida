@@ -31,10 +31,10 @@ export function ProjectPage({ data, encodeDataAttribute, language }: ProjectPage
       <div className="py-6 px-4 lg:max-w-[50%] mx-auto">
         {/* Header: Year & Title */}
         <div className="flex flex-wrap justify-between flex-col lg:flex-row">
-          <div className="w-full lg:mx-16">
-            {year && <div className="text-base lg:text-lg 2xl:text-xl">{year}</div>}
+          <div className="w-full ">
+            {year && <div className="text-sm lg:text-base 2xl:text-lg">{year}</div>}
             {title?.[lang] && (
-              <div className="my-1 lg:my-3 font-bold text-xl lg:text-2xl 2xl:text-3xl">
+              <div className="my-1 font-bold text-lg lg:text-xl 2xl:text-2xl">
                 {title[lang]}
               </div>
             )}
@@ -42,7 +42,7 @@ export function ProjectPage({ data, encodeDataAttribute, language }: ProjectPage
 
           {/* Overview */}
           {overview?.[lang] && (
-            <div className="w-full font-sans font-light text-gray-800 text-sm lg:text-base 2xl:text-lg lg:max-w-5xl">
+            <div className="w-full font-sans font-light text-gray-800 text-sm lg:text-base 2xl:text-lg leading-none lg:max-w-5xl">
               <CustomPortableText value={overview[lang]} paragraphClasses="" />
             </div>
           )}

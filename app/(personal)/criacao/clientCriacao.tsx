@@ -34,8 +34,8 @@ export default function ClientCriacaoPage({
 
   return (
     <section>
-      <div style={bgStyle} className="pb-16 pt-28 lg:pt-16 min-h-screen">
-        <div className="lg:pl-[20%] px-4 lg:pr-8 2xl:pr-24 mb-8">
+      <div style={bgStyle} className=" lg:pl-[20%] pb-16 pt-28 lg:pt-16 min-h-screen">
+        <div className=" px-4 lg:pr-8 2xl:pr-24 mb-8">
           <h1 className="hidden lg:block text-center uppercase text-3xl lg:text-5xl 2xl:text-7xl font-light tracking-tight">
             {title}
           </h1>
