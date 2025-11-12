@@ -14,7 +14,12 @@ interface BioClientProps {
   bgColor: { r: number; g: number; b: number }
 }
 
-export default function ClientBio({ title, bio, bgColor, image }: BioClientProps) {
+export default function ClientBio({
+  title,
+  bio,
+  bgColor,
+  image,
+}: BioClientProps) {
   const { setBackgroundColor } = useBackgroundColor()
 
   useEffect(() => {
@@ -30,12 +35,10 @@ export default function ClientBio({ title, bio, bgColor, image }: BioClientProps
   }, [bgColor, setBackgroundColor])
 
   const imageUrl = image ? urlForImage(image)?.fit('max').url() : undefined
-  const aspectRatio =
-    image?.asset?.metadata?.dimensions?.aspectRatio ?? 1 // width / height
-  const objectPosition =
-    image?.hotspot
-      ? `${Number(image.hotspot.x) * 100}% ${Number(image.hotspot.y) * 100}%`
-      : 'center'
+  const aspectRatio = image?.asset?.metadata?.dimensions?.aspectRatio ?? 1 // width / height
+  const objectPosition = image?.hotspot
+    ? `${Number(image.hotspot.x) * 100}% ${Number(image.hotspot.y) * 100}%`
+    : 'center'
 
   return (
     <section
@@ -55,29 +58,18 @@ export default function ClientBio({ title, bio, bgColor, image }: BioClientProps
               <div className="relative">
                 {/* Responsive aspect-ratio wrapper to preserve image proportions */}
                 {imageUrl && (
-                  <div
-                    className="float-left mr-4 mb-2"
-                    style={{ width: 220 /* adjust desired display width */ }}
-                  >
-                    <div
-                      style={{
-                        position: 'relative',
-                        width: '100%',
-                        paddingTop: `${100 / aspectRatio}%`, // height = width / aspectRatio
-                      }}
-                    >
-                      <Image
-                        src={imageUrl}
-                        alt={title || 'Biography image'}
-                        fill
-                        sizes="(min-width:1024px) 220px, 40vw"
-                        style={{
-                          objectFit: 'contain', // ensures whole image is visible (no crop)
-                          objectPosition,
-                        }}
-                      />
-                    </div>
-                  </div>
+                 <div
+  className="float-left relative w-[120px] md:w-[220px] xl:w-[300px]"
+  style={{ aspectRatio }} // use numeric aspect ratio from Sanity
+>
+  <Image
+    src={imageUrl}
+    alt={title || 'Biography image'}
+    fill
+    className="object-contain"
+  />
+</div>
+
                 )}
 
                 <CustomPortableText value={bio} />
