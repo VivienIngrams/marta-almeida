@@ -28,7 +28,7 @@ export function ProjectPage({ data, encodeDataAttribute, language }: ProjectPage
 
   return (
     <div style={bgStyle}>
-      <div className="py-6 px-4 lg:max-w-[50%] mx-auto">
+      <div className="p-4 lg:max-w-[50%] mx-auto">
         {/* Header: Year & Title */}
         <div className="flex flex-wrap justify-between flex-col lg:flex-row">
           <div className="w-full ">

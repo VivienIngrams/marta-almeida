@@ -52,8 +52,8 @@ export default function CriacaoProjectPage({
       style={bgStyle}
     >
       <div
-        className={`px-6 py-6 ${
-          showContent ? 'max-w-[90%] mx-auto' : 'max-w-[380px] mx-auto'
+        className={`p-4 ${
+          showContent ? 'md:max-w-[90%] mx-auto' : 'max-w-[380px] mx-auto'
         }`}
       >
         {/* Cover image (shown only when collapsed) */}

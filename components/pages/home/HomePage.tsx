@@ -47,7 +47,7 @@ export function HomePage({ data, language }: HomePageProps) {
       <div className="pb-10  lg:px-6  lg:pr-8 py-10  px-4 lg:pl-80 2xl:pl-96">
       <div
         className="
-        flex flex-col items-center justify-center
+        flex flex-col items-center 
         lg:w-auto
         min-h-[90vh]
         lg:h-[calc(100vh-80px)]
@@ -71,7 +71,7 @@ export function HomePage({ data, language }: HomePageProps) {
                 <HomeImageBox
                   image={homeMobileImage}
                   alt="Home mobile image"
-                  classesWrapper="w-full h-[60vh] cursor-pointer"
+                  classesWrapper="w-full min-h-[60vh] cursor-pointer"
                 />
               </div>
             )}
