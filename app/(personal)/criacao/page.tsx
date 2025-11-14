@@ -12,6 +12,13 @@ export default async function CriacaoPage() {
 
   const showcaseProjects = pageData.data.showcaseProjects || []
   const title = pageData.data.title?.[language] || ''
+  const bgColor = pageData.data.bgColor
+    ? {
+        r: Number(pageData.data.bgColor.r), 
+        g: Number(pageData.data.bgColor.g),  
+        b: Number(pageData.data.bgColor.b),
+      }
+    : undefined   
 
   const projectsWithInitial = await Promise.all(
     showcaseProjects.map(async (project: any) => {
@@ -37,10 +44,16 @@ export default async function CriacaoPage() {
   )
 
   return (
+     <section className='min-h-screen'
+      style={{
+        backgroundColor: `rgb(${bgColor?.r}, ${bgColor?.g}, ${bgColor?.b})`,
+      }}
+    >
     <ClientCriacaoPage
       title={title}
       projects={projectsWithInitial}
       language={language}
-    />
+     bgColor={bgColor}
+    /></section>
   )
 }

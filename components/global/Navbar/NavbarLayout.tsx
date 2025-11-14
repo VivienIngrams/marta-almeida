@@ -8,7 +8,7 @@ import Footer from '@/components/global/Footer'
 import { useBackgroundColor } from '@/components/providers/BgColorProvider'
 import type { SettingsPayload } from '@/types'
 
-import { useLanguage } from '../../context/LanguageProvider'
+
 import LanguageSwitcher from '../../context/LanguageSwitcher'
 
 interface NavbarProps {

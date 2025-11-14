@@ -55,7 +55,7 @@ export default function ColaboracaoTabs({
           style={{
             backgroundColor: `rgb(${bgColor.r}, ${bgColor.g}, ${bgColor.b})`,
           }}
-          className={`lg:pl-[20%] lg:pr-8 2xl:pr-24  sticky top-24 lg:top-0 bg-[rgb(${bgColor.r}, ${bgColor.g}, ${bgColor.b})] pt-10`}
+          className={`lg:pl-[20%] lg:pr-8 2xl:pr-24  sticky top-24 lg:top-0 bg-[rgb(${bgColor.r}, ${bgColor.g}, ${bgColor.b})] py-8`}
         >
           <div className="flex justify-center">
                 <div className={`${!hasClicked ? 'flex flex-col md:flex-row items-center gap-6' : 'flex flex-wrap justify-around gap-4 lg:gap-8'}`}>

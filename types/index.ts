@@ -121,7 +121,13 @@ export interface CriacaoPayload {
   title?: BilingualString
   overview?: BilingualBlock
   showcaseProjects?: ShowcaseProject[]
+  bgColor?: {
+    r?: number
+    g?: number
+    b?: number
+  } 
 }
+
 export interface InterpretacaoPayload {
   title?: BilingualString
   overview?: BilingualBlock

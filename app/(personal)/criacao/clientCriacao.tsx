@@ -1,7 +1,10 @@
 'use client'
 
 import { useState } from 'react'
+import { useEffect } from 'react'
+
 import { ProjectPreviewCriacao } from '@/components/pages/project/ProjectPreview'
+import { useBackgroundColor } from '@/components/providers/BgColorProvider'
 
 interface Project {
   slug: string
@@ -13,12 +16,22 @@ export default function ClientCriacaoPage({
   title,
   projects,
   language,
+  bgColor,
 }: {
   title: string
   projects: Project[]
   language: string
+  bgColor?: { r: number; g: number; b: number }
 }) {
   const [activeSlug, setActiveSlug] = useState<string | null>(null)
+const { setBackgroundColor } = useBackgroundColor()
+
+useEffect(() => {
+  if (bgColor) {
+    const rgb = `rgb(${bgColor.r}, ${bgColor.g}, ${bgColor.b})`
+    setBackgroundColor(rgb)
+  }
+}, [bgColor, setBackgroundColor])
 
   // Sort projects so that the active project comes first
   const sortedProjects = activeSlug
@@ -29,7 +42,7 @@ export default function ClientCriacaoPage({
     : projects
 
   return (
-    <section>
+  
       <div className="lg:pl-[20%] pb-16 pt-28 lg:pt-16 min-h-screen">
         <div className="px-4 lg:pr-8 2xl:pr-24 mb-8">
           <h1 className="hidden lg:block text-center uppercase text-3xl lg:text-5xl 2xl:text-7xl font-light tracking-tight">
@@ -76,6 +89,6 @@ export default function ClientCriacaoPage({
           })}
         </div>
       </div>
-    </section>
+
   )
 }

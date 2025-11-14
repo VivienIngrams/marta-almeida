@@ -21,6 +21,11 @@ export default defineType({
       validation: (rule) => rule.required(),
     }),
     defineField({
+          name: 'bgColor',
+          title: 'Backgroung color',
+          type: 'color',
+        }),
+    defineField({
       name: 'overview',
       description:
         'This text is your description of this page to the internet search engines.',

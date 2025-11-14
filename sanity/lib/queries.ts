@@ -144,6 +144,11 @@ export const criacaoPageQuery = groq`
       pt,
       en
     },
+     bgColor {
+      'r': rgb.r,
+      'g': rgb.g,
+      'b': rgb.b,
+    },
      overview {
       pt,
       en
@@ -156,6 +161,7 @@ export const criacaoPageQuery = groq`
       pt,
       en
     },
+   
       site,
       "slug": slug.current,
        title {

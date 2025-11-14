@@ -32,17 +32,18 @@ export function ProjectPage({ data, encodeDataAttribute, language }: ProjectPage
         {/* Header: Year & Title */}
         <div className="flex flex-wrap justify-between flex-col lg:flex-row">
           <div className="w-full ">
-            {year && <div className="text-sm lg:text-base 2xl:text-lg">{year}</div>}
+           
             {title?.[lang] && (
               <div className="my-1 font-bold text-lg lg:text-xl 2xl:text-2xl">
                 {title[lang]}
               </div>
             )}
+             {year && <div className="text-sm lg:text-base 2xl:text-lg">{year}</div>}
           </div>
 
           {/* Overview */}
           {overview?.[lang] && (
-            <div className="w-full font-sans font-light text-gray-800 text-sm lg:text-base 2xl:text-lg leading-none lg:max-w-5xl">
+            <div className="w-full  text-gray-800 text-sm lg:text-base 2xl:text-lg  lg:max-w-5xl">
               <CustomPortableText value={overview[lang]} paragraphClasses="" />
             </div>
           )}

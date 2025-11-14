@@ -58,18 +58,17 @@ export default function ClientBio({
               <div className="relative">
                 {/* Responsive aspect-ratio wrapper to preserve image proportions */}
                 {imageUrl && (
-                 <div
-  className="float-left relative w-[120px] md:w-[220px] xl:w-[300px]"
-  style={{ aspectRatio }} // use numeric aspect ratio from Sanity
->
-  <Image
-    src={imageUrl}
-    alt={title || 'Biography image'}
-    fill
-    className="object-contain"
-  />
-</div>
-
+                  <div
+                    className="float-right relative h-[150px] md:h-[250px] xl:h-[350px]"
+                    style={{ aspectRatio }} // use numeric aspect ratio from Sanity
+                  >
+                    <Image
+                      src={imageUrl}
+                      alt={title || 'Biography image'}
+                      fill
+                      className="object-contain"
+                    />
+                  </div>
                 )}
 
                 <CustomPortableText value={bio} />
