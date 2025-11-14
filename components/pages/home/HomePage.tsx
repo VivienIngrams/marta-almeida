@@ -44,7 +44,7 @@ export function HomePage({ data, language }: HomePageProps) {
           : undefined,
       }}
     >
-      <div className="pb-10  lg:px-6  lg:pr-8 py-10  px-4 lg:pl-80 2xl:pl-96">
+      <div className="py-10  lg:px-6  lg:pr-8 lg:pt-16  px-4 lg:pl-80 2xl:pl-96">
       <div
         className="
         flex flex-col items-center 

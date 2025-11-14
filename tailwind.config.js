@@ -24,6 +24,9 @@ module.exports = {
       oswald: ['var(--font-family-oswald)'],
     },
     extend: {
+      screens: {
+    '2xl': '1800px',
+  },
       colors: {
         primary: withOpacity("--color-primary"),
         secondary: withOpacity("--color-secondary"),

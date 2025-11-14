@@ -70,8 +70,8 @@ export default function CriacaoProjectPage({
         )}
 
         {/* Title + Year stacked */}
-        <div className="mb-2">
-          <h2 className="font-bold text-xl">{langTitle}</h2>
+        <div className="mt-4 lg:mt-10 mb-2">
+          <h2 className="font-bold text-xl lg:text-2xl 2xl:text-3xl">{langTitle}</h2>
           {year && <span className="text-sm opacity-70 block mt-1">{year}</span>}
         </div>
 

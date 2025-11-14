@@ -43,27 +43,28 @@ useEffect(() => {
 
   return (
   
-      <div className="lg:pl-[20%] pb-16 pt-28 lg:pt-16 min-h-screen">
-        <div className="px-4 lg:pr-8 2xl:pr-24 mb-8">
+      <div className="lg:pl-[20%] lg:pr-8 xl:pr-12 2xl:pr-24  pb-16 pt-28 lg:pt-16 min-h-screen">
+        <div className="px-4 mb-8 lg:mb-16 2xl:mb-32">
           <h1 className="hidden lg:block text-center uppercase text-3xl xl:text-4xl 2xl:text-5xl font-light tracking-tight">
             {title}
           </h1>
         </div>
 
         {/* Projects Grid */}
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: activeSlug
-              ? '1fr'
-              : 'repeat(auto-fill, minmax(320px, 1fr))',
-            gap: '2rem',
-            maxWidth: '1600px',
-            margin: '0 auto',
-            padding: '0 1rem',
-            transition: 'grid-template-columns 0.5s ease',
-          }}
-        >
+       <div
+  className={` min-h-[90vh]
+    grid gap-8 max-w-[1800px] mx-auto px-4
+    grid-cols-1
+    md:grid-cols-2
+    xl:grid-cols-3
+  `}
+  style={
+    activeSlug
+      ? { gridTemplateColumns: '1fr', transition: 'grid-template-columns 0.5s ease' }
+      : { transition: 'grid-template-columns 0.5s ease' }
+  }
+>
+
           {sortedProjects.map((project) => {
             const isExpanded = activeSlug === project.slug
 
