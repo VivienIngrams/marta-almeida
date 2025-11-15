@@ -49,7 +49,7 @@ export default function ClientInterpretacaoPage({
         className="pb-16 pt-28 lg:pt-16 min-h-screen"
       >
         <div className="lg:pl-[20%] px-4 lg:pr-8 2xl:pr-24">
-          <h1 className="hidden lg:block text-center uppercase text-3xl xl:text-4xl 2xl:text-5xl font-light tracking-tight">
+          <h1 className="hidden lg:block text-center uppercase text-4xl xl:text-5xl 2xl:text-6xl font-light tracking-tight">
             {title}
           </h1>
         </div>
