@@ -80,7 +80,6 @@ export default function ClientBio({
             </div>
           )}
         </div>
-      </div>
        {images && images.length > 0 && (
                 <div className="w-full py-8 lg:pl-[25%]">
                   <div className="px-4 lg:pr-8 lg:pl-0">
@@ -124,6 +123,7 @@ export default function ClientBio({
                   </div>
                 </div>
               )}
+      </div>
     </section>
   )
 }
