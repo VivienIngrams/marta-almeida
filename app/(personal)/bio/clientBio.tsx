@@ -35,7 +35,7 @@ export default function ClientBio({
   }, [bgColor, setBackgroundColor])
 
   const imageUrl = image ? urlForImage(image)?.fit('max').url() : undefined
-  const aspectRatio = image?.asset?.metadata?.dimensions?.aspectRatio ?? 1 // width / height
+  const aspectRatio = image?.asset?.metadata?.dimensions?.aspectRatio ?? 0.8 // width / height
   const objectPosition = image?.hotspot
     ? `${Number(image.hotspot.x) * 100}% ${Number(image.hotspot.y) * 100}%`
     : 'center'
@@ -54,7 +54,7 @@ export default function ClientBio({
         {/* Biography Section */}
         <div className="lg:px-[12vw]">
           {bio && (
-            <div className="lg:py-12 text-base 2xl:text-lg font-sans font-light text-gray-800">
+            <div className="lg:py-12 text-base 2xl:text-lg font-sans text-justify font-light text-gray-800">
               <div className="relative">
                 {/* Responsive aspect-ratio wrapper to preserve image proportions */}
                 {imageUrl && (
@@ -66,7 +66,7 @@ export default function ClientBio({
                       src={imageUrl}
                       alt={title || 'Biography image'}
                       fill
-                      className="object-contain"
+                      className="object-cover pt-2 pl-4 md:pl-8"
                     />
                   </div>
                 )}
