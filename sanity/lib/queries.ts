@@ -44,7 +44,22 @@ export const bioPageQuery = groq`
       'g': rgb.g,
       'b': rgb.b,
     },
+    images[] {
+  ...,
+  caption {
+      pt,
+      en
+    },
+  asset->{
+    url,
+    metadata {
+      dimensions {
+        aspectRatio
+      }
+    }
   }
+},
+  } 
 `       
 
 export const homePageTitleQuery = groq`

@@ -12,7 +12,8 @@ export default async function BioPage() {
   if (!pageData?.data) return notFound()
   const cookieStore = cookies()
   const language = cookieStore.get('language')?.value || 'pt'
-
+console.log('carousel:', pageData.data.images)
+console.log('bio page data:', pageData)
 
   const title = pageData.data.title?.[language] || ''
   const bio = pageData.data.bio?.[language] || pageData.data.bio?.pt || []
@@ -36,7 +37,7 @@ export default async function BioPage() {
           backgroundColor: `rgb(${bgColor.r}, ${bgColor.g}, ${bgColor.b})`,
         }}
       >
-        <ClientBio title={title} bio={bio} bgColor={bgColor} image={pageData.data.image}/>
+        <ClientBio title={title} bio={bio} bgColor={bgColor} image={pageData.data.image} language={language}  images={pageData.data.images}/>
       </section>
     )
 }

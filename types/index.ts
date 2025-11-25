@@ -48,6 +48,7 @@ export interface BioPayload {
     g?: string
     b?: string
   }
+   images?: CarouselImage[]
 }
 export interface ProjectPayload {
   year?: string

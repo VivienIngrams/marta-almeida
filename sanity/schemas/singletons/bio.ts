@@ -9,10 +9,10 @@ export default defineType({
   // Uncomment below to have edits publish automatically as you type
   // liveEdit: true,
   fields: [
-     defineField({
+    defineField({
       name: 'image',
       title: 'Image',
-            type: 'image',
+      type: 'image',
       options: {
         hotspot: true,
       },
@@ -38,17 +38,11 @@ export default defineType({
       ],
       validation: (rule) => rule.required(),
     }),
-
-    defineField({
-      name: 'bgColor',
-      title: 'Backgroung color',
-      type: 'color',
-    }),
-    defineField({
+defineField({
       name: 'bio',
       description: 'This text is your biography.',
       title: 'Biography text',
-     type: 'object',
+      type: 'object',
       fields: [
         {
           name: 'pt',
@@ -88,6 +82,7 @@ export default defineType({
             }),
           ],
         },
+        
       ],
       validation: (rule) => rule.required(),
       preview: {
@@ -102,11 +97,72 @@ export default defineType({
               : ''
           return {
             title: 'Biography',
-            subtitle: extractFirst(bioEn) || extractFirst(bioPt) || 'No content',
+            subtitle:
+              extractFirst(bioEn) || extractFirst(bioPt) || 'No content',
           }
         },
       },
     }),
+    defineField({
+      name: 'bgColor',
+      title: 'Backgroung color',
+      type: 'color',
+    }),
+    defineField({
+          name: 'images',
+          title: 'Carousel Images',
+          description:
+            'These images will be used in the carousel on the Interpretação page. You can rearrange the display order by dragging each image.',
+          type: 'array',
+
+          of: [
+            defineArrayMember({
+              type: 'image',
+              options: {
+                hotspot: true,
+              },
+              fields: [
+                {
+                  title: 'Caption',
+                  name: 'caption',
+                  type: 'object',
+                  fields: [
+                    { name: 'pt', title: 'Português', type: 'string' },
+                    { name: 'en', title: 'English', type: 'string' },
+                  ],
+                  description: '(Optional) Caption below the image (bilingual)',
+                  preview: {
+                    select: {
+                      captionPt: 'pt',
+                      captionEn: 'en',
+                    },
+                    prepare({ captionPt, captionEn }) {
+                      return {
+                        title: 'Caption',
+                        subtitle: captionEn || captionPt || 'No caption',
+                      }
+                    },
+                  },
+                },
+              ],
+              preview: {
+                select: {
+                  media: 'asset',
+                  captionPt: 'caption.pt',
+                  captionEn: 'caption.en',
+                },
+                prepare({ media, captionPt, captionEn }) {
+                  return {
+                    title: 'Carousel Image',
+                    subtitle: captionEn || captionPt || '',
+                    media,
+                  }
+                },
+              },
+            }),
+          ],
+        }),
+    
   ],
 
   preview: {
@@ -121,6 +177,3 @@ export default defineType({
     },
   },
 })
-
-
-

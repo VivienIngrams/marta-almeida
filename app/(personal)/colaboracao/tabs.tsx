@@ -3,11 +3,25 @@ import React, { useState, useEffect } from 'react'
 
 import ProjectPreview from '@/components/pages/project/ProjectPreview'
 import { useBackgroundColor } from '@/components/providers/BgColorProvider'
+import { HiUserGroup } from 'react-icons/hi'
+import { SiBytedance, SiStudyverse } from 'react-icons/si'
 
 const CATEGORIES = [
-  { key: 'producao', label: { pt: 'Produção', en: 'Production' } },
-  { key: 'ensino', label: { pt: 'Ensino', en: 'Teaching' } },
-  { key: 'outros', label: { pt: 'Assistente Coreográfica', en: 'Choreographic Assistant' } },
+  { 
+    key: 'producao', 
+    label: { pt: 'Produção', en: 'Production' },
+    icon: SiStudyverse
+  },
+  { 
+    key: 'ensino', 
+    label: { pt: 'Ensino', en: 'Teaching' },
+    icon: HiUserGroup
+  },
+  { 
+    key: 'outros', 
+    label: { pt: 'Assistente Coreográfica', en: 'Choreographic Assistant' },
+    icon: SiBytedance
+  },
 ]
 
 export default function ColaboracaoTabs({
@@ -58,31 +72,40 @@ export default function ColaboracaoTabs({
           className={`lg:pl-[20%] lg:pr-8 2xl:pr-24  sticky top-24 lg:top-0 bg-[rgb(${bgColor.r}, ${bgColor.g}, ${bgColor.b})] py-8`}
         >
           <div className="flex justify-center">
-                <div className={`${!hasClicked ? 'flex flex-col md:flex-row items-center gap-6' : 'flex flex-wrap justify-around gap-4 lg:gap-8'}`}>
-              {CATEGORIES.map((cat) => (
-                
-                <button
-                  key={cat.key}
-                  style={{
-                    color: `rgb(${bgColor.r}, ${bgColor.g}, ${bgColor.b})`,
-                  }}
-                  className={`inline-block  w-fit m-auto tracking-wider rounded-md font-light uppercase transition shadow-md shadow-black
-                    ${!hasClicked ? 'p-4 lg:p-6 2xl:p-10 lg:text-xl 2xl:text-2xl bg-black/30 shadow-lg shadow-black mt-8 md:mt-20 xl:mt-32 mx-4 xl:mx-8 ' : 'p-2 lg:p-3 text-xs lg:text-lg 2xl:text-xl bg-black/30'}
-                    ${
-                      activeCategory === cat.key
-                        ? 'underline underline-offset-1  lg:underline-offset-[3px] decoration-1 pb-3 lg:decoration-2 lg:text-xl 2xl:text-2xl font-normal scale-110'
-                        : 'hover:bg-gray-800/50'
-                    }
-                  `}
-                  onClick={() => {
-                    setActiveCategory(cat.key)
-                    setHasClicked(true)
-                  }}
-                >
-                  
-                     {cat.label[language] || cat.label.pt}
-                </button>
-              ))}
+            <div className={`${!hasClicked ? 'flex flex-col md:flex-row items-center gap-6' : 'flex flex-wrap justify-around gap-4 lg:gap-8'}`}>
+              {CATEGORIES.map((cat) => {
+                const IconComponent = cat.icon
+                return (
+                  <button
+                    key={cat.key}
+                    className={`inline-block w-fit m-auto tracking-wider rounded-md font-light uppercase transition shadow-md shadow-black flex flex-col items-center gap-3
+                      ${!hasClicked 
+                        ? `p-6 lg:p-8 2xl:p-12 lg:text-xl 2xl:text-2xl shadow-lg shadow-black/30 mt-8 md:mt-20 xl:mt-32 mx-4 xl:mx-8 
+                            hover:shadow-xl hover:shadow-black/40 
+                           bg-gradient-to-br from-white/5 to-white/0 hover:from-white/10 hover:to-white/5
+                           transform hover:scale-105 duration-300` 
+                        : 'p-2 lg:p-3 text-xs lg:text-lg 2xl:text-xl '
+                      }
+                      ${
+                        activeCategory === cat.key
+                          ? 'underline underline-offset-1 lg:underline-offset-[3px] decoration-1 pb-3 lg:decoration-2 lg:text-xl 2xl:text-2xl font-normal scale-110'
+                          : !hasClicked ? 'hover:scale-105' : 'hover:bg-gray-800/10'
+                      }
+                    `}
+                    onClick={() => {
+                      setActiveCategory(cat.key)
+                      setHasClicked(true)
+                    }}
+                  >
+                    {!hasClicked && (
+                      <div className="text-4xl lg:text-5xl 2xl:text-6xl">
+                        <IconComponent />
+                      </div>
+                    )}
+                    {cat.label[language] || cat.label.pt}
+                  </button>
+                )
+              })}
             </div>
           </div>
         </div>

@@ -12,6 +12,8 @@ interface BioClientProps {
   image?: any
   bio?: any
   bgColor: { r: number; g: number; b: number }
+  language: string
+  images?: any[]
 }
 
 export default function ClientBio({
@@ -19,6 +21,8 @@ export default function ClientBio({
   bio,
   bgColor,
   image,
+  language,
+  images,
 }: BioClientProps) {
   const { setBackgroundColor } = useBackgroundColor()
 
@@ -77,6 +81,49 @@ export default function ClientBio({
           )}
         </div>
       </div>
+       {images && images.length > 0 && (
+                <div className="w-full py-8 lg:pl-[25%]">
+                  <div className="px-4 lg:pr-8 lg:pl-0">
+                    <div className="overflow-x-auto thin-scrollbar">
+                      <div className="flex gap-4 lg:gap-6 pb-4 snap-x snap-mandatory">
+                        {images.map((image, index) => {
+                          const imageUrl = image.asset?.url
+                          if (!imageUrl) return null
+      
+                          const aspectRatio =
+                            image.asset?.metadata?.dimensions?.aspectRatio || 1.5
+      
+                          return (
+                            <div key={index} className="flex-none snap-start">
+                              <div
+                                className="relative overflow-hidden rounded shadow-lg hover:shadow-xl transition-shadow duration-300"
+                                style={{
+                                  width: `${400 * aspectRatio}px`,
+                                  height: '400px',
+                                }}
+                              >
+                                <Image
+                                  src={imageUrl}
+                                  alt={`Gallery image ${index + 1}`}
+                                  fill
+                                  sizes='( min-width: 640px) 50vw, 80vw'
+                                  className="object-cover hover:scale-105 transition-transform duration-500"
+                                />
+                              </div>
+      
+                              {image.caption && image.caption[language] && (
+                                <p className="mt-2 text-sm text-center text-gray-800 max-w-[24rem]">
+                                  {image.caption[language]}
+                                </p>
+                              )}
+                            </div>
+                          )
+                        })}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
     </section>
   )
 }
