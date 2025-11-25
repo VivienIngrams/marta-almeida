@@ -58,7 +58,7 @@ export default function ColaboracaoTabs({
 
   return (
     <section>
-      <div className="pb-16 pt-28 lg:pt-16">
+      <div className="py-16 lg:pt-16">
         <div className="lg:pl-[20%] px-4 lg:pr-8 2xl:pr-24 ">
           <h1 className="hidden lg:block text-center uppercase text-3xl xl:text-4xl 2xl:text-5xl font-light tracking-tight">
             {title}
@@ -69,10 +69,10 @@ export default function ColaboracaoTabs({
           style={{
             backgroundColor: `rgb(${bgColor.r}, ${bgColor.g}, ${bgColor.b})`,
           }}
-          className={`lg:pl-[20%] lg:pr-8 2xl:pr-24  sticky top-24 lg:top-0 bg-[rgb(${bgColor.r}, ${bgColor.g}, ${bgColor.b})] py-8`}
+          className={`lg:pl-[20%] lg:pr-8 2xl:pr-24   bg-[rgb(${bgColor.r}, ${bgColor.g}, ${bgColor.b})] lg:py-8`}
         >
-          <div className="flex justify-center">
-            <div className={`${!hasClicked ? 'flex flex-col md:flex-row items-center gap-6' : 'flex flex-wrap justify-around gap-4 lg:gap-8'}`}>
+          <div className={`${!hasClicked ? 'min-h-[80vh]' : 'pt-12 lg:pt-0'} flex flex-col lg:flex-row justify-center`}>
+            <div className={`${!hasClicked ? 'flex flex-col md:flex-row items-center gap-6' : 'flex flex-wrap justify-around gap-4 lg:gap-8 py-6'}`}>
               {CATEGORIES.map((cat) => {
                 const IconComponent = cat.icon
                 return (
