@@ -72,19 +72,19 @@ export default function ColaboracaoTabs({
           className={`lg:pl-[20%] lg:pr-8 2xl:pr-24   bg-[rgb(${bgColor.r}, ${bgColor.g}, ${bgColor.b})] lg:py-8`}
         >
           <div className={`${!hasClicked ? 'min-h-[80vh]' : 'pt-12 lg:pt-0'} flex flex-col lg:flex-row justify-center`}>
-            <div className={`${!hasClicked ? 'flex flex-col md:flex-row items-center gap-6' : 'flex flex-wrap justify-around gap-4 lg:gap-8 py-6'}`}>
+            <div className={`${!hasClicked ? 'flex flex-col md:flex-row items-center gap-6' : 'flex justify-around gap-4 lg:gap-8 py-6 px-4'}`}>
               {CATEGORIES.map((cat) => {
                 const IconComponent = cat.icon
                 return (
                   <button
                     key={cat.key}
-                    className={`inline-block w-fit m-auto tracking-wider rounded-md font-light uppercase transition shadow-md shadow-black flex flex-col items-center gap-3
+                    className={` w-fit m-auto tracking-wider rounded-md font-light uppercase transition shadow-md shadow-black flex flex-col items-center gap-3
                       ${!hasClicked 
                         ? `p-6 lg:p-8 2xl:p-12 lg:text-xl 2xl:text-2xl shadow-lg shadow-black/30 mt-8 md:mt-20 xl:mt-32 mx-4 xl:mx-8 
                             hover:shadow-xl hover:shadow-black/40 
                            bg-gradient-to-br from-white/5 to-white/0 hover:from-white/10 hover:to-white/5
                            transform hover:scale-105 duration-300` 
-                        : 'p-2 lg:p-3 text-xs lg:text-lg 2xl:text-xl '
+                        : 'p-2 lg:p-3 text-xs lg:text-lg 2xl:text-xl sticky top-24'
                       }
                       ${
                         activeCategory === cat.key

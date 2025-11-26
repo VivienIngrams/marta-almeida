@@ -37,20 +37,21 @@ export function HomePage({ data, language }: HomePageProps) {
 
   return (
     <section
-     className='min-h-screen h-screen'
+     className='min-h-screen'
       style={{
         backgroundColor: bgColor
           ? `rgb(${bgColor.r}, ${bgColor.g}, ${bgColor.b})`
           : undefined,
       }}
     >
-      <div className="py-10  lg:px-8  lg:pr-8 lg:pt-12 2xl:pt-16  px-4 lg:pl-80 2xl:pl-96">
+      <div className="py-10 lg:px-8  lg:pr-8 lg:pt-12 2xl:pt-16  px-4 lg:pl-80 2xl:pl-96">
       <div
         className="
-        flex flex-col items-center 
+        flex flex-col items-center justify-center
         lg:w-auto
         min-h-[90vh]
-        lg:h-[calc(100vh-80px)]
+        lg:min-h-[80vh]
+        lg:h-[calc(100vh-100px)]
         
       "
       >

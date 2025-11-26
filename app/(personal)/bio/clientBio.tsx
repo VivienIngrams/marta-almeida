@@ -81,8 +81,8 @@ export default function ClientBio({
           )}
         </div>
        {images && images.length > 0 && (
-                <div className="w-full py-8 lg:pl-[25%]">
-                  <div className="px-4 lg:pr-8 lg:pl-0">
+                <div className="w-full py-8 lg:pl-[12vw]">
+                  <div className="pr-4 lg:pr-8 lg:pl-0">
                     <div className="overflow-x-auto thin-scrollbar">
                       <div className="flex gap-4 lg:gap-6 pb-4 snap-x snap-mandatory">
                         {images.map((image, index) => {
