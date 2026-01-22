@@ -25,6 +25,7 @@
     "@sanity/ui": "2.4.0",
     "@sanity/vision": "3.47.1",
     "@tailwindcss/typography": "0.5.13",
+    "@vercel/analytics": "^1.6.1",
     "classnames": "2.5.1",
     "date-fns": "3.6.0",
     "framer-motion": "^11.3.8",
